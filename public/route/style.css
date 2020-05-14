@@ -1,98 +1,74 @@
-body {
-    margin: 0;
-    padding: 0;
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, sans-serif;
+  font-weight: 200;
+  font-size: 14px;
+  color: #637282;
 }
 
-hr {
-    display: block;
-    height: 1px;
-    border: 0;
-    border-top: 1px solid #ccc;
-    margin: 1em 0;
-    padding: 0;
-    color: grey;
+p {
+  margin: 5px 0;
 }
 
 #map {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
 }
 
-.map-overlay {
-    font-family: Roboto;
-    font-style: normal;
-    position: absolute;
-    line-height: 80%;
-    width: 220px;
-    top: 0;
-    left: 0;
-    padding: 5px;
+.journey-specs {
+  position: absolute;
+  width: 320px;
+  top: 25px;
+  left: 25px;
+
+  background-color: #fff;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding: 24px 16px;
 }
 
-.map-overlay .map-overlay-inner {
-    background-color: #fff;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-    padding: 8px;
-    margin-bottom: 10px;
+.journey-specs h1 {
+  margin: 0 0 10px;
+  font-weight: bold;
+  font-size: 22px;
+  align-items: center;
+  color: #000840;
 }
 
-.head {
-    display: flex;
-    justify-content: space-between;
-}
-
-.heading {
-    font-weight: bold;
-    font-size: 17px;
-    display: flex;
-    align-items: center;
-    color: #000840;
+.journey-specs header {
+  padding: 0 0 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #ccc;
 }
 
 .specs {
-    display: flex;
-    justify-content: space-between;
-    line-height: 0cm;
-    margin-top: 0;
-    height: 25px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
 }
 
-.id {
-    font-weight: normal;
-    font-size: 12px;
-    line-height: 0px;
-    color: #131314;
-}
-
-.value {
-    font-weight: bold;
-    font-size: 12px;
-    text-align: right;
-    color: #010738;
-}
-
-.overvieuw {
-    font-weight: bold;
-    font-size: 12px;
-    color: #010738;
+.specs span {
+  font-weight: bold;
+  text-align: right;
+  color: #010738;
 }
 
 .rounded-label {
-    height: 14px;
-    line-height: 7px;
-    padding: 0.25em 0.9em;
-    font-size: 6pt;
+  height: 14px;
+  line-height: 7px;
+  padding: 0.25em 0.9em;
+  font-size: 6pt;
 }
 
 .location-label {
-    background: white;
-    line-height: 1.1em;
-    padding: 0.25em 0.9em;
-    font-size: 6pt;
-    box-shadow: 0px 8px 15px rgba(37, 42, 50, 0.1);
-    border-radius: 4px;
+  background: white;
+  line-height: 1.1em;
+  padding: 0.25em 0.9em;
+  font-size: 6pt;
+  box-shadow: 0px 8px 15px rgba(37, 42, 50, 0.1);
+  border-radius: 4px;
 }

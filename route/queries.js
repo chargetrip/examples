@@ -1,4 +1,4 @@
-import qql from "graphql-tag";
+import qql from 'graphql-tag';
 
 /*
  * In this example we request a route from Amsterdam, Netherlands to Berlin, Germany
@@ -11,7 +11,7 @@ import qql from "graphql-tag";
  *   - min power of chargers is 43 kWh
  *   - one passenger in the car (drive alone)
  */
-export const createRoute = qql `
+export const createRoute = qql`
 mutation newRoute{
     newRoute(
       input: {
@@ -49,7 +49,7 @@ mutation newRoute{
     }
 `;
 
-export const routeUpdate = qql `
+export const routeUpdate = qql`
 subscription routeUpdatedById($id: ID!){
   routeUpdatedById(id: $id) {
     status
