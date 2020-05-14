@@ -1,15 +1,44 @@
 <!DOCTYPE html>
-<html>
+
 <head>
     <title>Route example</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.js'></script>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet' />
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
 </head>
+
 <body>
-    <h1>Route example</h1>
-    <p>Check console for output...</p>
     <div id="map"></div>
-    <div class="map-overlay top"></div>
+    <div class="map-overlay top">
+        <div class="map-overlay-inner">
+            <div class="head">
+                <h1 class="heading">Amsterdam to Berlin</h1>
+            </div>
+            <h3><span id="duration"></span> h</h3>
+            <h4 class="overvieuw"> <span id=distance></span> km - <span id="stops"></span>stops</h4>
+            <hr/>
+            <div class="specs">
+                <h4 class="id">Charge Duration</h4>
+                <h4 class="value"><span id="charge-duration"> </span> min</h4>
+            </div>
+            <div class="specs">
+                <h4 class="id">Cost Estimation </h4>
+                <h4 class="value"><span id="cost"> </span> €</h4>
+            </div>
+            <div class="specs">
+                <h4 class="id">Total Consumption</h4>
+                <h4 class="value"><span id="consumption"> </span> kWh</h4>
+            </div>
+            <div class="specs">
+                <h4 class="id">CO2 Spared</h4>
+                <h4 class="value"><span id="co2"> </span> kg</h4>
+            </div>
+            <hr/>
+        </div>
+    </div>
 </body>
 <script src="bundle.js"></script>
-</html>
+
+</html>l>
