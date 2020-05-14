@@ -6,6 +6,7 @@ stationAround(
     query: {
       location: { type: Point, coordinates: [4.8979755, 52.3745403] }
       distance: 5000
+      power: [50, 22]
       amenities: ["supermarket"]
     }
     size: 10
