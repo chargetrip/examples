@@ -3,7 +3,7 @@ import { pipe, subscribe } from 'wonka';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 import { createRoute, routeUpdate } from './queries.js';
 import { drawRoute } from './map.js';
-import { polyline } from './polyline.js';
+import * as mapboxPolyline from '@mapbox/polyline';
 import { parseSeconds } from '../utils';
 
 /**
@@ -80,7 +80,7 @@ client
  */
 const drawRoutePolyline = data => {
   // polyline.decode() returns an array of [latitude, longitude] pairs
-  const decodedData = polyline.decode(data.polyline);
+  const decodedData = mapboxPolyline.decode(data.polyline);
 
   // Mapbox GL uses the format [longitude,latitude] to show coordinates on a map, so we have to reverse pairs
   const reversed = decodedData.map(item => item.reverse());

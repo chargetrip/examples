@@ -4,6 +4,7 @@
   "main": "route/index.js",
   "version": "1.0.0",
   "dependencies": {
+    "@mapbox/polyline": "^1.1.0",
     "@urql/core": "^1.7.0",
     "graphql": "^15.0.0",
     "graphql-tag": "^2.10.1",
