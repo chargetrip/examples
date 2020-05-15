@@ -39,8 +39,7 @@ const client = createClient({
  * To create a route you need:
  *
  * 1. Create a new route and receive back its ID;
- * 2. Subscribe to route updates in order to receive its details;
- * 3. Draw a route on a map.
+ * 2. Subscribe to route updates in order to receive its details.
  */
 client
   .mutation(createRoute)
@@ -79,10 +78,7 @@ client
  * @param data {object} route specification
  */
 const drawRoutePolyline = data => {
-  // polyline.decode() returns an array of [latitude, longitude] pairs
   const decodedData = mapboxPolyline.decode(data.polyline);
-
-  // Mapbox GL uses the format [longitude,latitude] to show coordinates on a map, so we have to reverse pairs
   const reversed = decodedData.map(item => item.reverse());
 
   drawRoute(reversed, data.legs);
@@ -90,6 +86,7 @@ const drawRoutePolyline = data => {
 
 /**
  * Gets minutes and hours from a duration.
+ *
  * @param duration {number} seconds
  * @returns {string} string in format h:min
  */
@@ -100,6 +97,7 @@ const getDurationString = duration => {
 
 /**
  * Show journey specific information like duration, consumption, costs etc.
+ *
  * @param data {object} route specification
  */
 const displayRouteData = data => {
