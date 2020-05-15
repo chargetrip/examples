@@ -8,13 +8,38 @@ const map = new mapboxgl.Map({
   center: [4.8979755, 52.3745403],
 });
 
+const popup = new mapboxgl.Popup({
+  closeButton: false,
+  closeOnClick: false,
+});
+
+map.on('mouseenter', 'path', e => {
+  map.getCanvas().style.cursor = 'pointer';
+
+  let coordinates = e.features[0].geometry.coordinates;
+  let description = e.features[0].properties.description;
+
+  while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+  }
+
+  popup
+    .setLngLat(coordinates)
+    .setHTML(description)
+    .addTo(map);
+});
+
+map.on('mouseleave', 'path', function() {
+  map.getCanvas().style.cursor = '';
+  popup.remove();
+});
+
 /**
- * Return what icon will be used to display the carging station, depening on the speed and status.
+ * Return what icon will be used to display the charging station, depending on the speed and status.
  *
  * @param point {array} Array containing station data
  */
-
-function selectPinlet(point) {
+const selectPinlet = point => {
   let charger;
   if (point.speed === 'slow') {
     if (point.status === 'free') {
@@ -48,7 +73,7 @@ function selectPinlet(point) {
     }
   }
   return charger;
-}
+};
 
 /**
  * Draw the stations on the map and show data about the station on hover.
@@ -56,10 +81,11 @@ function selectPinlet(point) {
  * @param stations {array} Array of stations
  */
 
-function loadStation(stations) {
-  let points = new Array(0);
+const loadStation = stations => {
+  let points = [];
+
   stations.map(point => {
-    let icon = selectPinlet(point);
+    const icon = selectPinlet(point);
     points.push({
       type: 'Feature',
       properties: {
@@ -69,6 +95,7 @@ function loadStation(stations) {
       geometry: point.location,
     });
   });
+
   map.addLayer({
     id: 'path',
     type: 'symbol',
@@ -85,28 +112,6 @@ function loadStation(stations) {
       },
     },
   });
-
-  const popup = new mapboxgl.Popup({
-    closeButton: false,
-    closeOnClick: false,
-  });
-
-  map.on('mouseenter', 'path', function(e) {
-    map.getCanvas().style.cursor = 'pointer';
-    let coordinates = e.features[0].geometry.coordinates;
-    let description = e.features[0].properties.description;
-    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-    }
-    popup
-      .setLngLat(coordinates)
-      .setHTML(description)
-      .addTo(map);
-  });
-  map.on('mouseleave', 'path', function() {
-    map.getCanvas().style.cursor = '';
-    popup.remove();
-  });
-}
+};
 
 export { loadStation };
