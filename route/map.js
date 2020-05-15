@@ -10,18 +10,26 @@ const map = new mapboxgl.Map({
 });
 
 /**
- * Draw route polyline and show chargin station on the map.
+ * Draw route polyline and show charging stations on the map.
  *
  * @param coordinates {array} Array of coordinates
  * @param legs {array} route legs (stops) - each leg represents a either a charging station, or via point or final point
  */
 const drawRoute = (coordinates, legs) => {
-  drawPolyline(coordinates);
-  showLegs(legs);
+  if (map.loaded()) {
+    drawPolyline(coordinates);
+    showLegs(legs);
+  } else {
+    map.on('load', () => {
+      drawPolyline(coordinates);
+      showLegs(legs);
+    });
+  }
 };
 
 /**
  * Draw route polyline on a map.
+ *
  * @param coordinates {object} polyline coordinates
  */
 const drawPolyline = coordinates => {
@@ -39,46 +47,42 @@ const drawPolyline = coordinates => {
     ],
   };
 
-  map.on('load', function() {
-    map.addSource('LineString', {
-      type: 'geojson',
-      data: geojson,
-    });
+  map.addSource('LineString', {
+    type: 'geojson',
+    data: geojson,
+  });
 
-    map.addLayer(
-      {
-        id: 'LineString',
-        type: 'line',
-        options: 'beforeLayer',
-        source: 'LineString',
-        layout: {
-          'line-join': 'round',
-          'line-cap': 'round',
-        },
-        paint: {
-          'line-color': '#00A9E0',
-          'line-width': 3,
-        },
-      },
-      'path',
-    );
+  map.addLayer({
+    id: 'polyline',
+    type: 'line',
+    options: 'beforeLayer',
+    source: 'LineString',
+    layout: {
+      'line-join': 'round',
+      'line-cap': 'round',
+    },
+    paint: {
+      'line-color': '#00A9E0',
+      'line-width': 3,
+    },
   });
 };
 
 /**
  * Show the charging station, origin and destination on the map.
  *
- * Last lef od the route is a destination point.
- * All other legs are either charging stations or via points (if route has way points).
+ * Last lef of the route is a destination point.
+ * All other legs are either charging stations or via points (if route has stops).
  *
- * @param legs
+ * @param legs {array} route legs
  */
 function showLegs(legs) {
   if (legs.length === 0) return;
 
   let points = [];
 
-  // add first point - origin
+  // we want to show origin point on the map
+  // to do that we use origin of the first leg
   points.push({
     type: 'Feature',
     properties: {
@@ -121,7 +125,7 @@ function showLegs(legs) {
 
   // draw route points on a map
   map.addLayer({
-    id: 'path',
+    id: 'legs',
     type: 'symbol',
     layout: {
       'icon-image': '{icon}',
@@ -161,6 +165,7 @@ function showLegs(legs) {
  * @param coordinates {array} point coordinates
  * @param label {string} point label
  * @param offset {array} marker offset
+ * @param className {string} marker classname
  */
 const addMarker = (coordinates, label, offset, className = 'location-label') => {
   const marker = document.createElement('div');
@@ -170,26 +175,27 @@ const addMarker = (coordinates, label, offset, className = 'location-label') => 
 };
 
 /**
- * Add markers to the map describing each point of the route
+ * Add markers to the map describing each point of the route.
+ *
  * @param legs {array} route points
  */
 function loadMarkers(legs) {
-  // destination point marker
-  const label = '<p>To<br> <strong>Berlin</strong></p>';
+  // destination point marker (the last leg)
+  const label = 'To<br> <strong>Berlin</strong>';
   const offset = [-20, -45];
   addMarker(legs[legs.length - 1].destination.geometry.coordinates, label, offset);
 
   legs.map((leg, index) => {
-    // origin point marker
+    // origin point marker (origin of the first leg)
     if (index === 0) {
-      const label = '<p>From<br> <strong>Amsterdam</strong></p>';
+      const label = 'From<br> <strong>Amsterdam</strong>';
       const offset = [+30, -30];
       addMarker(leg.origin.geometry.coordinates, label, offset);
     }
     // charging stations
     else {
-      const label = '<p><strong>' + (legs[index - 1].chargeTime / 60).toFixed(0) + ' min </strong>  charge</p>';
-      const offset = [+35, -18];
+      const label = '<strong>' + (legs[index - 1].chargeTime / 60).toFixed(0) + ' min </strong>  charge';
+      const offset = [+35, -15];
       addMarker(leg.origin.geometry.coordinates, label, offset, 'rounded-label');
     }
   });

@@ -103,6 +103,8 @@ const getDurationString = duration => {
  * @param data {object} route specification
  */
 const displayRouteData = data => {
+  document.getElementById('loader').remove();
+
   // the total duration of the journey (including charge time), in seconds
   document.getElementById('duration').innerHTML = `${getDurationString(data.duration)} including charging`;
 
@@ -116,7 +118,7 @@ const displayRouteData = data => {
   document.getElementById('consumption').innerHTML = `${data.consumption.toFixed(2)} kWh`;
 
   // the money saved by the user driving this route with the electric vehicle
-  document.getElementById('cost').innerHTML = `${data.saving.money} ${data.saving.currency}`;
+  document.getElementById('cost').innerHTML = `${data.saving.money} ${data.saving.currency || '€'}`;
 
   // the total amount of CO2 which were used with a petrol vehicle
   document.getElementById('co2').innerHTML = `${data.saving.co2 / 1000}`;
