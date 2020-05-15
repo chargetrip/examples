@@ -23,7 +23,7 @@ stationAround(
   ) {
     id
     external_id
-    name
+    address
     location {
       type
       coordinates

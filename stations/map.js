@@ -64,7 +64,7 @@ function loadStation(stations) {
       type: 'Feature',
       properties: {
         icon: icon,
-        description: point.name,
+        description: point.address,
       },
       geometry: point.location,
     });
