@@ -13,7 +13,7 @@ const map = new mapboxgl.Map({
  * Draw route polyline and show charging stations on the map.
  *
  * @param coordinates {array} Array of coordinates
- * @param legs {array} route legs (stops) - each leg represents a either a charging station, or via point or final point
+ * @param legs {array} route legs (stops) - each leg represents either a charging station, or via point or final point
  */
 const drawRoute = (coordinates, legs) => {
   if (map.loaded()) {
@@ -71,7 +71,7 @@ const drawPolyline = coordinates => {
 /**
  * Show the charging station, origin and destination on the map.
  *
- * Last lef of the route is a destination point.
+ * Last leg of the route is a destination point.
  * All other legs are either charging stations or via points (if route has stops).
  *
  * @param legs {array} route legs
