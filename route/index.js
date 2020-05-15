@@ -4,7 +4,7 @@ import { SubscriptionClient } from 'subscriptions-transport-ws';
 import { createRoute, routeUpdate } from './queries.js';
 import { drawRoute } from './map.js';
 import * as mapboxPolyline from '@mapbox/polyline';
-import { parseSeconds } from '../utils';
+import { getDurationString } from '../utils';
 
 /**
  * For the purpose of this example we use urgl lightweights GraphQL client.
@@ -82,17 +82,6 @@ const drawRoutePolyline = data => {
   const reversed = decodedData.map(item => item.reverse());
 
   drawRoute(reversed, data.legs);
-};
-
-/**
- * Gets minutes and hours from a duration.
- *
- * @param duration {number} seconds
- * @returns {string} string in format h:min
- */
-const getDurationString = duration => {
-  const { hours: durationHours, minutes: durationMinutes } = parseSeconds(duration);
-  return `${durationHours} h ${durationMinutes} min`;
 };
 
 /**

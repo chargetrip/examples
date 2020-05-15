@@ -1,4 +1,5 @@
 import mapboxgl from 'mapbox-gl';
+import { getDurationString } from '../utils';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjamo3em4wdnUwdHVlM3Z0ZTNrZmd1MXoxIn0.aFteYnUc_GxwjTLGvB3uCg';
 
@@ -181,19 +182,19 @@ const addMarker = (coordinates, label, offset, className = 'location-label') => 
  */
 function loadMarkers(legs) {
   // origin point marker (origin of the first leg)
-  const label = 'From<br> <strong>Amsterdam</strong>';
+  const label = `From<br><strong>Amsterdam</strong>`;
   const offset = [+30, -30];
   addMarker(legs[0].origin.geometry.coordinates, label, offset);
 
   legs.map((leg, index) => {
     // charging stations
     if (index !== legs.length - 1) {
-      const label = '<strong>' + (leg.chargeTime / 60).toFixed(0) + ' min </strong>  charge';
+      const label = `<strong>${getDurationString(leg.chargeTime)}</strong> charge`;
       const offset = [+35, -15];
       addMarker(leg.destination.geometry.coordinates, label, offset, 'rounded-label');
     } else {
       // destination point marker (the last leg)
-      const label = 'To<br> <strong>Berlin</strong>';
+      const label = `To<br><strong>Berlin</strong>`;
       const offset = [-20, -45];
       addMarker(leg.destination.geometry.coordinates, label, offset);
     }
