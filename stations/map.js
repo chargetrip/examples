@@ -40,39 +40,13 @@ map.on('mouseleave', 'path', function() {
  * @param point {array} Array containing station data
  */
 const selectPinlet = point => {
-  let charger;
-  if (point.speed === 'slow') {
-    if (point.status === 'free') {
-      charger = 'pinlet_free_slow_standard_inactive';
-    } else if (point.status === 'unknown') {
-      charger = 'pinlet_unknown_slow_standard_inactive';
-    } else if (point.status === 'error') {
-      charger = 'pinlet_error_slow_standard_inactive';
-    } else {
-      charger = 'pinlet_busy_slow_standard_inactive';
-    }
-  } else if (point.speed === 'fast') {
-    if (point.status === 'free') {
-      charger = 'pinlet_free_fast_standard_inactive';
-    } else if (point.status === 'unknown') {
-      charger = 'pinlet_unknown_fast_standard_inactive';
-    } else if (point.status === 'error') {
-      charger = 'pinlet_error_fast_standard_inactive';
-    } else {
-      charger = 'pinlet_busy_fast_standard_inactive';
-    }
-  } else {
-    if (point.status === 'free') {
-      charger = 'pinlet_free_turbo_standard_inactive';
-    } else if (point.status === 'unknown') {
-      charger = 'pinlet_unknown_turbo_standard_inactive';
-    } else if (point.status === 'error') {
-      charger = 'pinlet_error_turbo_standard_inactive';
-    } else {
-      charger = 'pinlet_busy_turbo_standard_inactive';
-    }
-  }
-  return charger;
+  const statusVals = ['free', 'unknown', 'error'];
+  const speedVals = ['slow', 'fast'];
+
+  let status = statusVals.contains(point.status) ? point.status : 'busy';
+  let speed = speedVals.contains(point.speed) ? point.speed : 'turbo';
+
+  return `pinlet_${status}_${speed}_standard_inactive'`
 };
 
 /**
@@ -82,19 +56,14 @@ const selectPinlet = point => {
  */
 
 const loadStation = stations => {
-  let points = [];
-
-  stations.map(point => {
-    const icon = selectPinlet(point);
-    points.push({
-      type: 'Feature',
-      properties: {
-        icon: icon,
-        description: point.address,
-      },
-      geometry: point.location,
-    });
-  });
+  const points = stations.map(point => ({
+    type: 'Feature',
+    properties: {
+      icon: selectPinlet(point),
+      description: point.address,
+    },
+    geometry: point.location,
+  }));
 
   map.addLayer({
     id: 'path',
