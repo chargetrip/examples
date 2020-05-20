@@ -1,9 +1,9 @@
-# Display all stations with the Tile Server
+# Display all stations with the Vector Tile Server
 
-This tutorial covers a basics of using the Tile Server:
+This tutorial covers a basics of using the Vector Tile Server:
 
-1.  Showing clusters of stations on a map;
-2.  Zooming in on the cluster on click
+1.  Using the Chargetrip Tile Service. It is a Vector Tile Server that offers a pre-rendered fully clustered charge station solution inlcluding filters to superchargers your station map.
+2.  Zooming in and re centering the map when clicking on a cluster.
 
 This example is build with JS and requires the basic understanding of GraphQL language. You can read this tutorial ["GraphQL starter quide"]() to see GraphQL in action.
 
@@ -14,6 +14,7 @@ Our Playground has a station database that is populated with freely available Eu
 ### Technical stack
 
 For this example we use [urql](https://formidable.com/open-source/urql/) - lightweight GraphQL client.
+The Tile Service we use is based on Clusterbuster which is one of our open source projects. Clusterbuster creates a faster way of loading a high amount of points (clustered and filtered) on a map using Vector Tiles.
 
 ### Steps to take
 
@@ -26,4 +27,5 @@ Once we have a station database, we can display the stations on the map:
 
 1. Chargetrip GraphAPI [docs](https://docs.chargetrip.com/);
 2. Chargetrip GraphAPI [playground](https://playground.chargetrip.com/);
-3. Chargetrip GraphAPI schema [information](https://voyager.chargetrip.com/).
+3. Chargetrip GraphAPI schema [information](https://voyager.chargetrip.com/);
+4. Chargetrip Tile server [docs](https://docs.chargetrip.com/#tile-service);
