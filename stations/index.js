@@ -21,15 +21,23 @@ const client = createClient({
 });
 
 const distance = document.getElementById('range');
-const amenitiesChecked = document.querySelectorAll('.amenities input[type=checkbox]:checked');
 const amenities = document.querySelectorAll('.amenities input[type=checkbox]');
+const amenitiesChecked = document.querySelectorAll('.amenities input[type=checkbox]:checked');
+const power = document.querySelectorAll('.power input[type=checkbox]');
+const powerChecked = document.querySelectorAll('.power input[type=checkbox]:checked');
 let amenitiesOn = [];
+let powerOn = [];
 
-for (var i = 0; i < amenitiesChecked.length; i++) {
+for (let i = 0; i < amenitiesChecked.length; i++) {
   amenitiesOn.push(amenitiesChecked[i].getAttribute('id'));
 }
 
+for (let index = 0; index < powerChecked.length; index++) {
+  powerOn.push(parseInt(powerChecked[index].getAttribute('id')));
+}
+
 console.log(amenitiesOn);
+console.log(powerOn);
 /**
  * In this example we fetch the closest stations around Oudekerksplein, 1012 GZ Amsterdam, Noord-Holland, Netherlands
  * with a radius of 5000 meters which have a supermarket and
@@ -41,7 +49,7 @@ const displayMap = () => {
       query: {
         location: { type: 'Point', coordinates: [4.8979755, 52.3745403] },
         distance: parseInt(distance.value),
-        power: [50, 22],
+        power: powerOn,
         amenities: amenitiesOn,
       },
     })
@@ -55,27 +63,45 @@ const displayMap = () => {
 
 displayMap();
 
-const myFunction = () => {
-  var attribute = event.target.getAttribute('id');
+distance.addEventListener('input', displayMap);
+
+const updateAmenities = () => {
+  const attribute = event.target.getAttribute('id');
   let on = document.getElementById(attribute).checked;
-  console.log(attribute);
-  console.log(on);
   if (on === true) {
     amenitiesOn.push(attribute);
-    console.log(amenitiesOn);
   } else {
-    for (var i = 0; i < amenitiesOn.length; i++) {
+    for (let i = 0; i < amenitiesOn.length; i++) {
       if (amenitiesOn[i] === attribute) {
         amenitiesOn.splice(i, 1);
       }
     }
   }
-  console.log(amenitiesOn);
   displayMap();
 };
 
-distance.addEventListener('input', displayMap);
+const updatePower = () => {
+  const item = event.target.getAttribute('id');
+  let on = document.getElementById(item).checked;
+  console.log(on);
+  if (on === true) {
+    powerOn.push(parseInt(item));
+  } else {
+    for (let i = 0; i < powerOn.length; i++) {
+      console.log(powerOn[i]);
+      if (powerOn[i] == item) {
+        powerOn.splice(i, 1);
+      }
+    }
+  }
+  console.log(powerOn);
+  displayMap();
+};
 
-for (var j = 0; j < amenities.length; j++) {
-  amenities[j].addEventListener('change', myFunction, false);
+for (let j = 0; j < amenities.length; j++) {
+  amenities[j].addEventListener('change', updateAmenities, false);
+}
+
+for (let x = 0; x < power.length; x++) {
+  power[x].addEventListener('change', updatePower, false);
 }
