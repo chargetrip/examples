@@ -56,6 +56,8 @@ const selectPinlet = point => {
  */
 
 const loadStation = stations => {
+  if (map.getLayer('path')) map.removeLayer('path');
+  if (map.getSource('path')) map.removeSource('path');
   const points = stations.map(point => ({
     type: 'Feature',
     properties: {

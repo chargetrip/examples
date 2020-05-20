@@ -20,23 +20,62 @@ const client = createClient({
   exchanges: [...defaultExchanges],
 });
 
+const distance = document.getElementById('range');
+const amenitiesChecked = document.querySelectorAll('.amenities input[type=checkbox]:checked');
+const amenities = document.querySelectorAll('.amenities input[type=checkbox]');
+let amenitiesOn = [];
+
+for (var i = 0; i < amenitiesChecked.length; i++) {
+  amenitiesOn.push(amenitiesChecked[i].getAttribute('id'));
+}
+
+console.log(amenitiesOn);
 /**
  * In this example we fetch the closest stations around Oudekerksplein, 1012 GZ Amsterdam, Noord-Holland, Netherlands
  * with a radius of 5000 meters which have a supermarket and
  * at least one connector of 50 kWh or 22 kWh
  */
-client
-  .query(getStationsAround, {
-    query: {
-      location: { type: 'Point', coordinates: [4.8979755, 52.3745403] },
-      distance: 5000,
-      power: [50, 22],
-      amenities: ['supermarket'],
-    },
-  })
-  .toPromise()
-  .then(response => {
-    const stations = response.data.stationAround;
-    loadStation(stations);
-  })
-  .catch(error => console.log(error));
+const displayMap = () => {
+  client
+    .query(getStationsAround, {
+      query: {
+        location: { type: 'Point', coordinates: [4.8979755, 52.3745403] },
+        distance: parseInt(distance.value),
+        power: [50, 22],
+        amenities: amenitiesOn,
+      },
+    })
+    .toPromise()
+    .then(response => {
+      const stations = response.data.stationAround;
+      loadStation(stations);
+    })
+    .catch(error => console.log(error));
+};
+
+displayMap();
+
+const myFunction = () => {
+  var attribute = event.target.getAttribute('id');
+  let on = document.getElementById(attribute).checked;
+  console.log(attribute);
+  console.log(on);
+  if (on === true) {
+    amenitiesOn.push(attribute);
+    console.log(amenitiesOn);
+  } else {
+    for (var i = 0; i < amenitiesOn.length; i++) {
+      if (amenitiesOn[i] === attribute) {
+        amenitiesOn.splice(i, 1);
+      }
+    }
+  }
+  console.log(amenitiesOn);
+  displayMap();
+};
+
+distance.addEventListener('input', displayMap);
+
+for (var j = 0; j < amenities.length; j++) {
+  amenities[j].addEventListener('change', myFunction, false);
+}
