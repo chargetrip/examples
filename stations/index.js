@@ -23,8 +23,8 @@ const client = createClient({
 const distance = document.getElementById('range');
 const amenities = document.querySelectorAll('.amenities input[type=checkbox]');
 const amenitiesChecked = document.querySelectorAll('.amenities input[type=checkbox]:checked');
-const power = document.querySelectorAll('.power input[type=checkbox]');
-const powerChecked = document.querySelectorAll('.power input[type=checkbox]:checked');
+const power = document.querySelectorAll('.speed input[type=checkbox]');
+const powerChecked = document.querySelectorAll('.speed input[type=checkbox]:checked');
 let amenitiesOn = [];
 let powerOn = [];
 
