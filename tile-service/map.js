@@ -1,7 +1,9 @@
 import mapboxgl from 'mapbox-gl';
 
 /**
- * For the purpose of this example we use urgl - lightweights GraphQL client.
+ * Mapbox runs 'transformRequest' before it makes a request for an external URL
+ * We use this callback to set a client key in the header of the request to Chargetrip API.
+ * See example in Mapbox GL JS documentation: https://docs.mapbox.com/mapbox-gl-js/api/#requestparameters.
  * To establish a connection with Chargetrip GraphQL API you need to have an API key.
  * Read more about an authorisation in our documentation (https://docs.chargetrip.com/#authorisation).
  */
@@ -30,7 +32,7 @@ var map = new mapboxgl.Map({
  * When clicking on a cluster you will zoom in and the map will be centered around that point.
  */
 const loadStations = () => {
-  map.on('load', function() {
+  map.on('load', () => {
     map.addSource('stations', {
       type: 'vector',
       tiles: [
