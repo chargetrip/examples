@@ -36,8 +36,6 @@ for (let index = 0; index < powerChecked.length; index++) {
   powerOn.push(parseInt(powerChecked[index].getAttribute('id')));
 }
 
-console.log(amenitiesOn);
-console.log(powerOn);
 /**
  * In this example we fetch the closest stations around Oudekerksplein, 1012 GZ Amsterdam, Noord-Holland, Netherlands
  * with a radius of 5000 meters which have a supermarket and
@@ -83,7 +81,6 @@ const updateAmenities = () => {
 const updatePower = () => {
   const item = event.target.getAttribute('id');
   let on = document.getElementById(item).checked;
-  console.log(on);
   if (on === true) {
     powerOn.push(parseInt(item));
   } else {
@@ -94,7 +91,6 @@ const updatePower = () => {
       }
     }
   }
-  console.log(powerOn);
   displayMap();
 };
 
