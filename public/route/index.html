@@ -2,38 +2,38 @@
 <html lang="nl">
   <head>
     <title>Route example</title>
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"/>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;400;500&display=swap" rel="stylesheet">
-    <link href='https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css' rel='stylesheet'/>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;400;500&display=swap" rel="stylesheet" />
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-      <div id="map"></div>
-      <div class="journey-specs">
-        <header>
-          <h1>Amsterdam to Berlin</h1>
-          <p id="duration"></p>
-          <p id="overview"></p>
-          <div id="loader">Loading...</div>
-        </header>
-        <div class="specs">
-          Charge Duration
-          <span id="charge-duration">--,--</span>
+    <div id="map"></div>
+    <div class="journey-specs">
+      <header>
+        <h1>Amsterdam to Berlin</h1>
+        <p class="duration" id="duration"></p>
+        <p id="overview"></p>
+        <div id="loader">Loading...</div>
+        <div class="ev-img-wrapper">
+          <img class="ev-img" src="5dcd60afeec2cc22f0b95a8f-1573740763.png" />
         </div>
-        <div class="specs">
-          Cost Estimation
-          <span id="cost">--,--</span>
-        </div>
-        <div class="specs">
-          Total Consumption
-          <span id="consumption">--,--</span>
-        </div>
-        <div class="specs">
-          CO2 Spared
-          <span id="co2">--,--</span>
-        </div>
-      </div>
+      </header>
+      <ul class="specs car-specs">
+        <li>Model<span>Tesla Model S</span></li>
+        <li>State of Charge <span>72.5</span></li>
+        <li>Pasengers<span>1</span></li>
+        <li>Plugs<span>TESLA_S</span></li>
+        <li>Addapters<span>CHADEMO, IEC_62196_T2_COMBO</span></li>
+      </ul>
+      <ul class="specs">
+        <li>Charge Duration <span id="charge-duration">--,--</span></li>
+        <li>Saved on Fuel <span id="cost">--,--</span></li>
+        <li>Total Consumption <span id="consumption">--,--</span></li>
+        <li>CO2 Spared <span id="co2">--,--</span></li>
+      </ul>
+    </div>
   </body>
   <script src="bundle.js"></script>
 </html>

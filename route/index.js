@@ -94,7 +94,7 @@ const displayRouteData = data => {
   document.getElementById('loader').remove();
 
   // the total duration of the journey (including charge time), in seconds
-  document.getElementById('duration').innerHTML = `${getDurationString(data.duration)} including charging`;
+  document.getElementById('duration').innerHTML = `${getDurationString(data.duration)}`;
 
   // the total distance of the route, in meters
   document.getElementById('overview').innerHTML = `${data.distance / 1000} km - ${data.charges} stops`;
@@ -109,5 +109,5 @@ const displayRouteData = data => {
   document.getElementById('cost').innerHTML = `${data.saving.money} ${data.saving.currency || '€'}`;
 
   // the total amount of CO2 which were used with a petrol vehicle
-  document.getElementById('co2').innerHTML = `${data.saving.co2 / 1000}`;
+  document.getElementById('co2').innerHTML = `${data.saving.co2 / 1000} Kg`;
 };
