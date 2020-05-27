@@ -62,4 +62,13 @@ export default [
     },
     plugins,
   },
+  {
+    input: 'route-path/index.js',
+    output: {
+      file: 'public/route-path/bundle.js',
+      format: 'iife',
+      sourcemap: true,
+    },
+    plugins,
+  },
 ];

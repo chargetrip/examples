@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="nl">
+  <head>
+    <title>Route example</title>
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@200;400;500&display=swap" rel="stylesheet" />
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div id="map"></div>
+    <div class="journey-specs">
+      <header>
+        <h1>Journey Specs</h1>
+      </header>
+      <canvas class="graph" id="elevation" height="132px"></canvas>
+      <svg class="destination">
+        <image href="destination.png" height="20" width="20" />
+      </svg>
+      <canvas class="charge" id="charge" height="132px"></canvas>
+      <div class="specs">
+        Elevation
+        <span id="height">--,--</span>
+      </div>
+      <div class="specs">
+        Consumption Estimation
+        <span id="consumption">--,--</span>
+      </div>
+      <div class="specs">
+        Temperature
+        <span id="temperature">--,--</span>
+      </div>
+      <div class="specs">
+        Speed Limit
+        <span id="speed-limit">--,--</span>
+      </div>
+      <div class="specs">
+        Average Speed
+        <span id="average-speed">--,--</span>
+      </div>
+    </div>
+  </body>
+  <script src="bundle.js"></script>
+</html>

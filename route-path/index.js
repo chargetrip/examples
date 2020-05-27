@@ -1,10 +1,11 @@
 import { createClient, createRequest, defaultExchanges, subscriptionExchange } from '@urql/core';
 import { pipe, subscribe } from 'wonka';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
-import { createRoute, routeUpdate } from './queries.js';
+import { createRoute, routeUpdate, getRoutePath } from './queries.js';
 import { drawRoute } from './map.js';
+import { loadGraph, imageLoader } from './graph';
 import * as mapboxPolyline from '@mapbox/polyline';
-import { getDurationString } from '../utils';
+import { displaySpecs, updateSpecs } from './journey-specs';
 
 /**
  * For the purpose of this example we use urgl - lightweights GraphQL client.
@@ -57,10 +58,19 @@ client
         // for this example we want to only draw the initial route
         if (status === 'done' && route) {
           unsubscribe();
-
+          const label = new Array(100);
+          label.fill('');
+          label[0] = 0;
+          label[15] = 100;
+          label[30] = 200;
+          label[45] = 300;
+          label[60] = 400;
+          label[75] = 500;
+          label[90] = 600;
           const routeData = result.data.routeUpdatedById.route;
-          drawRoutePolyline(routeData);
-          displayRouteData(routeData);
+          drawRoutePolyline(routeData, response.data.newRoute);
+          loadGraph(routeData.elevationPlot, label);
+          imageLoader(routeData, routeData.legs);
         }
       }),
     );
@@ -78,36 +88,17 @@ client
  *
  * @param data {object} route specification
  */
-const drawRoutePolyline = data => {
+const drawRoutePolyline = (data, id) => {
   const decodedData = mapboxPolyline.decode(data.polyline);
   const reversed = decodedData.map(item => item.reverse());
 
-  drawRoute(reversed, data.legs);
-};
-
-/**
- * Show journey specific information like duration, consumption, costs etc.
- *
- * @param data {object} route specification
- */
-const displayRouteData = data => {
-  document.getElementById('loader').remove();
-
-  // the total duration of the journey (including charge time), in seconds
-  document.getElementById('duration').innerHTML = `${getDurationString(data.duration)}`;
-
-  // the total distance of the route, in meters
-  document.getElementById('overview').innerHTML = `${data.distance / 1000} km - ${data.charges} stops`;
-
-  // the total time required to charge of the entire route, in seconds
-  document.getElementById('charge-duration').innerHTML = getDurationString(data.chargeTime);
-
-  // the total energy used of the route, in kWh
-  document.getElementById('consumption').innerHTML = `${data.consumption.toFixed(2)} kWh`;
-
-  // the money saved by the user driving this route with the electric vehicle
-  document.getElementById('cost').innerHTML = `${data.saving.money} ${data.saving.currency || '€'}`;
-
-  // the total amount of CO2 which were used with a petrol vehicle
-  document.getElementById('co2').innerHTML = `${data.saving.co2 / 1000}`;
+  client
+    .query(getRoutePath(id, reversed[0]))
+    .toPromise()
+    .then(response => {
+      displaySpecs(response.data);
+    })
+    .catch(error => console.log(error));
+  const map = drawRoute(reversed, data.legs);
+  updateSpecs(client, map, reversed, id);
 };
