@@ -14,7 +14,7 @@ You can see it up and running [here](https://chargetrip.github.io/examples/route
 
 To build a route, you will need a car (the associated consumption model of a car will be applied to the routing engine), station database, origin and a destination.
 
-For the purpose of this example, we use **Porsche Taycan**, **Berlin** as an origin and **Amsterdam** as a destination point. If you want to expand this example and select another car, please look in the [API documentation](https://docs.chargetrip.com/#cars) on how to do so.
+For the purpose of this example, we use **Tesla Model S**, **Amsterdam** as an origin and **Berlin** as a destination point. If you want to expand this example and select another car, please look in the [API documentation](https://docs.chargetrip.com/#cars) on how to do so.
 
 Our Playground has a station database that is populated with freely available European station data from [OCM](https://openchargemap.org/site) so you can try planning routes across Europe. Importing your own database or using one of the databased Chargetrip has an integration with, is possible. For more details, contact us.
 
@@ -28,9 +28,10 @@ Once we have a car and station database, we can start planning the route:
 
 1. We have to request a new route. The `newRoute` mutation is used for that. We will need to pass car information, origin and destination. As a result we will get ID of a new route. You can read all the details about this mutation in our [Graph API documentation](https://docs.chargetrip.com/#request-a-new-route).
 2. With a route ID we can request route information. We will subscribe to a route update to receive dynamic updates for it (recommended route, alternative routes (if available), time duration, consumption etc). You can read all the details about this subscription in our [Graph API documentation](https://docs.chargetrip.com/#subscribe-to-route-updates).
-3. Having a route details, we can show a route on a map. To show stations, where a car must stop for charging, we use route `legs` object, where each leg is a station.
-4. We can also query route details for an information like total distance, duration of a trip, consumption etc. You can see all available fields to query in the [Chargetrip API documentation](https://docs.chargetrip.com/#get-route-details).
-5. Final step is to show the route on a map. We use [MapboxGL JS](https://docs.mapbox.com/mapbox-gl-js/overview/#quickstart) in this example.
+3. Having the route details, we can show a route on a map. To show stations, where a car must stop for charging, we use the route `legs` object, where each leg has an origin and a destination.
+4. With the route details we can create an elevation graph using the `elevationPlot` object. This object will give you a hundred points of elevation. To display the graph we use [chartJS](https://www.chartjs.org/docs/latest/) in this example.
+5. Now we can show the route on a map. We use [MapboxGL JS](https://docs.mapbox.com/mapbox-gl-js/overview/#quickstart) in this example.
+6. With the route ID and a specific location within the polyline we can request information about that route path segment using the `routePath` query. We use this to display information like elevation, consumption and the average speed. With every click on the polyline we send a new request and update the journey specs.
 
 ### Useful links
 
