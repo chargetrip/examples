@@ -10,8 +10,8 @@
 </div>
 <hr>
 
-Here you can find ready-to-run examples explaining how to work with Chargetrip API. Each example has instructions in the corresponding README file.  
-If something is not explained or you miss an example, please let know but opening an issue or contacting us in [Spectrum](https://spectrum.chat/chargetrip?tab=posts) chat.
+Here you can find ready-to-run examples explaining how to work with the Chargetrip API. Each example has instructions in the corresponding README file.  
+If something is not explained or you miss an example, please let know by opening an issue or contacting us in [Spectrum](https://spectrum.chat/chargetrip?tab=posts) chat.
 We improve our documentation continuously, and your feedback is valuable.
 
 Available examples:
@@ -19,7 +19,8 @@ Available examples:
 1. Build a simple route [example](https://chargetrip.github.io/examples/route/);
 2. Select a car [example](https://chargetrip.github.io/examples/car/);
 3. Show stations on a map [example](https://chargetrip.github.io/examples/stations/);
-4. Show all stations using the Vector Tile Server [example](https://chargetrip.github.io/examples/tile-server/).
+4. Show all stations using the Vector Tile Server [example](https://chargetrip.github.io/examples/tile-server/);
+5. Build a route and display the Journey Specs [example](https://chargetrip.github.io/examples/route-path/)
 
 ## Installation and local development
 
