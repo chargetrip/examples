@@ -14,7 +14,7 @@ You can see it up and running [here](https://chargetrip.github.io/examples/route
 
 To build a route, you will need a car (the associated consumption model of a car will be applied to the routing engine), station database, origin and a destination.
 
-For the purpose of this example, we use **Tesla Model S**, **Berlin** as an origin and **Amsterdam** as a destination point. If you want to expand this example and select another car, please look in the [API documentation](https://docs.chargetrip.com/#cars) on how to do so.
+For the purpose of this example, we use **Tesla Model S**, **Amsterdam** as an origin and **Berlin** as a destination point. If you want to expand this example and select another car, please look in the [API documentation](https://docs.chargetrip.com/#cars) on how to do so.
 
 Our Playground has a station database that is populated with freely available European station data from [OCM](https://openchargemap.org/site) so you can try planning routes across Europe. Importing your own database or using one of the databased Chargetrip has an integration with, is possible. For more details, contact us.
 
