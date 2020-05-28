@@ -1,18 +1,38 @@
 import Chart from 'chart.js';
 
 /**
+ * Calculate where the ditance labels should be placed.
+ * Here we want to display the distance every 100 m.
+ * @param route {object} All data requested about the route.
+ */
+
+const labels = route => {
+  const distance = route.distance / 1000;
+  const points = route.elevationPlot.length;
+  const pos = 100;
+  const label = new Array(points);
+  label.fill('');
+
+  for (let i = 1; pos * i < distance; i++) {
+    const x = ((pos * i * points) / distance).toFixed(0);
+    label[x] = pos * i;
+  }
+  return label;
+};
+
+/**
  * Create an elevation Graph using the point from the elevationPlot.
  * @param elevation {object} 100 points of elevation.
  * @param label {object} The labels that will be displayed on the xAxis.
  */
 
-export const loadGraph = (elevation, label) => {
+export const loadGraph = (route, elevation) => {
   const ctx = document.getElementById('elevation').getContext('2d');
   let gradient = ctx.createLinearGradient(0, 0, 0, 180);
   gradient.addColorStop(0, 'rgba(0, 169, 224, 0.3)');
   gradient.addColorStop(1, '#00A9E0');
   const data = {
-    labels: label,
+    labels: labels(route),
     datasets: [
       {
         label: 'elevation',
