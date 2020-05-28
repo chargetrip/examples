@@ -6,7 +6,7 @@ import Chart from 'chart.js';
  * @param label {object} The labels that will be displayed on the xAxis.
  */
 
-const loadGraph = (elevation, label) => {
+export const loadGraph = (elevation, label) => {
   const ctx = document.getElementById('elevation').getContext('2d');
   let gradient = ctx.createLinearGradient(0, 0, 0, 180);
   gradient.addColorStop(0, 'rgba(0, 169, 224, 0.3)');
@@ -66,7 +66,13 @@ const loadGraph = (elevation, label) => {
   });
 };
 
-const imageLoader = (route, legs) => {
+/**
+ * This function will display the charging stations within the elevation graph.
+ * @param route {object} All information about the route.
+ * @param legs {object} The legs of the route.
+ */
+
+export const imageLoader = (route, legs) => {
   let chargers = document.getElementById('charge').getContext('2d');
   const img = new Image();
   const len = legs.length - 1;
@@ -80,5 +86,3 @@ const imageLoader = (route, legs) => {
   };
   img.src = './charger.png';
 };
-
-export { loadGraph, imageLoader };
