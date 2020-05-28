@@ -58,18 +58,9 @@ client
         // for this example we want to only draw the initial route
         if (status === 'done' && route) {
           unsubscribe();
-          const label = new Array(100);
-          label.fill('');
-          label[0] = 0;
-          label[15] = 100;
-          label[30] = 200;
-          label[45] = 300;
-          label[60] = 400;
-          label[75] = 500;
-          label[90] = 600;
           const routeData = result.data.routeUpdatedById.route;
           drawRoutePolyline(routeData, response.data.newRoute);
-          loadGraph(routeData.elevationPlot, label);
+          loadGraph(routeData, routeData.elevationPlot);
           imageLoader(routeData, routeData.legs);
         }
       }),
