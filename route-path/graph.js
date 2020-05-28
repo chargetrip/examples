@@ -1,5 +1,11 @@
 import Chart from 'chart.js';
 
+/**
+ * Create an elevation Graph using the point from the elevationPlot.
+ * @param elevation {object} 100 points of elevation.
+ * @param label {object} The labels that will be displayed on the xAxis.
+ */
+
 const loadGraph = (elevation, label) => {
   const ctx = document.getElementById('elevation').getContext('2d');
   let gradient = ctx.createLinearGradient(0, 0, 0, 180);
