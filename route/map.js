@@ -7,7 +7,7 @@ const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/chargetrip/ck98fwwp159v71ip7xhs8bwts',
   zoom: 6,
-  center: [8.7320104, 52.3758916],
+  center: [8.3320104, 52.3758916],
 });
 
 /**
@@ -63,7 +63,7 @@ const drawPolyline = coordinates => {
       'line-cap': 'round',
     },
     paint: {
-      'line-color': '#00A9E0',
+      'line-color': '#0078FF',
       'line-width': 3,
     },
   });

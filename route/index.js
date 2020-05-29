@@ -97,12 +97,16 @@ const displayRouteData = data => {
   document.getElementById('duration').innerHTML = `${getDurationString(data.duration)}`;
 
   // the total distance of the route, in meters
-  document.getElementById('overview').innerHTML = `${data.distance / 1000} km - ${data.charges} stops`;
+  document.getElementById('distance').innerHTML = `${(data.distance / 1000).toFixed(0)} km`;
+
+  // the amount of stops in this route
+  document.getElementById('stop').innerHTML = `${data.charges} stops`;
 
   // the total time required to charge of the entire route, in seconds
   document.getElementById('charge-duration').innerHTML = getDurationString(data.chargeTime);
 
   // the total energy used of the route, in kWh
+  document.getElementById('consumption-overview').innerHTML = `${data.consumption.toFixed(2)} kWh`;
   document.getElementById('consumption').innerHTML = `${data.consumption.toFixed(2)} kWh`;
 
   // the money saved by the user driving this route with the electric vehicle
