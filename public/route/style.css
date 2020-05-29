@@ -2,10 +2,10 @@ html,
 body {
   margin: 0;
   padding: 0;
-  font-family: Roboto, sans-serif;
-  font-weight: 200;
+  font-family: Inter, sans-serif;
+  font-weight: normal;
   font-size: 12px;
-  color: #637282;
+  color: #323c4d;
 }
 
 p {
@@ -28,8 +28,8 @@ hr {
   position: absolute;
   width: 200px;
   height: 40px;
-  top: 25px;
-  right: 25px;
+  top: 15px;
+  right: 15px;
 
   background-color: #030303;
   box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.08);
@@ -47,8 +47,8 @@ hr {
 .journey-specs {
   position: absolute;
   width: 225px;
-  top: 25px;
-  left: 25px;
+  top: 15px;
+  left: 15px;
 
   background-color: #030303;
   box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.08);
@@ -58,11 +58,11 @@ hr {
 
 .journey-specs header {
   position: relative;
-  color: #fff;
+  color: #e8edf1;
   text-align: center;
 }
 .duration {
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
   align-items: center;
   color: #fff;
@@ -100,7 +100,7 @@ hr {
 }
 
 .sub-item span {
-  font-weight: 500;
+  font-weight: 600;
   text-align: right;
   color: #030303;
 }
@@ -111,7 +111,7 @@ hr {
 }
 
 .sub-title {
-  font-weight: 500;
+  font-weight: 600;
   padding-bottom: 10px;
   padding-top: 5px;
   line-height: 24px;
@@ -128,40 +128,28 @@ hr {
 }
 
 .specs span {
-  font-weight: 500;
+  font-weight: 600;
   text-align: right;
   color: #030303;
-}
-
-.rounded-label {
-  font-size: 8px;
-}
-
-.location-label {
-  background: white;
-  line-height: 1.1em;
-  padding: 5px 10px;
-  font-size: 10px;
-  box-shadow: 0 8px 15px rgba(37, 42, 50, 0.1);
-  border-radius: 4px;
 }
 
 .overview {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
-  padding: 0px 12px;
+  justify-content: center;
+  padding: 2px;
+  padding-bottom: 10px;
 }
 
 .overvieuw-items {
   font-size: 10px;
-  margin: 12px 0px;
+  margin: 3px;
   align-items: center;
   text-align: center;
   color: #ffffff;
   border-radius: 109.6px;
   border: 1px solid #ccc;
   padding: 2px;
-  padding-left: 4px;
-  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
 }
