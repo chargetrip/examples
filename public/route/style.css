@@ -26,8 +26,10 @@ hr {
 
 .clone {
   position: absolute;
+  display: flex;
+  justify-content: flex-start;
   width: 200px;
-  height: 30px;
+  height: 35px;
   top: 15px;
   right: 15px;
 
@@ -36,12 +38,16 @@ hr {
   border-radius: 8px;
 }
 
+.clone img {
+  padding-left: 10px;
+  padding-top: px;
+}
+
 .clone p {
   color: #fff;
-  text-align: center;
-  align-items: center;
+  padding-left: 10px;
   font-size: 12px;
-  line-height: 24px;
+  line-height: 30px;
 }
 
 .journey-specs {
@@ -96,7 +102,7 @@ hr {
   display: flex;
   justify-content: space-between;
   margin-bottom: 5px;
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .sub-item span {
@@ -112,6 +118,7 @@ hr {
 
 .sub-title {
   font-weight: 600;
+  font-size: 12px;
   padding-bottom: 10px;
   padding-top: 5px;
   line-height: 24px;
@@ -124,10 +131,15 @@ hr {
   padding-bottom: 5px;
   justify-content: space-between;
   margin: 5px 0;
-  font-size: 12px;
+  font-size: 10px;
 }
 
-.specs span {
+.specs img {
+  height: 15px;
+  padding-right: 5px;
+}
+
+.specs span:last-child {
   font-weight: 600;
   text-align: right;
   color: #030303;
