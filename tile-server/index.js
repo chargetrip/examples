@@ -19,7 +19,7 @@ const map = new mapboxgl.Map({
       return {
         url: url,
         headers: {
-          'x-client-id': '5e8c22366f9c5f23ab0eff39',
+          'x-client-id': '5ed1175bad06853b3aa1e492',
         },
       };
     }
@@ -117,4 +117,34 @@ map.on('click', ({ point, target }) => {
       center: [features[0].properties.lng, features[0].properties.lat],
     });
   }
+});
+
+map.on('load', function() {
+  map.addSource('eco', {
+    type: 'geojson',
+    data: {
+      type: 'Feature',
+      geometry: {
+        type: 'Polygon',
+        coordinates: [
+          [
+            [8, 61],
+            [11, 61],
+            [11, 45],
+            [8, 45],
+            [8, 61],
+          ],
+        ],
+      },
+    },
+  });
+  map.addLayer({
+    id: 'eco',
+    type: 'line',
+    source: 'eco',
+    layout: {},
+    paint: {
+      'line-color': '#C4C4C4',
+    },
+  });
 });
