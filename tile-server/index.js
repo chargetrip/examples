@@ -144,7 +144,7 @@ map.on('load', function() {
     source: 'eco',
     layout: {},
     paint: {
-      'line-color': '#C4C4C4',
+      'line-color': '#010738',
     },
   });
 });
