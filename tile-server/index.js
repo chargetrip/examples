@@ -47,16 +47,14 @@ map.on('load', () => {
    */
   map.addLayer({
     id: 'clusters',
-    type: 'circle',
+    type: 'symbol',
     source: 'stations',
     'source-layer': 'stations',
     interactive: true,
     filter: ['>', ['get', 'count'], 1],
-    paint: {
-      'circle-color': '#11b4da',
-      'circle-radius': 9,
-      'circle-stroke-width': 1,
-      'circle-stroke-color': '#fff',
+    layout: {
+      'icon-image': 'empty-charger',
+      'icon-size': 0.55,
     },
   });
 
@@ -86,7 +84,7 @@ map.on('load', () => {
       id: 'unclustered-stations',
       type: 'symbol',
       layout: {
-        'icon-image': 'pinlet_free_slow_standard_inactive',
+        'icon-image': 'free-fast-pinlet',
         'icon-size': 0.55,
       },
       source: 'stations',
