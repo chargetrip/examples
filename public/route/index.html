@@ -10,53 +10,85 @@
 
   <body>
     <div id="map"></div>
-    <div class="clone">
-      <img src="github.svg" />
-      <p>Clone project</p>
-    </div>
-    <div class="journey-specs">
-      <header>
-        <p class="duration" id="duration"></p>
+
+    <a href="#" rel="nofollow noref">
+      <div class="clone">
+        <img src="github.svg" />
+        <p>Clone project</p>
+      </div>
+    </a>
+
+    <div class="card">
+      <header class="header">
+        <h1 class="duration" id="duration"></h1>
         <p>Amsterdam • Berlin</p>
         <div id="loader">Loading...</div>
-        <div class="overview">
-          <div id="distance" class="overvieuw-items"></div>
-          <div id="stop" class="overvieuw-items"></div>
-          <div id="consumption-overview" class="overvieuw-items"></div>
+        <div class="tags">
+          <div id="distance" class="tag"></div>
+          <div id="stop" class="tag"></div>
+          <div id="consumption-overview" class="tag"></div>
         </div>
       </header>
-      <div class="route">
-        <div class="sub-title">Car information</div>
-        <div class="sub-item">
+
+      <section class="section car">
+        <h2>Car information</h2>
+        <div class="car__details">
           <div>
-            Tesla <br />
-            <span>Model S</span>
+            <p>Tesla</p>
+            <p></p>
+            <p><b>Model S</b></p>
           </div>
-          <img class="ev-img" src="5dcd60afeec2cc22f0b95a8f-1573740763.png" />
+          <img class="car__image" src="5dcd60afeec2cc22f0b95a8f-1573740763.png" />
         </div>
-        <ul class="specs">
-          <li>Pasengers <span>1</span></li>
-          <li>State of Charge <span>72.5 kWh</span></li>
-        </ul>
-        <div class="sub-item sub-item-border">
-          <div>Addapters<br /><span>CHADEMO, Type 2</span></div>
-        </div>
-        <ul class="specs">
-          <div class="sub-title">Trip information</div>
-          <li>
-            <span><img src="time.svg" />Charge Duration </span><span id="charge-duration">--,--</span>
+        <ul class="list car__specs">
+          <li class="list__item">
+            <p>Passengers</p>
+            <p><b>1</b></p>
           </li>
-          <li>
-            <span><img src="saved.svg" />Saved on Fuel </span><span id="cost">--,--</span>
+          <li class="list__item">
+            <p>State of Charge</p>
+            <p><b>72.5 kWh</b></p>
           </li>
-          <li>
-            <span><img src="consumption.svg" />Total consumption</span><span id="consumption">--,--</span>
-          </li>
-          <li>
-            <span><img src="co2.svg" />Co2 spared</span><span id="co2">--,--</span>
+          <li class="list__item list__item--column">
+            <p>Adapters</p>
+            <p><b>CHADEMO, Type 2</b></p>
           </li>
         </ul>
-      </div>
+      </section>
+
+      <section class="section trip">
+        <h2>Trip information</h2>
+        <ul class="list trip__specs">
+          <li class="list__item">
+            <div class="list__icon">
+              <img src="time.svg" />
+              <p>Charge Duration</p>
+            </div>
+            <p id="charge-duration"><b>--,--</b></p>
+          </li>
+          <li class="list__item">
+            <div class="list__icon">
+              <img src="saved.svg" />
+              <p>Saved on Fuel</p>
+            </div>
+            <p id="cost"><b>--,--</b></p>
+          </li>
+          <li class="list__item">
+            <div class="list__icon">
+              <img src="consumption.svg" />
+              <p>Total consumption</p>
+            </div>
+            <p id="consumption"><b>--,--</b></p>
+          </li>
+          <li class="list__item">
+            <div class="list__icon">
+              <img src="co2.svg" />
+              <p>CO2 spared</p>
+            </div>
+            <p id="co2">--,--</p>
+          </li>
+        </ul>
+      </section>
     </div>
   </body>
   <script src="bundle.js"></script>

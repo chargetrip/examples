@@ -1,11 +1,12 @@
 import mapboxgl from 'mapbox-gl';
+import { getDurationString } from '../utils';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjamo3em4wdnUwdHVlM3Z0ZTNrZmd1MXoxIn0.aFteYnUc_GxwjTLGvB3uCg';
 
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/chargetrip/ck98fwwp159v71ip7xhs8bwts',
-  zoom: 5.5,
+  zoom: 5,
   center: [8.1320104, 52.3758916],
 });
 
@@ -82,7 +83,7 @@ const showLegs = legs => {
   let points = [];
 
   // we want to show origin point on the map
-  // to do that we use origin of the first leg
+  // to do that we use the origin of the first leg
   points.push({
     type: 'Feature',
     properties: {
@@ -97,6 +98,7 @@ const showLegs = legs => {
       points.push({
         type: 'Feature',
         properties: {
+          description: `${getDurationString(leg.chargeTime)}`,
           icon: 'free-fast-pinlet',
         },
         geometry: leg.destination.geometry,
@@ -120,7 +122,7 @@ const showLegs = legs => {
     layout: {
       'icon-image': '{icon}',
       'icon-allow-overlap': true,
-      'icon-size': 0.7,
+      'icon-size': ['case', ['==', ['get', 'icon'], 'free-fast-pinlet'], ['literal', 0.85], ['literal', 0.7]],
       'icon-offset': [
         'case',
         ['==', ['get', 'icon'], 'free-fast-pinlet'],
@@ -137,6 +139,37 @@ const showLegs = legs => {
         features: points,
       },
     },
+  });
+
+  /**
+   * Display the charge time on a hover.
+   */
+
+  const popup = new mapboxgl.Popup({
+    closeButton: false,
+    closeOnClick: false,
+  });
+
+  map.on('mouseenter', 'legs', e => {
+    if (e.features[0].properties.icon === 'free-fast-pinlet') {
+      map.getCanvas().style.cursor = 'pointer';
+
+      const coordinates = e.features[0].geometry.coordinates;
+      const description = e.features[0].properties.description;
+
+      while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+      }
+      popup
+        .setLngLat(coordinates)
+        .setHTML(description)
+        .addTo(map);
+    }
+  });
+
+  map.on('mouseleave', 'places', function() {
+    map.getCanvas().style.cursor = '';
+    popup.remove();
   });
 };
 
