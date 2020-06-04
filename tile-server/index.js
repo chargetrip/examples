@@ -42,7 +42,22 @@ map.on('load', () => {
   });
 
   /**
-   * This first layer will display a circle for each cluster of stations.
+   * This tfirst layer will display a station icon.
+   * This layer will only be shown if the cluster count is 1
+   */
+  map.addLayer({
+    id: 'unclustered-stations',
+    type: 'symbol',
+    layout: {
+      'icon-image': 'free-fast-pinlet',
+      'icon-size': 0.55,
+    },
+    source: 'stations',
+    'source-layer': 'stations',
+  });
+
+  /**
+   * This second layer will display the clusterd stations.
    * This layer will be shown as long as the cluster count is above 1.
    */
   map.addLayer({
@@ -54,44 +69,11 @@ map.on('load', () => {
     filter: ['>', ['get', 'count'], 1],
     layout: {
       'icon-image': 'empty-charger',
-      'icon-size': 0.55,
-    },
-  });
-
-  /**
-   * This second layer will display the cluster count.
-   * This layer will be shown as long as the cluster count is above 1.
-   */
-  map.addLayer({
-    id: 'cluster_count',
-    type: 'symbol',
-    source: 'stations',
-    'source-layer': 'stations',
-    interactive: true,
-    filter: ['>', ['get', 'count'], 1],
-    layout: {
+      'icon-size': 0.8,
       'text-field': '{count}',
       'text-size': 8,
     },
   });
-
-  /**
-   * This third layer will display a station icon.
-   * This layer will only be shown if the cluster count is 1, as it is hidden behind the other 2 layers.
-   */
-  map.addLayer(
-    {
-      id: 'unclustered-stations',
-      type: 'symbol',
-      layout: {
-        'icon-image': 'free-fast-pinlet',
-        'icon-size': 0.55,
-      },
-      source: 'stations',
-      'source-layer': 'stations',
-    },
-    'clusters',
-  );
 });
 
 /**
@@ -102,7 +84,7 @@ map.on('load', () => {
  */
 map.on('click', ({ point, target }) => {
   const features = target.queryRenderedFeatures(point, {
-    layers: ['clusters', 'cluster_count', 'unclustered-stations'],
+    layers: ['clusters', 'unclustered-stations'],
   });
   if (features && features.length > 0 && features[0].properties.count > 1) {
     map.flyTo({
