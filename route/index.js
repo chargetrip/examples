@@ -110,7 +110,7 @@ const displayRouteData = data => {
   document.getElementById('consumption').innerHTML = `${data.consumption.toFixed(2)} kWh`;
 
   // the money saved by the user driving this route with the electric vehicle
-  document.getElementById('cost').innerHTML = `${data.saving.money} ${data.saving.currency || '€'}`;
+  document.getElementById('cost').innerHTML = `${data.saving.currency || '€'} ${data.saving.money} `;
 
   // the total amount of CO2 which were used with a petrol vehicle
   document.getElementById('co2').innerHTML = `${data.saving.co2 / 1000} Kg`;

@@ -10,19 +10,19 @@
 
   <body>
     <div id="map"></div>
-
-    <a href="#" rel="nofollow noref">
-      <div class="clone">
+    <div class="clone" id="clone">
+      <a href="https://github.com/chargetrip/examples" rel="github examples">
         <img src="github.svg" />
-        <p>Clone project</p>
-      </div>
-    </a>
+        <span>Clone project</span>
+      </a>
+      <img src="close.svg" onclick="document.getElementById('clone').style.display='none'" />
+    </div>
 
     <div class="card">
       <header class="header">
         <h1 class="duration" id="duration"></h1>
-        <p>Amsterdam • Berlin</p>
         <div id="loader">Loading...</div>
+        <div class="header-route">Amsterdam • Berlin</div>
         <div class="tags">
           <div id="distance" class="tag"></div>
           <div id="stop" class="tag"></div>
@@ -34,58 +34,58 @@
         <h2>Car information</h2>
         <div class="car__details">
           <div>
-            <p>Tesla</p>
-            <p></p>
-            <p><b>Model S</b></p>
+            Tesla
+            <br />
+            <span>Model S</span>
           </div>
           <img class="car__image" src="5dcd60afeec2cc22f0b95a8f-1573740763.png" />
         </div>
-        <ul class="list car__specs">
+        <ul class="list">
           <li class="list__item">
-            <p>Passengers</p>
-            <p><b>1</b></p>
+            Passengers
+            <span>1</span>
           </li>
           <li class="list__item">
-            <p>State of Charge</p>
-            <p><b>72.5 kWh</b></p>
+            State of Charge
+            <span>72.5 kWh</span>
           </li>
           <li class="list__item list__item--column">
-            <p>Adapters</p>
-            <p><b>CHADEMO, Type 2</b></p>
+            Adapters
+            <span>CHADEMO, Type 2</span>
           </li>
         </ul>
       </section>
 
       <section class="section trip">
         <h2>Trip information</h2>
-        <ul class="list trip__specs">
+        <ul class="list">
           <li class="list__item">
             <div class="list__icon">
               <img src="time.svg" />
-              <p>Charge Duration</p>
+              Charge Duration
             </div>
-            <p id="charge-duration"><b>--,--</b></p>
+            <span id="charge-duration">--,--</span>
           </li>
           <li class="list__item">
             <div class="list__icon">
               <img src="saved.svg" />
-              <p>Saved on Fuel</p>
+              Saved on Fuel
             </div>
-            <p id="cost"><b>--,--</b></p>
+            <span id="cost">--,--</span>
           </li>
           <li class="list__item">
             <div class="list__icon">
               <img src="consumption.svg" />
-              <p>Total consumption</p>
+              Total consumption
             </div>
-            <p id="consumption"><b>--,--</b></p>
+            <span id="consumption">--,--</span>
           </li>
           <li class="list__item">
             <div class="list__icon">
               <img src="co2.svg" />
-              <p>CO2 spared</p>
+              CO2 spared
             </div>
-            <p id="co2">--,--</p>
+            <span id="co2">>--,--</span>
           </li>
         </ul>
       </section>

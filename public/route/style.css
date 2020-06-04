@@ -8,8 +8,9 @@ body {
   color: #323c4d;
 }
 
-p {
+span {
   margin: 0;
+  font-weight: 600;
 }
 
 ul,
@@ -61,6 +62,10 @@ h2 {
   padding: 2em 0;
 
   align-items: center;
+}
+
+.header-route {
+  font-size: 16px;
 }
 
 .header h1 {
@@ -136,7 +141,6 @@ h2 {
 .clone {
   position: absolute;
   display: flex;
-  justify-content: flex-start;
   align-items: center;
   height: 35px;
   width: 209px;
@@ -148,14 +152,27 @@ h2 {
   border-radius: 8px;
 }
 
+.clone a {
+  display: flex;
+  text-decoration: none;
+}
+
 .clone img {
   padding-left: 10px;
   padding-top: px;
 }
 
-.clone p {
+.clone span {
   color: #fff;
   padding-left: 10px;
+  font-weight: 500;
+  font-size: 15px;
+}
+
+.clone img:last-child {
+  cursor: pointer;
+  padding-left: 50px;
+  color: #fff;
 }
 
 .mapboxgl-popup-tip {
@@ -168,11 +185,12 @@ h2 {
 
 .mapboxgl-popup-content {
   width: 50px;
-  height: 15px;
+  padding: 1px;
 
   background: #030303;
   margin-bottom: 30px;
   font-size: 12px;
+  font-weight: 600;
   line-height: 22px;
   text-align: center;
 
