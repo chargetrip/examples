@@ -4,13 +4,16 @@ const eco = '5ed1175bad06853b3aa1e492';
 const ocm = '5e8c22366f9c5f23ab0eff39';
 let url = window.location.href;
 
-const getProvider = () => {
-  console.log(url.search('?'));
-  if (url.search() === '?ocm') {
-    console.log('ocm');
+let urlEnd = url.substr(url.lastIndexOf('?') + 1);
+
+console.log(urlEnd);
+const getProvider = (urlEnd) => {
+  console.log(urlEnd === 'ocm')
+  if (urlEnd === 'ocm') {
+    console.log({ocm});
     return ocm;
   }
-  console.log('eco');
+  console.log({eco});
   return eco;
 };
 
@@ -33,27 +36,29 @@ let map = new mapboxgl.Map({
       return {
         url: url,
         headers: {
-          'x-client-id': getProvider(),
+          'x-client-id': getProvider(urlEnd),
         },
       };
     }
   },
 });
 
-const source = () => {
-  if (map.getLayer('clusters')) map.removeLayer('clusters');
-  if (map.getLayer('unclustered-stations')) map.removeLayer('unclustered-stations');
-  if (map.getSource('stations')) map.removeSource('stations');
+/**
+ * Display all stations that we request from the Tile Server.
+ *
+ * For this example we request stations with either a CHADEMO or IEC_62196_T2_COMBO connector.
+ * The stations will be clustered.
+ * When clicking on a cluster you will zoom in and the map will be centered around that point.
+ */
+
+map.on('load', () => {
   map.addSource('stations', {
     type: 'vector',
     tiles: [
       'https://api.chargetrip.io/station/{z}/{x}/{y}/tile.mvt?&connectors[]=CHADEMO&connectors[]=IEC_62196_T2_COMBO',
     ],
   });
-};
-
-const layers = () => {
-  /**
+    /**
    * The first layer will display a station icon.
    * This layer will only be shown if the cluster count is 1
    */
@@ -89,19 +94,6 @@ const layers = () => {
       'text-color': '#ffffff',
     },
   });
-};
-
-/**
- * Display all stations that we request from the Tile Server.
- *
- * For this example we request stations with either a CHADEMO or IEC_62196_T2_COMBO connector.
- * The stations will be clustered.
- * When clicking on a cluster you will zoom in and the map will be centered around that point.
- */
-
-map.on('load', () => {
-  source();
-  layers();
 });
 
 /**
@@ -127,7 +119,7 @@ map.on('click', ({ point, target }) => {
   }
 });
 
-const polygon = () => {
+if (urlEnd !== 'ocm') {
   map.on('load', () => {
     map.addSource('eco', {
       type: 'geojson',
@@ -159,18 +151,12 @@ const polygon = () => {
   });
 };
 
-polygon();
-
 document.getElementById('eco').addEventListener('click', () => {
-  if (url.search() === '?eco') window.location.href = url;
-  else if (url.search() === '?ocm') url -= '?ocm';
-  url += '?eco';
+  url = '?eco';
   window.location.href = url;
 });
 
 document.getElementById('ocm').addEventListener('click', () => {
-  if (url.search() === '?ocm') window.location.href = url;
-  else if (url.search() === '?eco') url -= '?eco';
-  url += '?ocm';
+  url = '?ocm';
   window.location.href = url;
 });
