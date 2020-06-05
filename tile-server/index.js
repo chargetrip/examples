@@ -2,9 +2,17 @@ import mapboxgl from 'mapbox-gl';
 
 const eco = '5ed1175bad06853b3aa1e492';
 const ocm = '5e8c22366f9c5f23ab0eff39';
-let provider = eco;
+let url = window.location.href;
 
-console.log(provider);
+const getProvider = () => {
+  console.log(url.search('?'));
+  if (url.search() === '?ocm') {
+    console.log('ocm');
+    return ocm;
+  }
+  console.log('eco');
+  return eco;
+};
 
 /**
  * Mapbox runs 'transformRequest' before it makes a request for an external URL
@@ -25,14 +33,63 @@ let map = new mapboxgl.Map({
       return {
         url: url,
         headers: {
-          'x-client-id': provider,
+          'x-client-id': getProvider(),
         },
       };
     }
   },
 });
 
-console.log(map);
+const source = () => {
+  if (map.getLayer('clusters')) map.removeLayer('clusters');
+  if (map.getLayer('unclustered-stations')) map.removeLayer('unclustered-stations');
+  if (map.getSource('stations')) map.removeSource('stations');
+  map.addSource('stations', {
+    type: 'vector',
+    tiles: [
+      'https://api.chargetrip.io/station/{z}/{x}/{y}/tile.mvt?&connectors[]=CHADEMO&connectors[]=IEC_62196_T2_COMBO',
+    ],
+  });
+};
+
+const layers = () => {
+  /**
+   * The first layer will display a station icon.
+   * This layer will only be shown if the cluster count is 1
+   */
+  map.addLayer({
+    id: 'unclustered-stations',
+    type: 'symbol',
+    layout: {
+      'icon-image': 'free-fast-pinlet',
+      'icon-size': 0.55,
+    },
+    source: 'stations',
+    'source-layer': 'stations',
+  });
+
+  /**
+   * This second layer will display the clusterd stations.
+   * This layer will be shown as long as the cluster count is above 1.
+   */
+  map.addLayer({
+    id: 'clusters',
+    type: 'symbol',
+    source: 'stations',
+    'source-layer': 'stations',
+    interactive: true,
+    filter: ['>', ['get', 'count'], 1],
+    layout: {
+      'icon-image': 'empty-charger',
+      'icon-size': 0.8,
+      'text-field': ['case', ['>=', ['get', 'count'], 1000], 'K', ['get', 'count']],
+      'text-size': 8,
+    },
+    paint: {
+      'text-color': '#ffffff',
+    },
+  });
+};
 
 /**
  * Display all stations that we request from the Tile Server.
@@ -41,56 +98,12 @@ console.log(map);
  * The stations will be clustered.
  * When clicking on a cluster you will zoom in and the map will be centered around that point.
  */
-const loadStations = () => {
-  if (map.getLayer('clusters')) map.removeLayer('clusters');
-  if (map.getLayer('unclustered-stations')) map.removeLayer('unclustered-stations');
-  if (map.getSource('stations')) map.removeSource('stations');
-  map.on('load', () => {
-    map.addSource('stations', {
-      type: 'vector',
-      tiles: [
-        'https://api.chargetrip.io/station/{z}/{x}/{y}/tile.mvt?&connectors[]=CHADEMO&connectors[]=IEC_62196_T2_COMBO',
-      ],
-    });
 
-    /**
-     * This tfirst layer will display a station icon.
-     * This layer will only be shown if the cluster count is 1
-     */
-    map.addLayer({
-      id: 'unclustered-stations',
-      type: 'symbol',
-      layout: {
-        'icon-image': 'free-fast-pinlet',
-        'icon-size': 0.55,
-      },
-      source: 'stations',
-      'source-layer': 'stations',
-    });
+map.on('load', () => {
+  source();
+  layers();
+});
 
-    /**
-     * This second layer will display the clusterd stations.
-     * This layer will be shown as long as the cluster count is above 1.
-     */
-    map.addLayer({
-      id: 'clusters',
-      type: 'symbol',
-      source: 'stations',
-      'source-layer': 'stations',
-      interactive: true,
-      filter: ['>', ['get', 'count'], 1],
-      layout: {
-        'icon-image': 'empty-charger',
-        'icon-size': 0.8,
-        'text-field': ['case', ['>=', ['get', 'count'], 1000], 'K', ['get', 'count']],
-        'text-size': 8,
-      },
-      paint: {
-        'text-color': '#ffffff',
-      },
-    });
-  });
-};
 /**
  * When clicking on a cluster we will receive its zoom level and coordinates.
  * If our zoom level is less then 9 we will change the zoom level to 9.
@@ -146,40 +159,18 @@ const polygon = () => {
   });
 };
 
-loadStations();
 polygon();
 
 document.getElementById('eco').addEventListener('click', () => {
-  provider = eco;
-  console.log(provider);
-  if (!map.getLayer('eco')) polygon();
-  map.transformRequest = (url, resourceType) => {
-    if (resourceType === 'Tile' && url.startsWith('https://api.chargetrip.io')) {
-      return {
-        url: url,
-        headers: {
-          'x-client-id': provider,
-        },
-      };
-    }
-  };
-  loadStations();
+  if (url.search() === '?eco') window.location.href = url;
+  else if (url.search() === '?ocm') url -= '?ocm';
+  url += '?eco';
+  window.location.href = url;
 });
 
 document.getElementById('ocm').addEventListener('click', () => {
-  provider = ocm;
-  console.log(provider);
-  if (map.getLayer('eco')) map.removeLayer('eco');
-  map.transformRequest = (url, resourceType) => {
-    if (resourceType === 'Tile' && url.startsWith('https://api.chargetrip.io')) {
-      return {
-        url: url,
-        headers: {
-          'x-client-id': provider,
-        },
-      };
-    }
-  };
-  loadStations();
-  console.log(map.transformRequest);
+  if (url.search() === '?ocm') window.location.href = url;
+  else if (url.search() === '?eco') url -= '?eco';
+  url += '?ocm';
+  window.location.href = url;
 });
