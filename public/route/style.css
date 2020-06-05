@@ -11,6 +11,7 @@ body {
 span {
   margin: 0;
   font-weight: 600;
+  padding-top: 10px;
 }
 
 ul,
@@ -133,9 +134,16 @@ h2 {
 }
 
 .list__item--column {
+  width: 100%;
   flex-direction: column;
   align-items: flex-start;
-  border-top: 1px solid #e8edf1;
+  padding: 0.5em 0;
+}
+
+.border {
+  border-bottom: 1px solid #e8edf1;
+  left: 0;
+  right: 0;
 }
 
 .clone {
