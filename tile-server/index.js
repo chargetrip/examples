@@ -1,19 +1,18 @@
 import mapboxgl from 'mapbox-gl';
 
+/**
+ * For this example we give two providers with different data-sets
+ * EcoMovement and Open Charge Map. Users can switch between the two.
+ */
+
 const eco = '5ed1175bad06853b3aa1e492';
 const ocm = '5e8c22366f9c5f23ab0eff39';
 let url = window.location.href;
 
 let urlEnd = url.substr(url.lastIndexOf('?') + 1);
 
-console.log(urlEnd);
 const getProvider = (urlEnd) => {
-  console.log(urlEnd === 'ocm')
-  if (urlEnd === 'ocm') {
-    console.log({ocm});
-    return ocm;
-  }
-  console.log({eco});
+  if (urlEnd === 'ocm') return ocm;
   return eco;
 };
 
