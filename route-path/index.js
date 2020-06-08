@@ -91,5 +91,5 @@ const drawRoutePolyline = (data, id) => {
     })
     .catch(error => console.log(error));
   const map = drawRoute(reversed, data.legs);
-  //updateSpecs(client, map, reversed, id);
+  updateSpecs(client, map, reversed, id);
 };
