@@ -4,17 +4,33 @@ import mapboxgl from 'mapbox-gl';
  * For this example we give two providers with different data-sets
  * EcoMovement and Open Charge Map. Users can switch between the two.
  */
-
 const eco = '5ed1175bad06853b3aa1e492';
 const ocm = '5e8c22366f9c5f23ab0eff39';
 let url = window.location.href;
 
 let urlEnd = url.substr(url.lastIndexOf('?') + 1);
 
+if (urlEnd === 'ocm') {
+  document.getElementById('ocm').setAttribute('class', 'clicked');
+}
+else {
+  document.getElementById('eco').setAttribute('class', 'clicked');
+};
+
 const getProvider = (urlEnd) => {
+  console.log(urlEnd);
   if (urlEnd === 'ocm') return ocm;
   return eco;
 };
+
+const getClusterCount = (count) => {
+  console.log(count);
+  count = parseInt(count);
+  console.log(count);
+  if (count > 1000) return (count / 1000).toFixed(0);
+  else return count;
+  
+}
 
 /**
  * Mapbox runs 'transformRequest' before it makes a request for an external URL
@@ -86,7 +102,7 @@ map.on('load', () => {
     layout: {
       'icon-image': 'empty-charger',
       'icon-size': 0.8,
-      'text-field': ['case', ['>=', ['get', 'count'], 1000], 'K', ['get', 'count']],
+      'text-field': '{count}',
       'text-size': 8,
     },
     paint: {
