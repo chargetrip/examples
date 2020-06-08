@@ -8,8 +8,28 @@ body {
   color: #323c4d;
 }
 
-p {
-  margin: 5px 0;
+span {
+  margin: 0;
+  font-weight: 600;
+  padding-top: 10px;
+}
+
+ul,
+ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  font-size: 1.375em;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 1.125em;
+  font-weight: 600;
+  padding: 1em 1em 0;
 }
 
 #map {
@@ -27,68 +47,64 @@ p {
 
   background-color: #ffffff;
   box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.08);
-  overflow-y: scroll;
-  height: calc(100% - 2em);
-
+  overflow: hidden;
+  height: 600px;
   border-radius: 0.5em;
 
   width: 22.5em;
 }
 
-.journey-specs h1 {
-  margin: 0 0 10px;
-  font-weight: 500;
-  font-size: 22px;
+.header {
+  background-color: #030303;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 2em 1em;
+
   align-items: center;
-  color: #000840;
 }
 
-.journey-specs header {
-  padding: 0 0 10px;
-  margin-bottom: 10px;
+.header-route {
+  font-size: 16px;
 }
 
-.specs {
+.list {
+  position: absolute;
+  width: 90%;
+  top: 300px;
+  padding: 0.5em 1em;
+  border-bottom: 1px solid #e8edf1;
+  border-top: 1px solid #e8edf1;
+}
+
+.list li {
   display: flex;
   justify-content: space-between;
-  margin: 5px 0;
-  font-size: 12px;
-  padding: 5px;
+  align-items: center;
+  padding: 0.5em 0;
 }
 
-.specs span {
-  font-weight: 500;
-  text-align: right;
-  color: #010738;
+.graph {
+  position: absolute;
+  height: 132px;
+  margin-bottom: 20px;
 }
 
 .charge {
   position: absolute;
-  top: 148px;
+  top: 255px;
   left: 10px;
   outline: none;
 }
 
 .destination {
   position: absolute;
-  top: 152px;
-  left: 252px;
+  top: 260px;
+  left: 345px;
   width: 20px;
   height: 20px;
 }
 
-.rounded-label {
-  font-size: 8px;
-}
-
-.location-label {
-  background: white;
-  line-height: 1.1em;
-  padding: 5px 10px;
-  font-size: 10px;
-  box-shadow: 0 8px 15px rgba(37, 42, 50, 0.1);
-  border-radius: 4px;
-}
 
 .clone {
   position: absolute;
@@ -115,6 +131,7 @@ p {
 }
 
 .clone span {
+  padding-top: 3px;
   color: #fff;
   padding-left: 10px;
   font-weight: 500;
