@@ -44,7 +44,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjamo3em4wdnUwdHVlM3Z0Z
 let map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/chargetrip/ck98fwwp159v71ip7xhs8bwts',
-  zoom: 3,
+  zoom: 3.5,
   center: [4.8979755, 52.367],
   transformRequest: (url, resourceType) => {
     if (resourceType === 'Tile' && url.startsWith('https://api.chargetrip.io')) {
@@ -82,7 +82,7 @@ map.on('load', () => {
     type: 'symbol',
     layout: {
       'icon-image': 'free-fast-pinlet',
-      'icon-size': 0.55,
+      'icon-size': 0.9,
     },
     source: 'stations',
     'source-layer': 'stations',
@@ -101,9 +101,20 @@ map.on('load', () => {
     filter: ['>', ['get', 'count'], 1],
     layout: {
       'icon-image': 'empty-charger',
-      'icon-size': 0.8,
-      'text-field': '{count}',
-      'text-size': 8,
+      'icon-size': 0.9,
+      'text-field': [
+        'case',
+        ['<', ['get', 'count'], 1000],
+        ['get', 'count'],
+        ['>=', ['get', 'count'], 1000],
+        [
+          'concat',
+          ['to-string', ['round', ['/', ['get', 'count'], 1000]]],
+          'K',
+        ],
+        '-',
+      ],
+      'text-size': 10,
     },
     paint: {
       'text-color': '#ffffff',
@@ -144,23 +155,31 @@ if (urlEnd !== 'ocm') {
           type: 'Polygon',
           coordinates: [
             [
-              [8, 61],
-              [11, 61],
-              [11, 45],
-              [8, 45],
-              [8, 61],
+              [-132 , -71],
+              [172, -71],
+              [172, 82],
+              [-132, 82],
+              [-132, -71]
             ],
-          ],
+             [
+              [8, 61],
+              [11.3, 61],
+              [11.3, 45],
+              [8, 45],
+              [8, 61]
+            ]
+          ]
         },
       },
     });
     map.addLayer({
       id: 'eco',
-      type: 'line',
+      type: 'fill',
       source: 'eco',
       layout: {},
       paint: {
-        'line-color': '#010738',
+          'fill-color': '#282A30',
+          'fill-opacity': 0.60,
       },
     });
   });
