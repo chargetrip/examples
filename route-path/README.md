@@ -2,9 +2,9 @@
 
 This tutorial expands on the route example. It will not only show a route on a map but also display information about the journey specs:
 
-1.  showing a route on a map along with the charging stations;
-2.  showing an elevation plot;
-3.  showing information about a specific point in your journey;
+1.  Display a route on a map along with the charging stations;
+2.  Display an elevation plot;
+3.  Display information about a specific point in your journey;
 4.  Updating the journey specs for a specific location in journey, when you click on that point.
 
 This example is build with JS and requires a basic understanding of the GraphQL language. You can read this tutorial ["GraphQL starter quide"]() to see GraphQL in action.  
@@ -16,7 +16,7 @@ To build a route, you will need a car (the associated consumption model of a car
 
 For the purpose of this example, we use **Tesla Model S**, **Amsterdam** as an origin and **Berlin** as a destination point. If you want to expand on this example and select another car, please look in the [API documentation](https://docs.chargetrip.com/#cars) on how to do so.
 
-Our Playground has a station database that is populated with freely available European station data from [OCM](https://openchargemap.org/site) so you can try planning routes across Europe. Importing your own database or using one of the databases Chargetrip has an integration with, is possible. For more details, contact us.
+Our Playground has a station database that is populated with freely available European station data from [OCM](https://openchargemap.org/site) so you can try planning routes across Europe. Importing your own database or using one of the databases Chargetrip has an isntegration with, is possible. For more details, contact us.
 
 ### Technical stack
 

@@ -86,7 +86,8 @@ h2 {
 
 .graph {
   position: absolute;
-  height: 132px;
+  padding-top: 40px;
+  height: 180px;
   margin-bottom: 20px;
 }
 
@@ -99,7 +100,7 @@ h2 {
 
 .destination {
   position: absolute;
-  top: 260px;
+  top: 258px;
   left: 345px;
   width: 20px;
   height: 20px;
@@ -164,4 +165,13 @@ h2 {
   text-align: center;
 
   color: #ffffff;
+}
+
+.line {
+  height: 10px;
+  width: 2px;
+  margin-left: 1px;
+  margin-top: 130px;
+  background-color: #030303;
+  display: inline-block;
 }
