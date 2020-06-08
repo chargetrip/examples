@@ -27,12 +27,18 @@ const findClosest = (polyline, location) => {
   let i;
   for (i = 1; i < polyline.length - 1; i++) {
     let distance = Math.sqrt(Math.pow(Math.abs(x1 - polyline[i][0]), 2) + Math.pow(Math.abs(y1 - polyline[i][1]), 2));
-    if (distance < closest) {
+    if (distance <= closest) {
       closest = distance;
       closestIndex = i;
     }
   }
   return closestIndex;
+};
+
+const markElevationPlot = (closestIndex, coordinates) => {
+  const total = coordinates.length;
+  const position = (closestIndex * 100) / total / 100;
+  document.getElementById('line').style.marginLeft = position * 355 + 'px';
 };
 
 /**
@@ -48,6 +54,7 @@ export const updateSpecs = (client, map, coordinates, id) => {
     location = [e.lngLat.lng, e.lngLat.lat];
     let closest = 0;
     closest = findClosest(coordinates, location);
+    markElevationPlot(closest, coordinates);
     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
       coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
