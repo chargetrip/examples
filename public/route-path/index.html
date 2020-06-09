@@ -22,31 +22,45 @@
         <h1>Journey Specs</h1>
         <div class="header-route">Amsterdam • Berlin</div>
       </header>
-      <canvas class="graph" id="elevation" height="132px"></canvas>
+      <h2>Elevation levels </h2>
+      <canvas class="graph" id="elevation" height="130px"></canvas>
       <span class="line" id="line"></span>
-      <svg class="destination">
-        <image href="destination.png" height="20" width="20" />
-      </svg>
       <canvas class="charge" id="charge"></canvas>
+      <h2>Details</h2>
       <ul class="list">
         <li>
+          <div class="list__icon">
+            <img src="elevation.svg" />
             Elevation
+          </div>
           <span id="height">--,--</span>
         </li>
         <li>
+          <div class="list__icon">
+            <img src="consumption.svg" />
             Consumption Estimation
+          </div>
           <span id="consumption">--,--</span>
         </li>
         <li>
+          <div class="list__icon">
+            <img src="temperature.svg" />
             Temperature
+          </div>
           <span id="temperature">--,--</span>
         </li>
         <li>
+          <div class="list__icon">
+            <img src="speed-limit.svg" />
             Speed Limit
+          </div>
           <span id="speed-limit">--,--</span>
         </li>
         <li>
-          Average Speed
+          <div class="list__icon">
+            <img src="average-speed.svg" />
+            Average Speed
+          </div>
         <span id="average-speed">--,--</span>
       </li>
       </ul>

@@ -48,7 +48,7 @@ h2 {
   background-color: #ffffff;
   box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  height: 600px;
+  height: 697px;
   border-radius: 0.5em;
 
   width: 22.5em;
@@ -69,12 +69,8 @@ h2 {
 }
 
 .list {
-  position: absolute;
   width: 90%;
-  top: 300px;
   padding: 0.5em 1em;
-  border-bottom: 1px solid #e8edf1;
-  border-top: 1px solid #e8edf1;
 }
 
 .list li {
@@ -84,26 +80,20 @@ h2 {
   padding: 0.5em 0;
 }
 
-.graph {
-  position: absolute;
-  padding-top: 40px;
-  height: 180px;
-  margin-bottom: 20px;
+.list__icon {
+  display: flex;
+  align-items: center;
+}
+
+.list__icon img {
+  margin-right: 0.5em;
 }
 
 .charge {
   position: absolute;
-  top: 255px;
+  top: 323px;
   left: 10px;
   outline: none;
-}
-
-.destination {
-  position: absolute;
-  top: 258px;
-  left: 345px;
-  width: 20px;
-  height: 20px;
 }
 
 
@@ -168,10 +158,12 @@ h2 {
 }
 
 .line {
+  position: absolute;
+  top: 328px;
+  outline: none;
   height: 10px;
   width: 2px;
-  margin-left: 1px;
-  margin-top: 130px;
+  left: 1px;
   background-color: #030303;
   display: inline-block;
 }
