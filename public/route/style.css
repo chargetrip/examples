@@ -171,6 +171,7 @@ h2 {
 }
 
 .clone span {
+  padding-top: 3px;
   color: #fff;
   padding-left: 10px;
   font-weight: 500;
