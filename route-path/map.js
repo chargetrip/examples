@@ -1,13 +1,14 @@
 import mapboxgl from 'mapbox-gl';
 import { getDurationString } from '../utils';
+import { findClosest } from './journey-specs';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjamo3em4wdnUwdHVlM3Z0ZTNrZmd1MXoxIn0.aFteYnUc_GxwjTLGvB3uCg';
 
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/chargetrip/ck98fwwp159v71ip7xhs8bwts',
-  zoom: 5,
-  center: [8.1320104, 49.3758916],
+  zoom: 6,
+  center: [7.7, 52],
 });
 
 /**
@@ -26,6 +27,21 @@ export const drawRoute = (coordinates, legs) => {
       showLegs(legs);
     });
   }
+  map.on('click', 'polyline', e => {
+    const line = Object.assign([], coordinates);
+    const location = [e.lngLat.lng, e.lngLat.lat];
+    let closest = findClosest(coordinates, location);
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
+    }
+    splitPolyline(line, closest);
+  });
+  map.on('mouseenter', 'polyline', () => {
+    map.getCanvas().style.cursor = 'pointer';
+  });
+  map.on('mouseleave', 'polyline', () => {
+    map.getCanvas().style.cursor = '';
+  });
   return map;
 };
 
@@ -66,6 +82,48 @@ const drawPolyline = coordinates => {
     paint: {
       'line-color': '#0078FF',
       'line-width': 3,
+    },
+  });
+};
+
+/**
+ * With this function we will mark the route up until the point that was clicked.
+ * @param coordinates {object} The coordinates until the point that was clicked.
+ */
+const drawClickedLine = coordinates => {
+  if (map.getLayer('clicked-polyline')) map.removeLayer('clicked-polyline');
+  if (map.getSource('clicked-source')) map.removeSource('clicked-source');
+  const geojson = {
+    type: 'FeatureCollection',
+    features: [
+      {
+        type: 'Feature',
+        geometry: {
+          type: 'LineString',
+          properties: {},
+          coordinates,
+        },
+      },
+    ],
+  };
+
+  map.addSource('clicked-source', {
+    type: 'geojson',
+    data: geojson,
+  });
+
+  map.addLayer({
+    id: 'clicked-polyline',
+    type: 'line',
+    options: 'beforeLayer',
+    source: 'clicked-source',
+    layout: {
+      'line-join': 'round',
+      'line-cap': 'round',
+    },
+    paint: {
+      'line-color': '#fff',
+      'line-width': 4,
     },
   });
 };
@@ -127,9 +185,9 @@ const showLegs = legs => {
       'icon-offset': [
         'case',
         ['==', ['get', 'icon'], 'free-fast-pinlet'],
-        ['literal', [0, -15]],
+        ['literal', [0, -13]],
         ['==', ['get', 'icon'], 'arrival'],
-        ['literal', [0, -15]],
+        ['literal', [0, -13]],
         ['literal', [0, 0]],
       ],
     },
@@ -172,4 +230,9 @@ const showLegs = legs => {
     map.getCanvas().style.cursor = '';
     popup.remove();
   });
+};
+
+const splitPolyline = (coordinates, closest) => {
+  let clickedRoute = coordinates.splice(0, closest);
+  drawClickedLine(clickedRoute);
 };

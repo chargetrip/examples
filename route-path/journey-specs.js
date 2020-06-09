@@ -19,7 +19,7 @@ export const displaySpecs = path => {
  * @param polyline {object} polyline coordinates.
  * @param location {object} the location that was clicked on the polyline.
  */
-const findClosest = (polyline, location) => {
+export const findClosest = (polyline, location) => {
   const x1 = location[0];
   const y1 = location[1];
   let closest = Math.sqrt(Math.pow(Math.abs(x1 - polyline[0][0]), 2) + Math.pow(Math.abs(y1 - polyline[0][1]), 2));
@@ -37,8 +37,8 @@ const findClosest = (polyline, location) => {
 
 const markElevationPlot = (closestIndex, coordinates) => {
   const total = coordinates.length;
-  const position = (closestIndex * 100) / total / 100;
-  document.getElementById('line').style.marginLeft = position * 355 + 'px';
+  const position = (closestIndex * 99) / total / 100;
+  document.getElementById('line').style.marginLeft = position * 358 + 'px';
 };
 
 /**
