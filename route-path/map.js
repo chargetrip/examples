@@ -139,18 +139,18 @@ const drawClickedLine = coordinates => {
 const showLegs = legs => {
   if (legs.length === 0) return;
 
+  let route = [];
   let points = [];
 
   // we want to show origin point on the map
   // to do that we use the origin of the first leg
-  points.push({
+  route.push({
     type: 'Feature',
     properties: {
       icon: 'location_big',
     },
     geometry: legs[0].origin.geometry,
   });
-
   legs.map((leg, index) => {
     // add charging stations
     if (index !== legs.length - 1) {
@@ -164,7 +164,7 @@ const showLegs = legs => {
       });
     } else {
       // add destination point (last leg)
-      points.push({
+      route.push({
         type: 'Feature',
         properties: {
           icon: 'arrival',
@@ -174,22 +174,33 @@ const showLegs = legs => {
     }
   });
 
-  // draw route points on a map
+  // draw origin and destination points on a map
   map.addLayer({
-    id: 'legs',
+    id: 'route',
     type: 'symbol',
     layout: {
       'icon-image': '{icon}',
       'icon-allow-overlap': true,
-      'icon-size': ['case', ['==', ['get', 'icon'], 'free-fast-pinlet'], ['literal', 0.85], ['literal', 0.7]],
-      'icon-offset': [
-        'case',
-        ['==', ['get', 'icon'], 'free-fast-pinlet'],
-        ['literal', [0, -15]],
-        ['==', ['get', 'icon'], 'arrival'],
-        ['literal', [0, -15]],
-        ['literal', [0, 0]],
-      ],
+      'icon-size': 0.7,
+      'icon-offset': ['case', ['==', ['get', 'icon'], 'arrival'], ['literal', [0, -15]], ['literal', [0, 0]]],
+    },
+    source: {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: route,
+      },
+    },
+  });
+
+  map.addLayer({
+    id: 'chargers',
+    type: 'symbol',
+    layout: {
+      'icon-image': '{icon}',
+      'icon-allow-overlap': true,
+      'icon-size': 0.85,
+      'icon-offset': [0, -15],
     },
     source: {
       type: 'geojson',
@@ -233,7 +244,7 @@ const showLegs = legs => {
 };
 
 const splitPolyline = (coordinates, closest) => {
-  if (map.getLayer('legs')) map.removeLayer('legs');
+  if (map.getLayer('chargers')) map.removeLayer('chargers');
   let clickedRoute = coordinates.splice(0, closest);
   drawClickedLine(clickedRoute);
 };

@@ -59,13 +59,31 @@ h2 {
   color: #ffffff;
   display: flex;
   flex-direction: column;
-  padding: 2em 1em;
+  padding: 1em 0em;
 
   align-items: center;
 }
 
 .header-route {
+  margin-top: -5px;
   font-size: 16px;
+}
+.tags {
+  display: flex;
+  margin-top: 1em;
+  color: #EDF2F6;
+}
+
+.tag {
+  display: flex;
+  border: 1px solid #ffffff;
+  padding: 0 0.5rem;
+  font-size: 14px;
+  font-weight: 600;
+  height: 1.5rem;
+  align-items: center;
+  margin: 0 0.25rem;
+  border-radius: 0.75rem;
 }
 
 .list {
@@ -91,7 +109,7 @@ h2 {
 
 .charge {
   position: absolute;
-  top: 323px;
+  top: 330px;
   left: 10px;
   outline: none;
 }
@@ -159,7 +177,7 @@ h2 {
 
 .line {
   position: absolute;
-  top: 328px;
+  top: 335px;
   outline: none;
   height: 10px;
   width: 2px;

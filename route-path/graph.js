@@ -29,13 +29,15 @@ const labels = route => {
 export const loadGraph = (route, elevation) => {
   const ctx = document.getElementById('elevation').getContext('2d');
   let gradient = ctx.createLinearGradient(0, 0, 0, 180);
-  gradient.addColorStop(0, 'rgba(0, 169, 224, 0.3)');
-  gradient.addColorStop(1, '#0078FF');
+  gradient.addColorStop(1, 'rgba(1, 99, 234, 0)');
+  gradient.addColorStop(0, '#0176FD');
   const data = {
     labels: labels(route),
     datasets: [
       {
         label: 'elevation',
+        borderColor: '#0078FF',
+        borderWidth: 1.5,
         backgroundColor: gradient,
         pointRadius: 0,
         data: elevation,
@@ -46,7 +48,6 @@ export const loadGraph = (route, elevation) => {
     scales: {
       xAxes: [
         {
-          rangeslider: {},
           gridLines: {
             drawTicks: false,
             drawOnChartArea: false,

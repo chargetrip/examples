@@ -92,4 +92,18 @@ const drawRoutePolyline = (data, id) => {
     .catch(error => console.log(error));
   const map = drawRoute(reversed, data.legs);
   updateSpecs(client, map, reversed, id);
+  displayRouteData(data);
+};
+
+/**
+ * Show journey specific information like duration, consumption, costs etc.
+ *
+ * @param data {object} route specification
+ */
+const displayRouteData = data => {
+  // The highest point in the elevation plot
+  document.getElementById('highest').innerHTML = `Highest ${(data.elevationUp / 1000).toFixed(0)}m`;
+
+  // The lowest point in the elevation plot
+  document.getElementById('lowest').innerHTML = `Lowest ${(data.elevationDown / 1000).toFixed(0)}m`;
 };
