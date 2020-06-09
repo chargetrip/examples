@@ -54,15 +54,8 @@ subscription routeUpdatedById($id: ID!){
   routeUpdatedById(id: $id) {
     status
     route {
-      charges
-      saving {
-        money
-        co2
-      }
-      chargeTime
       distance
       duration
-      consumption
       elevationPlot
       elevationUp
       elevationDown
