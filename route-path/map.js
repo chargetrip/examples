@@ -185,9 +185,9 @@ const showLegs = legs => {
       'icon-offset': [
         'case',
         ['==', ['get', 'icon'], 'free-fast-pinlet'],
-        ['literal', [0, -13]],
+        ['literal', [0, -15]],
         ['==', ['get', 'icon'], 'arrival'],
-        ['literal', [0, -13]],
+        ['literal', [0, -15]],
         ['literal', [0, 0]],
       ],
     },
@@ -226,13 +226,14 @@ const showLegs = legs => {
     }
   });
 
-  map.on('mouseleave', 'places', function() {
+  map.on('mouseleave', 'legs', function() {
     map.getCanvas().style.cursor = '';
     popup.remove();
   });
 };
 
 const splitPolyline = (coordinates, closest) => {
+  if (map.getLayer('legs')) map.removeLayer('legs');
   let clickedRoute = coordinates.splice(0, closest);
   drawClickedLine(clickedRoute);
 };
