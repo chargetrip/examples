@@ -167,7 +167,7 @@ const showLegs = legs => {
     }
   });
 
-  map.on('mouseleave', 'places', function() {
+  map.on('mouseleave', 'legs', function() {
     map.getCanvas().style.cursor = '';
     popup.remove();
   });
