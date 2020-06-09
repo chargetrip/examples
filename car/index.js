@@ -1,5 +1,17 @@
+import mapboxgl from 'mapbox-gl';
 import { createClient, defaultExchanges } from '@urql/core';
 import { getCarList } from './queries.js';
+
+mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjamo3em4wdnUwdHVlM3Z0ZTNrZmd1MXoxIn0.aFteYnUc_GxwjTLGvB3uCg';
+
+const map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/chargetrip/ck98fwwp159v71ip7xhs8bwts',
+  zoom: 5.5,
+  center: [8.7320104, 52.3758916],
+});
+
+map.on('load');
 
 /**
  * For the purpose of this example we use urgl - lightweights GraphQL client.

@@ -1,13 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html lang="nl">
   <head>
-    <title>Chargetrip API: car example</title>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet" />
+    <title>API: Car example</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;600&display=swap" rel="stylesheet" />
+    <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
+    <div id="map"></div>
+    <div class="clone" id="clone">
+      <a href="https://github.com/chargetrip/examples" rel="github examples">
+        <img src="github.svg" />
+        <span>Clone project</span>
+      </a>
+      <img src="close.svg" onclick="document.getElementById('clone').style.display='none'" />
+    </div>
+
     <div class="car-selector"></div>
   </body>
   <script src="bundle.js"></script>
