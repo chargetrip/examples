@@ -13,7 +13,7 @@ const labels = route => {
   const label = new Array(points);
   label.fill('');
 
-  for (let i = 0; pos * i < distance; i++) {
+  for (let i = 1; pos * i < distance; i++) {
     const x = ((pos * i * points) / distance).toFixed(0);
     label[x] = pos * i;
   }
@@ -27,19 +27,21 @@ const labels = route => {
  */
 
 export const loadGraph = (route, elevation) => {
-  console.log(elevation);
+  Chart.defaults.global.defaultFontFamily = 'Inter';
   const ctx = document.getElementById('elevation').getContext('2d');
   let gradient = ctx.createLinearGradient(0, 0, 0, 180);
   gradient.addColorStop(1, '#fff');
-  gradient.addColorStop(0, '#0176FD');
+  gradient.addColorStop(0, 'rgba(1, 99, 234, 0.6)');
   const data = {
     labels: labels(route),
     datasets: [
       {
         label: 'elevation',
+        responsive: false,
         borderColor: '#0078FF',
         borderWidth: 1.5,
         backgroundColor: gradient,
+        opacity: 0.6,
         pointRadius: 0,
         data: elevation,
       },
@@ -50,6 +52,7 @@ export const loadGraph = (route, elevation) => {
       xAxes: [
         {
           gridLines: {
+            tickMarkLength: 0,
             drawTicks: false,
             drawOnChartArea: false,
             drawBorder: false,
@@ -60,13 +63,16 @@ export const loadGraph = (route, elevation) => {
             autoSkip: false,
             maxRotation: 0,
             minRotation: 0,
-            fontSize: 10,
+            fontSize: 14,
+            fontStyle: 'bold',
+            fontColor: '#404046',
           },
         },
       ],
       yAxes: [
         {
           gridLines: {
+            tickMarkLength: 0,
             drawTicks: false,
             drawBorder: false,
           },
@@ -79,6 +85,14 @@ export const loadGraph = (route, elevation) => {
     },
     legend: {
       display: false,
+    },
+    layout: {
+      padding: {
+        left: -1,
+        right: -1,
+        top: 0,
+        bottom: 0,
+      },
     },
   };
   new Chart(ctx, {
@@ -106,5 +120,5 @@ export const imageLoader = (route, legs) => {
       chargers.drawImage(img, x - 13, 0, 16, 25);
     }
   };
-  img.src = './charger.png';
+  img.src = 'images/charger.png';
 };

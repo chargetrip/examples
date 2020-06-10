@@ -30,6 +30,8 @@ h2 {
   font-size: 1.125em;
   font-weight: 600;
   padding: 1em 1em 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 a {
   text-decoration: none;
@@ -44,16 +46,16 @@ a {
   height: 100%;
 }
 
-.card {
+.journey-specs {
   position: absolute;
   left: 1em;
   top: 1em;
 
   background-color: #ffffff;
   box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.08);
-  overflow: hidden;
-  height: 737px;
-  border-radius: 0.5em;
+  overflow-y: scroll;
+  max-height: calc(100% - 2em);
+  border-radius: 8px;
 
   width: 22.5em;
 }
@@ -91,6 +93,7 @@ a {
 }
 
 .info {
+  margin-top:10px;
   padding: 8px 16px;
   border-bottom: 1px solid #e8edf1;
 }
@@ -123,9 +126,14 @@ a {
   background: url('images/average-speed.svg') no-repeat left center;
 }
 
+.chart {
+  width: 102%;
+  margin-left: -2px;
+}
+
 .charge {
   position: absolute;
-  top: 330px;
+  top: 315px;
   left: 10px;
   outline: none;
   z-index: 3;
@@ -141,8 +149,8 @@ a {
   padding: 0 12px;
 
   background-color: #030303;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
+  box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.08);
+  border-radius: 20px;
 
   color: #fff;
   font-weight: 500;
@@ -195,18 +203,19 @@ a {
 
 .line {
   position: absolute;
-  top: 212px;
-  height: 142px;
+  top: 203px;
+  height: 135px;
   width: 2px;
-  left: 2px;
+  left: 1px;
   background-color: #EA8538;
-  z-index: 2;
+  z-index: 3;
 }
 
-.elipse {
-  height: 5px;
-  width: 5px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
+.line img {
+  margin-left: -4px;
+}
+
+.chargetrip {
+  background: url('images/chargetrip.svg') no-repeat 16px center;
+  height: 40px;
 }

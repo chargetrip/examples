@@ -112,20 +112,23 @@ const drawClickedLine = coordinates => {
     data: geojson,
   });
 
-  map.addLayer({
-    id: 'clicked-polyline',
-    type: 'line',
-    options: 'beforeLayer',
-    source: 'clicked-source',
-    layout: {
-      'line-join': 'round',
-      'line-cap': 'round',
+  map.addLayer(
+    {
+      id: 'clicked-polyline',
+      type: 'line',
+      options: 'beforeLayer',
+      source: 'clicked-source',
+      layout: {
+        'line-join': 'round',
+        'line-cap': 'round',
+      },
+      paint: {
+        'line-color': '#EA8538',
+        'line-width': 4,
+      },
     },
-    paint: {
-      'line-color': '#EA8538',
-      'line-width': 4,
-    },
-  });
+    'route',
+  );
 };
 
 /**
@@ -241,8 +244,39 @@ const showLegs = legs => {
   });
 };
 
+const addLineEnd = end => {
+  if (map.getLayer('end')) map.removeLayer('end');
+  if (map.getSource('point')) map.removeSource('point');
+  map.addSource('point', {
+    type: 'geojson',
+    data: {
+      type: 'FeatureCollection',
+      features: [
+        {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: end,
+          },
+        },
+      ],
+    },
+  });
+  map.addLayer({
+    id: 'end',
+    type: 'symbol',
+    source: 'point',
+    layout: {
+      'icon-image': 'elipse',
+      'icon-size': 1,
+    },
+  });
+};
+
 const splitPolyline = (coordinates, closest) => {
+  const end = coordinates[closest];
   if (map.getLayer('chargers')) map.removeLayer('chargers');
   let clickedRoute = coordinates.splice(0, closest);
   drawClickedLine(clickedRoute);
+  addLineEnd(end);
 };
