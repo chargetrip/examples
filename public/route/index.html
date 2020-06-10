@@ -10,8 +10,8 @@
 
   <body>
     <div id="map"></div>
-    <div class="github">
-      <a href="https://github.com/chargetrip/examples/route" title="github examples">
+    <div class="github-link">
+      <a href="https://github.com/chargetrip/examples/route" title="github project">
         View on Github
       </a>
       <button aria-label="remove github link" title="remove github link" onclick="this.parentElement.remove()"></button>
@@ -20,8 +20,8 @@
     <div class="card">
       <header class="header">
         <h1 class="duration" id="duration"></h1>
-        <div id="loader">Loading...</div>
         <div class="header-route">Amsterdam • Berlin</div>
+        <div id="loader">Loading...</div>
         <div class="tags">
           <div id="distance" class="tag"></div>
           <div id="stop" class="tag"></div>
@@ -29,54 +29,55 @@
         </div>
       </header>
 
-      <section class="section car">
+      <section>
         <h2>Car information</h2>
-        <div class="car__details">
+        <div class="car-details">
           <div>
             Tesla
             <br />
             <span>Model S</span>
           </div>
-          <img class="car__image" src="images/tesla.png" />
+          <img class="car-image" src="images/tesla.png" alt="Tesla model 3" />
         </div>
         <ul class="info">
           <li>
             Passengers
             <span>1</span>
           </li>
-          <li class="section">
+          <li>
             State of Charge
             <span>72.5 kWh</span>
           </li>
-          <li class="info-column">
+          <li>
             Adapters
+            <br />
             <span>CHADEMO, Type 2</span>
           </li>
         </ul>
       </section>
 
-      <section class="section trip">
+      <section>
         <h2>Trip information</h2>
-        <ul class="trip-info">
-          <li class="info-duration">
-              Charge Duration
+        <ul class="info trip">
+          <li class="trip-duration">
+            Charge Duration
             <span id="charge-duration">--,--</span>
           </li>
-          <li class="info-fuel">
-              Saved on Fuel
+          <li class="trip-fuel">
+            Saved on Fuel
             <span id="cost">--,--</span>
           </li>
-          <li class="info-consumption">
-              Total consumption
+          <li class="trip-consumption">
+            Total consumption
             <span id="consumption">--,--</span>
           </li>
-          <li class="info-co2">
-              CO2 spared
+          <li class="trip-co2">
+            CO2 spared
             <span id="co2">--,--</span>
           </li>
         </ul>
       </section>
-      <div class="chargetrip"></div>
+      <a class="chargetrip-logo" href="https://chargetrip.com/">Powered by Chargetrip</a>
     </div>
   </body>
   <script src="bundle.js"></script>

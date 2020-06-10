@@ -7,8 +7,9 @@ This tutorial covers the basics of building a simple route between an origin and
 3.  showing information about the whole journey duration;
 4.  showing information about the energy consumption.
 
-This example is build with JS and requires a basic understanding of the GraphQL language. You can read this tutorial ["GraphQL starter quide"]() to see GraphQL in action.  
-You can see it up and running [here](https://chargetrip.github.io/examples/route/).
+This example is build with JS and requires a basic understanding of the GraphQL language. You can read this tutorial ["GraphQL starter quide"]() to see GraphQL in action.
+
+To see this example live 👉 [demo](https://chargetrip.github.io/examples/route/).
 
 ### Preparation
 

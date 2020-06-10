@@ -7,9 +7,15 @@ import * as mapboxPolyline from '@mapbox/polyline';
 import { getDurationString } from '../utils';
 
 /**
+ * Example application of how to build a route with the Chargetrip API.
+ * Please have a look to Readme file in this repo for more details.
+ *
  * For the purpose of this example we use urgl - lightweights GraphQL client.
- * To establish a connection with Chargetrip GraphQL API you need to have an API key.
+ * To establish a connection with Chargetrip GraphQL API you need to have an API x-client-id.
  * Read more about an authorisation in our documentation (https://docs.chargetrip.com/#authorisation).
+ *
+ * API x-client-id used in this example is only for testing purposes
+ * and exposed only a part of our stations/car database.
  */
 const headers = {
   'x-client-id': '5e8c22366f9c5f23ab0eff39',
@@ -59,8 +65,8 @@ client
           unsubscribe();
 
           const routeData = result.data.routeUpdatedById.route;
-          drawRoutePolyline(routeData);
-          displayRouteData(routeData);
+          drawRoutePolyline(routeData); // draw a polyline on a map
+          displayRouteData(routeData); // fill in the route information
         }
       }),
     );
@@ -92,6 +98,7 @@ const drawRoutePolyline = data => {
  */
 const displayRouteData = data => {
   document.getElementById('loader').remove();
+  document.querySelector('.tags').style.display = 'flex';
 
   // the total duration of the journey (including charge time), in seconds
   document.getElementById('duration').innerHTML = `${getDurationString(data.duration)}`;
