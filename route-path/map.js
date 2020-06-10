@@ -220,24 +220,22 @@ const showLegs = legs => {
     closeOnClick: false,
   });
 
-  map.on('mouseenter', 'legs', e => {
-    if (e.features[0].properties.icon === 'free-fast-pinlet') {
-      map.getCanvas().style.cursor = 'pointer';
+  map.on('mouseenter', 'chargers', e => {
+    map.getCanvas().style.cursor = 'pointer';
 
-      const coordinates = e.features[0].geometry.coordinates;
-      const description = e.features[0].properties.description;
+    const coordinates = e.features[0].geometry.coordinates;
+    const description = e.features[0].properties.description;
 
-      while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-      }
-      popup
-        .setLngLat(coordinates)
-        .setHTML(description)
-        .addTo(map);
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
+    popup
+      .setLngLat(coordinates)
+      .setHTML(description)
+      .addTo(map);
   });
 
-  map.on('mouseleave', 'legs', function() {
+  map.on('mouseleave', 'chargers', function() {
     map.getCanvas().style.cursor = '';
     popup.remove();
   });
