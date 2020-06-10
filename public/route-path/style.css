@@ -11,7 +11,7 @@ body {
 span {
   margin: 0;
   font-weight: 600;
-  padding-top: 10px;
+  line-height: 30px;
 }
 
 ul,
@@ -31,6 +31,10 @@ h2 {
   font-weight: 600;
   padding: 1em 1em 0;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
 #map {
   position: absolute;
@@ -48,7 +52,7 @@ h2 {
   background-color: #ffffff;
   box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.08);
   overflow: hidden;
-  height: 697px;
+  height: 737px;
   border-radius: 0.5em;
 
   width: 22.5em;
@@ -86,25 +90,37 @@ h2 {
   border-radius: 0.75rem;
 }
 
-.list {
-  width: 90%;
-  padding: 0.5em 1em;
+.info {
+  padding: 8px 16px;
+  border-bottom: 1px solid #e8edf1;
 }
 
-.list li {
+.info li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5em 0;
+  padding: 0px 0px 0 30px;
+  line-height: 50px;
 }
 
-.list__icon {
-  display: flex;
-  align-items: center;
+.info-elevation {
+  background: url('images/elevation.svg') no-repeat left center;
 }
 
-.list__icon img {
-  margin-right: 0.5em;
+.info-consumption {
+  background: url('images/consumption.svg') no-repeat left center;
+}
+
+.info-temperature {
+  background: url('images/temperature.svg') no-repeat left center;
+}
+
+.info-speed-limit {
+  background: url('images/speed-limit.svg') no-repeat left center;
+}
+
+.info-average-speed {
+  background: url('images/average-speed.svg') no-repeat left center;
 }
 
 .charge {
@@ -115,43 +131,44 @@ h2 {
   z-index: 3;
 }
 
-
-.clone {
-  position: absolute;
+.github {
+  position: fixed;
   display: flex;
   align-items: center;
-  height: 35px;
-  width: 209px;
-  top: 15px;
-  right: 15px;
+  top: 16px;
+  right: 16px;
+
+  padding: 0 12px;
 
   background-color: #030303;
-  box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
-}
 
-.clone a {
-  display: flex;
-  text-decoration: none;
-}
-
-.clone img {
-  padding-left: 10px;
-  padding-top: px;
-}
-
-.clone span {
-  padding-top: 3px;
   color: #fff;
-  padding-left: 10px;
   font-weight: 500;
   font-size: 15px;
+  line-height: 40px;
 }
 
-.clone img:last-child {
+.github a {
+  background: url('images/github.svg') no-repeat left center;
+  margin: 0 8px 0 0;
+  padding: 0 16px 0 32px;
+  border-right: 1px solid #54545c;
+}
+
+.github button {
   cursor: pointer;
-  padding-left: 50px;
-  color: #fff;
+  border: none;
+  background: url('images/close.svg') no-repeat;
+  padding: 0;
+  width: 16px;
+  height: 16px;
+  -webkit-appearance: none;
+}
+
+.github button:focus {
+  outline: none;
 }
 
 .mapboxgl-popup-tip {
