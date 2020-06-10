@@ -17,7 +17,7 @@
       <button aria-label="remove github link" title="remove github link" onclick="this.parentElement.remove()"></button>
     </div>
 
-    <div class="card">
+    <div class="journey-specs">
       <header class="header">
         <h1>Journey Specs</h1>
         <div class="header-route">Amsterdam • Berlin</div>
@@ -28,8 +28,8 @@
       </header>
 
       <h2>Elevation levels </h2>
-      <canvas class="graph" id="elevation" height="130px"></canvas>
-      <div class="line" id="line"></div>
+      <div class="chart"><canvas class="graph" id="elevation" height="130px"></canvas></div>
+      <div class="line" id="line"> </div>
       <canvas class="charge" id="charge"></canvas>
       <h2>Details</h2>
 
@@ -55,7 +55,7 @@
         <span id="average-speed">--,--</span>
       </li>
       </ul>
-      </div>
+      <div class="chargetrip"></div>
     </div>
   </body>
   <script src="bundle.js"></script>
