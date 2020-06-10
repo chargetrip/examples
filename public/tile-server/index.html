@@ -11,12 +11,11 @@
 
   <body>
     <div id="map"></div>
-    <div class="clone" id="clone">
-      <a href="https://github.com/chargetrip/examples" rel="github examples">
-        <img src="github.svg" />
-        <span>Clone project</span>
+    <div class="github">
+      <a href="https://github.com/chargetrip/examples/route" title="github examples">
+        View on Github
       </a>
-      <img src="close.svg" onclick="document.getElementById('clone').style.display='none'" />
+      <button aria-label="remove github link" title="remove github link" onclick="this.parentElement.remove()"></button>
     </div>
 
     <div class="card">
@@ -26,14 +25,14 @@
         <a class="ocm" id="ocm">Open Charge</a>
       </div>
       <div class="provider">
-        <img src="ecomovement.svg" />
+        <img src="images/ecomovement.svg" />
         EcoMovement
         <span>Premium</span>
       </div>
       <div class="provider-info">
         High quality dynamic charging locations data. Verified and more extensive database of charging points.
       </div>
-      <div class="provider"><img src="ocm.svg" /> Open Charge Map</div>
+      <div class="provider"><img src="images/ocm.svg" /> Open Charge Map</div>
       <div class="provider-info">
         Global and public charging locations data. Provided for free.
       </div>
