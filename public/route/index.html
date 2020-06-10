@@ -10,12 +10,11 @@
 
   <body>
     <div id="map"></div>
-    <div class="clone" id="clone">
-      <a href="https://github.com/chargetrip/examples" rel="github examples">
-        <img src="github.svg" />
-        <span>Clone project</span>
+    <div class="github">
+      <a href="https://github.com/chargetrip/examples/route" title="github examples">
+        View on Github
       </a>
-      <img src="close.svg" onclick="document.getElementById('clone').style.display='none'" />
+      <button aria-label="remove github link" title="remove github link" onclick="this.parentElement.remove()"></button>
     </div>
 
     <div class="card">
