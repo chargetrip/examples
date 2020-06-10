@@ -1,5 +1,5 @@
 import mapboxgl from 'mapbox-gl';
-import { getDurationString } from '../utils';
+import { drawClickedLine, drawPolyline, showLegs, addLineEnd } from './map-layers';
 import { findClosest } from './journey-specs';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjamo3em4wdnUwdHVlM3Z0ZTNrZmd1MXoxIn0.aFteYnUc_GxwjTLGvB3uCg';
@@ -19,12 +19,12 @@ const map = new mapboxgl.Map({
  */
 export const drawRoute = (coordinates, legs) => {
   if (map.loaded()) {
-    drawPolyline(coordinates);
-    showLegs(legs);
+    drawPolyline(map, coordinates);
+    showLegs(map, legs);
   } else {
     map.on('load', () => {
-      drawPolyline(coordinates);
-      showLegs(legs);
+      drawPolyline(map, coordinates);
+      showLegs(map, legs);
     });
   }
   map.on('click', 'polyline', e => {
@@ -42,241 +42,24 @@ export const drawRoute = (coordinates, legs) => {
   map.on('mouseleave', 'polyline', () => {
     map.getCanvas().style.cursor = '';
   });
+  map.on('click', () => {
+    if (map.getSource('chargers')) console.log('yes');
+    else console.log('no');
+    //showLegs(map, legs);
+  });
   return map;
 };
 
 /**
- * Draw route polyline on a map.
+ * Create a second polyline up untill the point that was clicked.
  *
- * @param coordinates {object} polyline coordinates
+ * @param coordinates {object} the coordinates that need to be split
+ * @param closest {object} the point at which the coordinates need to be split.
  */
-const drawPolyline = coordinates => {
-  const geojson = {
-    type: 'FeatureCollection',
-    features: [
-      {
-        type: 'Feature',
-        geometry: {
-          type: 'LineString',
-          properties: {},
-          coordinates,
-        },
-      },
-    ],
-  };
-
-  map.addSource('polyline-source', {
-    type: 'geojson',
-    data: geojson,
-  });
-
-  map.addLayer({
-    id: 'polyline',
-    type: 'line',
-    options: 'beforeLayer',
-    source: 'polyline-source',
-    layout: {
-      'line-join': 'round',
-      'line-cap': 'round',
-    },
-    paint: {
-      'line-color': '#0078FF',
-      'line-width': 3,
-    },
-  });
-};
-
-/**
- * With this function we will mark the route up until the point that was clicked.
- * @param coordinates {object} The coordinates until the point that was clicked.
- */
-const drawClickedLine = coordinates => {
-  if (map.getLayer('clicked-polyline')) map.removeLayer('clicked-polyline');
-  if (map.getSource('clicked-source')) map.removeSource('clicked-source');
-  const geojson = {
-    type: 'FeatureCollection',
-    features: [
-      {
-        type: 'Feature',
-        geometry: {
-          type: 'LineString',
-          properties: {},
-          coordinates,
-        },
-      },
-    ],
-  };
-
-  map.addSource('clicked-source', {
-    type: 'geojson',
-    data: geojson,
-  });
-
-  map.addLayer(
-    {
-      id: 'clicked-polyline',
-      type: 'line',
-      options: 'beforeLayer',
-      source: 'clicked-source',
-      layout: {
-        'line-join': 'round',
-        'line-cap': 'round',
-      },
-      paint: {
-        'line-color': '#EA8538',
-        'line-width': 4,
-      },
-    },
-    'route',
-  );
-};
-
-/**
- * Show the charging station, origin and destination on the map.
- *
- * Last leg of the route is a destination point.
- * All other legs are either charging stations or via points (if route has stops).
- *
- * @param legs {array} route legs
- */
-const showLegs = legs => {
-  if (legs.length === 0) return;
-
-  let route = [];
-  let points = [];
-
-  // we want to show origin point on the map
-  // to do that we use the origin of the first leg
-  route.push({
-    type: 'Feature',
-    properties: {
-      icon: 'location_big',
-    },
-    geometry: legs[0].origin.geometry,
-  });
-  legs.map((leg, index) => {
-    // add charging stations
-    if (index !== legs.length - 1) {
-      points.push({
-        type: 'Feature',
-        properties: {
-          description: `${getDurationString(leg.chargeTime)}`,
-          icon: 'free-fast-pinlet',
-        },
-        geometry: leg.destination.geometry,
-      });
-    } else {
-      // add destination point (last leg)
-      route.push({
-        type: 'Feature',
-        properties: {
-          icon: 'arrival',
-        },
-        geometry: leg.destination.geometry,
-      });
-    }
-  });
-
-  // draw origin and destination points on a map
-  map.addLayer({
-    id: 'route',
-    type: 'symbol',
-    layout: {
-      'icon-image': '{icon}',
-      'icon-allow-overlap': true,
-      'icon-size': 0.7,
-      'icon-offset': ['case', ['==', ['get', 'icon'], 'arrival'], ['literal', [0, -15]], ['literal', [0, 0]]],
-    },
-    source: {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: route,
-      },
-    },
-  });
-
-  map.addLayer({
-    id: 'chargers',
-    type: 'symbol',
-    layout: {
-      'icon-image': '{icon}',
-      'icon-allow-overlap': true,
-      'icon-size': 0.85,
-      'icon-offset': [0, -15],
-    },
-    source: {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: points,
-      },
-    },
-  });
-
-  /**
-   * Display the charge time on a hover.
-   */
-
-  const popup = new mapboxgl.Popup({
-    closeButton: false,
-    closeOnClick: false,
-  });
-
-  map.on('mouseenter', 'chargers', e => {
-    map.getCanvas().style.cursor = 'pointer';
-
-    const coordinates = e.features[0].geometry.coordinates;
-    const description = e.features[0].properties.description;
-
-    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-    }
-    popup
-      .setLngLat(coordinates)
-      .setHTML(description)
-      .addTo(map);
-  });
-
-  map.on('mouseleave', 'chargers', function() {
-    map.getCanvas().style.cursor = '';
-    popup.remove();
-  });
-};
-
-const addLineEnd = end => {
-  if (map.getLayer('end')) map.removeLayer('end');
-  if (map.getSource('point')) map.removeSource('point');
-  map.addSource('point', {
-    type: 'geojson',
-    data: {
-      type: 'FeatureCollection',
-      features: [
-        {
-          type: 'Feature',
-          geometry: {
-            type: 'Point',
-            coordinates: end,
-          },
-        },
-      ],
-    },
-  });
-  map.addLayer({
-    id: 'end',
-    type: 'symbol',
-    source: 'point',
-    layout: {
-      'icon-image': 'elipse',
-      'icon-size': 1,
-    },
-  });
-};
-
 const splitPolyline = (coordinates, closest) => {
   const end = coordinates[closest];
   if (map.getLayer('chargers')) map.removeLayer('chargers');
   let clickedRoute = coordinates.splice(0, closest);
-  drawClickedLine(clickedRoute);
-  addLineEnd(end);
+  drawClickedLine(map, clickedRoute);
+  addLineEnd(map, end);
 };
