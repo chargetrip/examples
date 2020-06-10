@@ -10,13 +10,13 @@
 
   <body>
     <div id="map"></div>
-    <div class="clone" id="clone">
-      <a href="https://github.com/chargetrip/examples" rel="github examples">
-        <img src="github.svg" />
-        <span>Clone project</span>
+    <div class="github">
+      <a href="https://github.com/chargetrip/examples/route" title="github examples">
+        View on Github
       </a>
-      <img src="close.svg" onclick="document.getElementById('clone').style.display='none'" />
+      <button aria-label="remove github link" title="remove github link" onclick="this.parentElement.remove()"></button>
     </div>
+
     <div class="card">
       <header class="header">
         <h1>Journey Specs</h1>
@@ -26,45 +26,32 @@
           <div id="highest" class="tag"></div>
         </div>
       </header>
+
       <h2>Elevation levels </h2>
       <canvas class="graph" id="elevation" height="130px"></canvas>
       <div class="line" id="line"></div>
       <canvas class="charge" id="charge"></canvas>
       <h2>Details</h2>
-      <ul class="list">
-        <li>
-          <div class="list__icon">
-            <img src="elevation.svg" />
+
+      <ul class="info">
+        <li class="info-elevation">
             Elevation
-          </div>
           <span id="height">--,--</span>
         </li>
-        <li>
-          <div class="list__icon">
-            <img src="consumption.svg" />
+        <li class="info-consumption">
             Consumption Estimation
-          </div>
           <span id="consumption">--,--</span>
         </li>
-        <li>
-          <div class="list__icon">
-            <img src="temperature.svg" />
+        <li class="info-temperature">
             Temperature
-          </div>
           <span id="temperature">--,--</span>
         </li>
-        <li>
-          <div class="list__icon">
-            <img src="speed-limit.svg" />
+        <li class="info-speed-limit">
             Speed Limit
-          </div>
           <span id="speed-limit">--,--</span>
         </li>
-        <li>
-          <div class="list__icon">
-            <img src="average-speed.svg" />
+        <li class="info-average-speed">
             Average Speed
-          </div>
         <span id="average-speed">--,--</span>
       </li>
       </ul>
