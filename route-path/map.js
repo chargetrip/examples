@@ -122,7 +122,7 @@ const drawClickedLine = coordinates => {
       'line-cap': 'round',
     },
     paint: {
-      'line-color': '#fff',
+      'line-color': '#EA8538',
       'line-width': 4,
     },
   });

@@ -27,9 +27,10 @@ const labels = route => {
  */
 
 export const loadGraph = (route, elevation) => {
+  console.log(elevation);
   const ctx = document.getElementById('elevation').getContext('2d');
   let gradient = ctx.createLinearGradient(0, 0, 0, 180);
-  gradient.addColorStop(1, 'rgba(1, 99, 234, 0)');
+  gradient.addColorStop(1, '#fff');
   gradient.addColorStop(0, '#0176FD');
   const data = {
     labels: labels(route),
