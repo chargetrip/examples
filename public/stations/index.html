@@ -19,90 +19,39 @@
     </div>
 
     <div class="station-request">
-      <header></header>
-      <h2 class="section">Reachable by range</h2>
-      <div class="slidecontainer">
-        <p class="range-info">
-          <span>0 km</span>
-          <span>20 km</span>
-        </p>
+      <div class="section">
+        <h2>Reachable from your location</h2>
         <input type="range" min="1000" max="20000" value="5000" step="1000" class="slider" id="range" />
-        <hr />
-     
-            <label>Fast (± 60 min charge)</label>
-            <ul class="speed-info">
-              <li>
-                <label class="container"
-                  >135 KW
-                  <input type="checkbox" id="135" />
-                  <span class="checkmark"></span>
-                </label>
-              </li>
-              <li>
-                <label class="container"
-                  >120 KW
-                  <input type="checkbox" id="120" />
-                  <span class="checkmark"></span>
-                </label>
-              </li>
-              <li>
-                <label class="container"
-                  >100 KW
-                  <input type="checkbox" id="100" />
-                  <span class="checkmark"></span>
-                </label>
-              </li>
-              <li>
-                <label class="container"
-                  >50 KW
-                  <input type="checkbox" id="50" checked="checked" />
-                  <span class="checkmark"></span>
-                </label>
-              </li>
-            </ul>
-          </li>
-
-          <li>
-            <label>Slow (± 7hr charge)</label>
-            <ul class="speed-info">
-              <li>
-                <label class="container"
-                  >22 KW
-                  <input type="checkbox" id="22" checked="checked" />
-                  <span class="checkmark"></span>
-                </label>
-              </li>
-            </ul>
-          </li>
-        </ul>
-        <hr />
-        <div class="amenities">
-          <h2 class="section">Amenities</h2>
-          <label class="container"
-            >Supermarket
-            <input type="checkbox" id="supermarket" checked="checked" />
-            <span class="checkmark"></span>
-          </label>
-
-          <label class="container"
-            >Bathroom
-            <input type="checkbox" id="bathroom" />
-            <span class="checkmark"></span>
-          </label>
-
-          <label class="container"
-            >Restaurant
-            <input type="checkbox" id="restaurant" />
-            <span class="checkmark"></span>
-          </label>
-
-          <label class="container"
-            >Hotel
-            <input type="checkbox" id="hotel" />
-            <span class="checkmark"></span>
-          </label>
+        <div class="range-info">
+          <span>0</span>
+          <span>20</span>
         </div>
       </div>
+
+      <div class="section">
+        <h2>Charging Power</h2>
+        <ul class="power">
+          <input type="checkbox" />
+          <li>Turbo - 150 to 350 kW <br><span>Approx. 30 min charge</span></li>
+          <input type="checkbox"/>
+          <li>Fast - 50 to 150 kW <br><span>Approx. 60 min charge</span></li>
+          <input type="checkbox"/>
+          <li>Slow - 3 to 50 kW <br><span>Approx. 7 hour charge</span></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>Amenities</h2>
+        <ul class="amenities power">
+          <input type="checkbox" />
+          <li class="amenities">Supermarket</li>
+          <input type="checkbox" />
+          <li class="amenities">Bathroom</li>
+          <input type="checkbox" />
+          <li class="amenities">Restaurant</li>
+        </ul>
+      </div>
+      <a class="chargetrip-logo" href="https://chargetrip.com/">Powered by Chargetrip</a>
     </div>
   </body>
   <script src="bundle.js"></script>

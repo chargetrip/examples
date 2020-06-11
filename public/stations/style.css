@@ -29,10 +29,9 @@ h1 {
 }
 
 h2 {
-  padding: 8px 16px 0;
-  margin-bottom: 10px;
-  font-size: 18px;
+  padding: 10px;
   font-weight: 600;
+  font-size: 18px;
   line-height: 24px;
 }
 
@@ -68,39 +67,47 @@ a {
 }
 
 .section {
-  height: 24px;
-  font-style: normal;
-  color: #252a32;
-  font-weight: 600;
-  font-size: 13px;
-  line-height: 20px;
+  border-bottom: 1px solid #EDF2F6;
 }
 
 .range-info {
   font-size: 10px;
+  padding: 10px;
   display: flex;
   justify-content: space-between;
 }
 
-.speed {
-  padding: 0;
-  list-style: none;
-  font-size: 10px;
+.power {
+  padding: 10px;
 }
 
-.speed-info {
-  padding: 0;
-  list-style: none;
-  font-size: 8px;
-  padding: 10px;
+.power li {
+  position: relative;
+  top: -20px;
+  padding-left: 25px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+}
+
+.power li span {
+  font-size: 14px;
+  line-height: 17px;
+  color: #787884;
+  font-weight: normal;
+}
+
+.amenites {
+  color: #404046 
 }
 
 .slider {
   -webkit-appearance: none;
-  width: 100%;
+  align-self: center;
+  margin: 10px;
+  width: 95%;
   height: 1px;
-  border-radius: 5px;
-  background: #d3d3d3;
+  background: #0078FF;
   outline: none;
   opacity: 0.7;
   -webkit-transition: 0.2s;
@@ -120,10 +127,6 @@ a {
 }
 
 .container {
-  display: block;
-  position: relative;
-  padding-left: 35px;
-  margin-bottom: 12px;
   cursor: pointer;
   font-size: 10px;
   -webkit-user-select: none;
@@ -144,12 +147,14 @@ a {
   position: absolute;
   top: 0;
   left: 0;
-  height: 15px;
-  width: 15px;
+  height: 25px;
+  width: 25px;
   background-color: #eee;
+  border-radius: 4px;
 }
 
 .container:hover input ~ .checkmark {
+  cursor: pointer;
   background-color: #ccc;
 }
 
@@ -217,4 +222,11 @@ a {
 
 .github button:focus {
   outline: none;
+}
+
+.chargetrip-logo {
+  display: block;
+  height: 40px;
+  background: url('images/chargetrip.svg') no-repeat 16px center;
+  text-indent: -100%;
 }
