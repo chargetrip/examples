@@ -11,7 +11,14 @@
 
   <body>
     <div id="map"></div>
-    <div class="station-map">
+    <div class="github-link">
+      <a href="https://github.com/chargetrip/examples/tree/master/route" title="github project">
+        View on Github
+      </a>
+      <button aria-label="remove github link" title="remove github link" onclick="this.parentElement.remove()"></button>
+    </div>
+
+    <div class="station-request">
       <header></header>
       <h2 class="section">Reachable by range</h2>
       <div class="slidecontainer">
@@ -21,28 +28,7 @@
         </p>
         <input type="range" min="1000" max="20000" value="5000" step="1000" class="slider" id="range" />
         <hr />
-        <ul class="speed">
-          <h2 class="section">Charge Power</h2>
-          <li>
-            <label>Turbo (± 30 min charge)</label>
-            <ul class="speed-info">
-              <li>
-                <label class="container"
-                  >350 KW
-                  <input type="checkbox" id="350" />
-                  <span class="checkmark"></span>
-                </label>
-              </li>
-              <li>
-                <label class="container"
-                  >150 KW
-                  <input type="checkbox" id="150" />
-                  <span class="checkmark"></span>
-                </label>
-              </li>
-            </ul>
-          </li>
-          <li>
+     
             <label>Fast (± 60 min charge)</label>
             <ul class="speed-info">
               <li>
