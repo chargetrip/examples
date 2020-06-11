@@ -11,10 +11,10 @@ import { getDurationString } from '../utils';
  * Please have a look to Readme file in this repo for more details.
  *
  * For the purpose of this example we use urgl - lightweights GraphQL client.
- * To establish a connection with Chargetrip GraphQL API you need to have an API x-client-id.
+ * To establish a connection with Chargetrip GraphQL API you need to have x-client-id.
  * Read more about an authorisation in our documentation (https://docs.chargetrip.com/#authorisation).
  *
- * API x-client-id used in this example is only for testing purposes
+ * API x-client-id used in this example is public
  * and exposed only a part of our stations/car database.
  */
 const headers = {
