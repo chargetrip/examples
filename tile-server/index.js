@@ -5,15 +5,15 @@ import { displayMap } from './map';
  * EcoMovement and Open Charge Map. Users can switch between the two.
  */
 
-let url = window.location.href;
-const urlEnd = new URLSearchParams(url);
+let url = new URLSearchParams(document.location.search.substring(1));
+const urlEnd = url.get('provider');
 
-if (urlEnd.get('provider=') === 'ocm') {
+if (urlEnd === 'ocm') {
   document.getElementById('ocm').setAttribute('class', 'clicked');
   displayMap({ provider: urlEnd });
 } else {
   document.getElementById('eco').setAttribute('class', 'clicked');
-  displayMap({ provider: 'urlEnd' }, urlEnd);
+  displayMap({ provider: urlEnd });
 }
 
 document.getElementById('eco').addEventListener('click', () => {
