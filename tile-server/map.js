@@ -131,7 +131,7 @@ export const displayMap = ({ provider }) => {
    * If Ecomovement has been selected as provider a polygon will be displayed.
    * This polygon will show in what data is available for free.
    */
-  if (provider.provider !== 'ocm') {
+  if (provider !== 'ocm') {
     map.on('load', () => {
       map.addSource('eco', {
         type: 'geojson',
