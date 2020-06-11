@@ -18,10 +18,10 @@ if (urlEnd === 'ocm') {
 
 document.getElementById('eco').addEventListener('click', () => {
   searchParams.set('provider', 'eco');
-  window.location.href = '?' + searchParams;
+  window.location.href = '?' + searchParams.toString();
 });
 
 document.getElementById('ocm').addEventListener('click', () => {
   searchParams.set('provider', 'ocm');
-  window.location.href = '?' + searchParams;
+  window.location.href = '?' + searchParams.toString();
 });
