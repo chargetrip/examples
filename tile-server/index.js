@@ -5,8 +5,8 @@ import { displayMap } from './map';
  * EcoMovement and Open Charge Map. Users can switch between the two.
  */
 
-let url = new URLSearchParams(document.location.search.substring(1));
-const urlEnd = url.get('provider');
+let searchParams = new URLSearchParams(document.location.search);
+const urlEnd = searchParams.get('provider');
 
 if (urlEnd === 'ocm') {
   document.getElementById('ocm').setAttribute('class', 'clicked');
@@ -17,11 +17,11 @@ if (urlEnd === 'ocm') {
 }
 
 document.getElementById('eco').addEventListener('click', () => {
-  url = '?provider=eco';
-  window.location.href = url;
+  searchParams.set('provider', 'eco');
+  window.location.href = '?' + searchParams;
 });
 
 document.getElementById('ocm').addEventListener('click', () => {
-  url = '?provider=ocm';
-  window.location.href = url;
+  searchParams.set('provider', 'ocm');
+  window.location.href = '?' + searchParams;
 });
