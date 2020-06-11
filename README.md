@@ -35,7 +35,7 @@ Run the application:
 $ yarn dev
 ```
 
-This command starts a local development server. It will continually rebuild the application as your source files change. Note that there is no hot reloading.
+This command starts a local development server on `http://localhost:5000`. It will continually rebuild the application as your source files change. Note that there is no hot reloading.
 
 ## Useful links
 
