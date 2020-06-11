@@ -134,23 +134,25 @@ export const showLegs = (map, legs) => {
   });
 
   // draw origin and destination points on a map
-  map.addLayer({
-    id: 'route',
-    type: 'symbol',
-    layout: {
-      'icon-image': '{icon}',
-      'icon-allow-overlap': true,
-      'icon-size': 0.7,
-      'icon-offset': ['case', ['==', ['get', 'icon'], 'arrival'], ['literal', [0, -15]], ['literal', [0, 0]]],
-    },
-    source: {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: route,
+  if (!map.getLayer('route')) {
+    map.addLayer({
+      id: 'route',
+      type: 'symbol',
+      layout: {
+        'icon-image': '{icon}',
+        'icon-allow-overlap': true,
+        'icon-size': 0.7,
+        'icon-offset': ['case', ['==', ['get', 'icon'], 'arrival'], ['literal', [0, -15]], ['literal', [0, 0]]],
       },
-    },
-  });
+      source: {
+        type: 'geojson',
+        data: {
+          type: 'FeatureCollection',
+          features: route,
+        },
+      },
+    });
+  }
 
   map.addLayer({
     id: 'chargers',
