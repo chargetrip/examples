@@ -6,9 +6,9 @@ import { displayMap } from './map';
  */
 
 let url = window.location.href;
-let urlEnd = url.substr(url.lastIndexOf('=') + 1);
+const urlEnd = new URLSearchParams(url);
 
-if (urlEnd === 'ocm') {
+if (urlEnd.get('provider=') === 'ocm') {
   document.getElementById('ocm').setAttribute('class', 'clicked');
   displayMap({ provider: urlEnd });
 } else {
