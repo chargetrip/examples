@@ -1,5 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 
+let cachedProviderName;
+
 /**
  * Mapbox runs 'transformRequest' before it makes a request for an external URL
  * We use this callback to set a client key in the header of the request to Chargetrip API.
@@ -7,6 +9,12 @@ import mapboxgl from 'mapbox-gl';
  *
  * To establish a connection with Chargetrip GraphQL API you need to have an API key.
  * Read more about an authorisation in our documentation (https://docs.chargetrip.com/#authorisation).
+ *
+ * IMPORTANT!
+ * In this example we switch between two data providers. Mapbox has caching on zoom levels in place to make
+ * the map blazing fast. For the purpose of this demo we have to make sure Mapbox invalidates all tiles
+ * when we change between ocm and eco movement. We do this by setting a max-age on the request header.
+ * Don't use this technique in a real world project because you will lose some the built in optimalisation!
  */
 export const displayMap = (provider, urlEnd) => {
   mapboxgl.accessToken =
@@ -18,11 +26,15 @@ export const displayMap = (provider, urlEnd) => {
     center: [4.8979755, 52.367],
     transformRequest: (url, resourceType) => {
       if (resourceType === 'Tile' && url.startsWith('https://api.chargetrip.io')) {
+        const headers = {
+          'x-client-id': provider,
+        };
+        if (!provider !== cachedProviderName) {
+          headers[`Cache-Control`] = 'max-age=0';
+        }
         return {
-          url: url,
-          headers: {
-            'x-client-id': provider,
-          },
+          url,
+          headers,
         };
       }
     },
