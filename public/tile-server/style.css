@@ -74,7 +74,9 @@ h1 {
   width: 50%;
 }
 
-.provider {
+.provider-eco {
+  padding: 0 0 30px 60px;
+  background: url('images/ecomovement.svg') no-repeat left center;
   display: flex;
   font-weight: 600;
   line-height: 24px;
@@ -83,7 +85,19 @@ h1 {
   border-top: 1px solid #ccc;
 }
 
-.provider span {
+.provider-ocm {
+  padding: 0 0 30px 60px;
+  margin-top: 10px;
+  background: url('images/ocm.svg') no-repeat left center;
+  display: flex;
+  font-weight: 600;
+  line-height: 24px;
+
+  padding-top: 20px;
+  border-top: 1px solid #ccc;
+}
+
+.provider-eco span {
   display: flex;
   color: #0078ff;
   padding-left: 120px;

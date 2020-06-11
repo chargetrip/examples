@@ -21,7 +21,7 @@ let cachedProviderName;
  * when we change between ocm and eco movement. We do this by setting a max-age on the request header.
  * Don't use this technique in a real world project because you will lose some the built in optimalisation!
  */
-export const displayMap = provider => {
+export const displayMap = ({ provider }) => {
   mapboxgl.accessToken =
     'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjamo3em4wdnUwdHVlM3Z0ZTNrZmd1MXoxIn0.aFteYnUc_GxwjTLGvB3uCg';
   let map = new mapboxgl.Map({
@@ -32,7 +32,7 @@ export const displayMap = provider => {
     transformRequest: (url, resourceType) => {
       if (resourceType === 'Tile' && url.startsWith('https://api.chargetrip.io')) {
         const headers = {
-          'x-client-id': config[provider.provider] || config['eco'],
+          'x-client-id': config[provider] || config['eco'],
         };
         if (!provider !== cachedProviderName) {
           headers[`Cache-Control`] = 'max-age=0';

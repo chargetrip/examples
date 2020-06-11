@@ -6,9 +6,7 @@ import { displayMap } from './map';
  */
 
 let url = window.location.href;
-
 let urlEnd = url.substr(url.lastIndexOf('=') + 1);
-console.log(urlEnd);
 
 if (urlEnd === 'ocm') {
   document.getElementById('ocm').setAttribute('class', 'clicked');
