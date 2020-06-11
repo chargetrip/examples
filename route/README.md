@@ -2,10 +2,10 @@
 
 This tutorial covers the basics of building a simple route between an origin and a destination:
 
-1.  showing a route on a map;
-2.  showing charging stations and charging time information;
-3.  showing information about the whole journey duration;
-4.  showing information about energy consumption.
+1.  show a route on a map;
+2.  show charging stations and charging time information;
+3.  show information about the whole journey duration;
+4.  show information about energy consumption.
 
 To see this example live 👉 [demo](https://chargetrip.github.io/examples/route/).
 
@@ -31,7 +31,7 @@ Our Playground has a station database that is populated with freely available Eu
 
 Once we have a car and station database, we can start planning the route:
 
-1. We have to request a new route. For that we use `newRoute` mutation. We will need to pass information about the car, origin and destination. As a result we will get an ID of a new route. You can read all the details about this mutation in our [Chargetrip API documentation](https://docs.chargetrip.com/#request-a-new-route).
+1. We have to request a new route. For that we use the `newRoute` mutation. We will need to pass information about the car, origin and destination. As a result we will get an ID of a new route. You can read all the details about this mutation in our [Chargetrip API documentation](https://docs.chargetrip.com/#request-a-new-route).
 2. With a route ID we can request route information. We will subscribe to a route update to receive dynamic updates for it (recommended route, alternative routes (if available), time duration, consumption etc). You can read all the details about this subscription in our [Graph API documentation](https://docs.chargetrip.com/#subscribe-to-route-updates).
 3. Having the route details, we can show a route on a map. To show stations, where a car must stop for charging, we use route `legs` object, where each leg is a station.
 4. We can also query route details for information like total distance, duration of a trip, consumption etc. You can see all available fields to query in the [Chargetrip API documentation](https://docs.chargetrip.com/#get-route-details).
@@ -39,6 +39,6 @@ Once we have a car and station database, we can start planning the route:
 
 ### Useful links
 
-1. Chargetrip API [docs](https://docs.chargetrip.com/);
-2. Chargetrip API Playground [playground](https://playground.chargetrip.com/);
+1. Chargetrip API [docs](https://docs.chargetrip.com/)
+2. Chargetrip API Playground [playground](https://playground.chargetrip.com/)
 3. Chargetrip API schema [information](https://voyager.chargetrip.com/).

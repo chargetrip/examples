@@ -39,6 +39,6 @@ This command starts a local development server on `http://localhost:5000`. It wi
 
 ## Useful links
 
-1. Chargetrip GraphAPI [docs](https://docs.chargetrip.com/);
-2. Chargetrip GraphAPI [playground](https://playground.chargetrip.com/);
+1. Chargetrip GraphAPI [docs](https://docs.chargetrip.com/)
+2. Chargetrip GraphAPI [playground](https://playground.chargetrip.com/)
 3. Chargetrip GraphAPI schema [information](https://voyager.chargetrip.com/).
