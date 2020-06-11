@@ -1,5 +1,10 @@
 import mapboxgl from 'mapbox-gl';
 
+const config = {
+  eco: '5ed1175bad06853b3aa1e492',
+  ocm: '5e8c22366f9c5f23ab0eff39',
+};
+
 let cachedProviderName;
 
 /**
@@ -16,7 +21,7 @@ let cachedProviderName;
  * when we change between ocm and eco movement. We do this by setting a max-age on the request header.
  * Don't use this technique in a real world project because you will lose some the built in optimalisation!
  */
-export const displayMap = (provider, urlEnd) => {
+export const displayMap = provider => {
   mapboxgl.accessToken =
     'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjamo3em4wdnUwdHVlM3Z0ZTNrZmd1MXoxIn0.aFteYnUc_GxwjTLGvB3uCg';
   let map = new mapboxgl.Map({
@@ -27,7 +32,7 @@ export const displayMap = (provider, urlEnd) => {
     transformRequest: (url, resourceType) => {
       if (resourceType === 'Tile' && url.startsWith('https://api.chargetrip.io')) {
         const headers = {
-          'x-client-id': provider,
+          'x-client-id': config[provider.provider] || config['eco'],
         };
         if (!provider !== cachedProviderName) {
           headers[`Cache-Control`] = 'max-age=0';
@@ -126,7 +131,7 @@ export const displayMap = (provider, urlEnd) => {
    * If Ecomovement has been selected as provider a polygon will be displayed.
    * This polygon will show in what data is available for free.
    */
-  if (urlEnd !== 'ocm') {
+  if (provider.provider !== 'ocm') {
     map.on('load', () => {
       map.addSource('eco', {
         type: 'geojson',

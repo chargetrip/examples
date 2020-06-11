@@ -57,7 +57,6 @@ h1 {
 }
 
 .clicked {
-  height: 100%;
   width: 50%;
   background: #0078ff;
   color: #ffffff;
@@ -127,40 +126,39 @@ h1 {
   margin-bottom: -2px;
   padding-right: 5px;
 }
-
-.github {
+.github-link {
   position: fixed;
-  display: flex;
-  align-items: center;
   top: 16px;
   right: 16px;
+  display: flex;
+  align-items: center;
 
   padding: 0 12px;
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
 
   background-color: #030303;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
-  border-radius: 8px;
+  border-radius: 20px;
 
   color: #fff;
-  font-weight: 500;
   font-size: 15px;
+  font-weight: 500;
   line-height: 40px;
 }
 
-.github a {
-  background: url('images/github.svg') no-repeat left center;
-  margin: 0 8px 0 0;
+.github-link a {
   padding: 0 16px 0 32px;
+  margin: 0 8px 0 0;
+  background: url('images/github.svg') no-repeat left center;
   border-right: 1px solid #54545c;
 }
 
-.github button {
-  cursor: pointer;
-  border: none;
-  background: url('images/close.svg') no-repeat;
-  padding: 0;
+.github-link button {
   width: 16px;
   height: 16px;
+  padding: 0;
+  background: url('images/close.svg') no-repeat;
+  border: none;
+  cursor: pointer;
   -webkit-appearance: none;
 }
 
