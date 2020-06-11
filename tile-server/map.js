@@ -70,6 +70,7 @@ export const displayMap = ({ provider }) => {
       layout: {
         'icon-image': 'free-fast-pinlet',
         'icon-size': 0.9,
+        'icon-offset': [0, -10],
       },
       source: 'stations',
       'source-layer': 'stations',
@@ -89,6 +90,7 @@ export const displayMap = ({ provider }) => {
       layout: {
         'icon-image': 'empty-charger',
         'icon-size': 0.9,
+        'icon-offset': [0, -10],
         'text-field': [
           'case',
           ['<', ['get', 'count'], 1000],
@@ -98,6 +100,7 @@ export const displayMap = ({ provider }) => {
           '-',
         ],
         'text-size': 10,
+        'text-offset': [0, -1],
       },
       paint: {
         'text-color': '#ffffff',
