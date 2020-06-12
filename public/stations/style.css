@@ -119,11 +119,7 @@ a {
 
 .container {
   cursor: pointer;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  line-height: 30px;
-  color: #404046;
+  padding: 10px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -138,6 +134,16 @@ a {
   width: 0;
 }
 
+.container div {
+  position: relative;
+  top: -15px;
+  padding-left: 10px;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  color: #404046;
+}
+
 .checkmark {
   position: absolute;
   top: 0;
@@ -148,11 +154,6 @@ a {
   border: 1.49026px solid #9CA7B2;
   box-sizing: border-box;
   border-radius: 4px;
-}
-
-.container:hover input ~ .checkmark {
-  cursor: pointer;
-  background-color: #ccc;
 }
 
 .container input:checked ~ .checkmark {
