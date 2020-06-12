@@ -9,6 +9,11 @@ body {
   font-weight: normal;
 }
 
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 ul,
 ol {
   padding: 0;
@@ -109,9 +114,9 @@ a {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 20px;
+  width: 40px;
   height: 20px;
-  border-radius: 123.077px;
+  border-radius: 123px;
   box-shadow: 0px 1.23077px 4.92308px rgba(37, 42, 50, 0.2);
   background: #ffffff;
   cursor: pointer;
