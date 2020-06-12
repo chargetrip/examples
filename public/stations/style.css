@@ -1,3 +1,11 @@
+:root {
+  --blue: #0078FF;
+  --white: #ffffff;
+  --black: #030303;
+}
+
+
+
 
 html,
 body {
@@ -55,8 +63,8 @@ a {
   width: 360px;
   max-height: calc(100% - 2em);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
-  background-color: #ffffff;
-  border-radius: 8px;
+  background-color: var(--white);
+  border-radius: 15px;
   overflow-y: auto;
 }
 
@@ -103,7 +111,7 @@ a {
   margin: 10px;
   width: 95%;
   height: 1px;
-  background: #0078FF;
+  background: var(--blue);
   outline: none;
   opacity: 0.7;
   -webkit-transition: 0.2s;
@@ -118,20 +126,24 @@ a {
   height: 20px;
   border-radius: 123px;
   box-shadow: 0px 1.23077px 4.92308px rgba(37, 42, 50, 0.2);
-  background: #ffffff;
+  background: var(--white);
   cursor: pointer;
 }
 
-.container {
-  cursor: pointer;
-  padding: 10px;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+/* */
+.filter {
+  position: relative;
+  padding-bottom: 20px;
+  line-height: 30px;
 }
 
-.container input {
+.filter div {
+  position: relative;
+  top: -5px;
+  padding-left: 10px;
+}
+
+.filter-input {
   position: absolute;
   opacity: 0;
   cursor: pointer;
@@ -139,48 +151,32 @@ a {
   width: 0;
 }
 
-.container div {
-  position: relative;
-  top: -15px;
-  padding-left: 10px;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 15px;
-  color: #404046;
-}
-
-.checkmark {
+.filter-input ~ label::before {
+  content: '';
   position: absolute;
   top: 0;
   left: 0;
   height: 20px;
   width: 20px;
-  background-color: #fff;
+  background-color: var(--white);
   border: 1.49026px solid #9CA7B2;
   box-sizing: border-box;
   border-radius: 4px;
 }
 
-.container input:checked ~ .checkmark {
-  background-color: #0078FF;
+.filter-input:checked ~ label::before {
+  background-color: var(--blue);
+  border-color:  var(--blue);
 }
 
-.checkmark:after {
+.filter-input:checked ~ label::after {
   content: '';
   position: absolute;
-  display: none;
-}
-
-.container input:checked ~ .checkmark:after {
-  display: block;
-}
-
-.container .checkmark:after {
-  left: 5px;
-  top: 6px;
+  left: 7px;
+  top: 3px;
   width: 5px;
-  height: 5px;
-  border: solid white;
+  height: 10px;
+  border: solid var(--white);
   border-width: 0 2px 2px 0;
   -webkit-transform: rotate(41.67deg);
   -ms-transform: rotate(41.67deg);
@@ -197,10 +193,10 @@ a {
   padding: 0 12px;
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
 
-  background-color: #030303;
+  background-color: var(--black);
   border-radius: 20px;
 
-  color: #fff;
+  color: var(--white);
   font-size: 15px;
   font-weight: 500;
   line-height: 40px;

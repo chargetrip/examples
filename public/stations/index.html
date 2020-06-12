@@ -31,26 +31,17 @@
       <div class="section">
         <h2>Charging Power</h2>
         <ul class="power">
-          <li>
-            <label class="container">
-              <input type="checkbox"/>
-           <div>Turbo - 150 to 350 kW <br><span>Aprox. 30 min charge</span></div>
-            <span class="checkmark"></span>
-          </label>
-        </li>
-          <li>
-            <label class="container">
-              <input type="checkbox"/>
-            <div>Fast - 50 to 150 kW <br><span>Aprox. 60 min charge</span></div>
-            <span class="checkmark"></span>
-          </label>
+          <li class="filter">
+            <input type="checkbox" class="filter-input" id="turbo"/>
+            <label for="turbo"><div>Turbo - 150 to 350 kW <br><span>Aprox. 30 min charge</div></span></label>
           </li>
-          <li>
-            <label class="container">
-              <input type="checkbox"/>
-            <div></label>Slow - 3 to 50 kW <br><span>Aprox. 7 hour charge</span></div>
-            <span class="checkmark"></span>
-          </label>
+          <li class="filter">
+            <input type="checkbox" class="filter-input" id="fast"/>
+            <label for="fast"><div>Fast - 50 to 150 kW <br><span>Aprox. 60 min charge</div></span></label>
+          </li>
+          <li class="filter">
+            <input type="checkbox" class="filter-input" id="slow"/>
+            <label for="slow"><div>Slow - 3 to 50 kW <br><span>Aprox. 7 hour charge</span></div></label>
           </li>
         </ul>
       </div>
@@ -58,27 +49,19 @@
       <div class="section">
         <h2>Amenities</h2>
         <ul class="amenities power">
-          <li>
-          <label class="container">
-            <div>Supermarket</div>
-            <input type="checkbox"/>
-            <span class="checkmark"></span>
-          </label>
-        </li>
+          <li class="filter">
+            <input type="checkbox" class="filter-input" id="supermarket"/>
+            <label for="supermarket"><div>Supermarket</div</label>
+          </li>
         <li>
-          <label class="container">
-            <div>Bathroom</div>
-            <input type="checkbox"/>
-            <span class="checkmark"></span>
-          </label>
-        </li>
-        <li>
-          <label class="container">
-            <div>Restaurant</div>
-            <input type="checkbox"/>
-            <span class="checkmark"></span>
-          </label>
-        </li>
+          <li class="filter">
+            <input type="checkbox" class="filter-input" id="bathroom"/>
+            <label for="bathroom"><div>Bathroom</div</label>
+          </li>
+          <li class="filter">
+            <input type="checkbox" class="filter-input" id="restaurant"/>
+            <label for="restaurant"><div>Restaurant</div</label>
+          </li>
         </ul>
       </div>
       <a class="chargetrip-logo" href="https://chargetrip.com/">Powered by Chargetrip</a>

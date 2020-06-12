@@ -86,7 +86,8 @@ export const loadStation = stations => {
 };
 
 export const yourLocation = () => {
-  map.addSource('point', {
+  if (map.getSource('start')) return;
+  map.addSource('start', {
     type: 'geojson',
     data: {
       type: 'FeatureCollection',
@@ -102,9 +103,9 @@ export const yourLocation = () => {
     },
   });
   map.addLayer({
-    id: 'location',
+    id: 'start',
     type: 'symbol',
-    source: 'point',
+    source: 'start',
     layout: {
       'icon-allow-overlap': true,
       'icon-image': 'your-location',
