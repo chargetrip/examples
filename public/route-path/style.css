@@ -35,8 +35,9 @@ h1 {
 h2 {
   font-size: 1.125em;
   font-weight: 600;
-  padding: 1em 1em 0;
+  padding: 1.5em 1em 0;
   margin: 0 0 0.75em;
+  color: #0c0c10;
 }
 a {
   text-decoration: none;
