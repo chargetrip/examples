@@ -55,7 +55,7 @@ const selectPinlet = point => {
  * @param stations {array} Array of stations
  */
 
-const loadStation = stations => {
+export const loadStation = stations => {
   if (map.getLayer('path')) map.removeLayer('path');
   if (map.getSource('path')) map.removeSource('path');
   const points = stations.map(point => ({
@@ -85,4 +85,30 @@ const loadStation = stations => {
   });
 };
 
-export { loadStation };
+export const yourLocation = () => {
+  map.addSource('point', {
+    type: 'geojson',
+    data: {
+      type: 'FeatureCollection',
+      features: [
+        {
+          type: 'Feature',
+          geometry: {
+            type: 'Point',
+            coordinates: [4.8979755, 52.3745403],
+          },
+        },
+      ],
+    },
+  });
+  map.addLayer({
+    id: 'location',
+    type: 'symbol',
+    source: 'point',
+    layout: {
+      'icon-allow-overlap': true,
+      'icon-image': 'your-location',
+      'icon-size': 1,
+    },
+  });
+};

@@ -1,6 +1,6 @@
 import { createClient, defaultExchanges } from '@urql/core';
 import { getStationsAround } from './queries.js';
-import { loadStation } from './map.js';
+import { loadStation, yourLocation } from './map.js';
 
 /**
  * For the purpose of this example we use urgl - lightweights GraphQL client.
@@ -54,6 +54,7 @@ const displayMap = () => {
     .toPromise()
     .then(response => {
       const stations = response.data.stationAround;
+      yourLocation();
       loadStation(stations);
     })
     .catch(error => console.log(error));

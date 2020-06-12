@@ -66,6 +66,12 @@ a {
   justify-content: space-between;
 }
 
+.range-info span {
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 17px;
+}
+
 .power {
   padding: 10px;
 }
@@ -165,14 +171,14 @@ a {
 
 .container .checkmark:after {
   left: 5px;
-  top: 5px;
-  width: 4px;
-  height: 4px;
+  top: 6px;
+  width: 5px;
+  height: 5px;
   border: solid white;
   border-width: 0 2px 2px 0;
-  -webkit-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  transform: rotate(45deg);
+  -webkit-transform: rotate(41.67deg);
+  -ms-transform: rotate(41.67deg);
+  transform: rotate(41.67deg);
 }
 
 .github-link {
