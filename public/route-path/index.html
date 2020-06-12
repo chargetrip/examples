@@ -3,7 +3,7 @@
   <head>
     <title>Route example</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;600&display=swap" rel="stylesheet" />
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
@@ -27,33 +27,33 @@
         </div>
       </header>
 
-      <h2>Elevation levels </h2>
+      <h2>Elevation levels</h2>
       <div class="chart"><canvas class="graph" id="elevation" height="130px"></canvas></div>
-      <div class="line" id="line"> </div>
+      <div class="line" id="line"></div>
       <canvas class="charge" id="charge"></canvas>
       <h2>Details</h2>
 
       <ul class="info">
         <li class="info-elevation">
-            Elevation
+          Elevation
           <span id="height">--,--</span>
         </li>
         <li class="info-consumption">
-            Consumption Estimation
+          Consumption Estimation
           <span id="consumption">--,--</span>
         </li>
         <li class="info-temperature">
-            Temperature
+          Temperature
           <span id="temperature">--,--</span>
         </li>
         <li class="info-speed-limit">
-            Speed Limit
+          Speed Limit
           <span id="speed-limit">--,--</span>
         </li>
         <li class="info-average-speed">
-            Average Speed
-        <span id="average-speed">--,--</span>
-      </li>
+          Average Speed
+          <span id="average-speed">--,--</span>
+        </li>
       </ul>
       <div class="chargetrip"></div>
     </div>
