@@ -120,7 +120,7 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 0px 0px 0 30px;
-  line-height: 50px;
+  line-height: 3em;
 }
 
 .info-elevation {
