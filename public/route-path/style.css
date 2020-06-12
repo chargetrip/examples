@@ -149,7 +149,7 @@ a {
 
 .charge {
   position: absolute;
-  top: 315px;
+  top: 327px;
   left: 10px;
   outline: none;
   z-index: 3;
@@ -219,7 +219,7 @@ a {
 
 .line {
   position: absolute;
-  top: 203px;
+  top: 216px;
   height: 135px;
   width: 2px;
   left: 1px;

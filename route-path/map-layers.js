@@ -88,6 +88,21 @@ export const drawClickedLine = (map, coordinates) => {
 };
 
 /**
+ * Return what icon will be used to display the charging station, depending on the speed and status.
+ *
+ * @param point {array} Array containing station data
+ */
+const selectPinlet = point => {
+  const statusVals = ['available', 'unknown', 'broken'];
+  const speedVals = ['slow', 'fast'];
+
+  let status = statusVals.includes(point.status) ? point.status : 'in-use';
+  let speed = speedVals.includes(point.speed) ? point.speed : 'turbo';
+
+  return `${status}-${speed}`;
+};
+
+/**
  * Show the charging station, origin and destination on the map.
  *
  * Last leg of the route is a destination point.
@@ -117,7 +132,7 @@ export const showLegs = (map, legs) => {
         type: 'Feature',
         properties: {
           description: `${getDurationString(leg.chargeTime)}`,
-          icon: 'free-fast-pinlet',
+          icon: selectPinlet(leg),
         },
         geometry: leg.destination.geometry,
       });
