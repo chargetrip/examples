@@ -16,7 +16,7 @@ const map = new mapboxgl.Map({
  * @param coordinates {array} Array of coordinates
  * @param legs {array} route legs (stops) - each leg represents either a charging station, or via point or final point
  */
-const drawRoute = (coordinates, legs) => {
+export const drawRoute = (coordinates, legs) => {
   if (map.loaded()) {
     drawPolyline(coordinates);
     showLegs(legs);
@@ -26,6 +26,21 @@ const drawRoute = (coordinates, legs) => {
       showLegs(legs);
     });
   }
+};
+
+/**
+ * Return what icon will be used to display the charging station, depending on the speed and status.
+ *
+ * @param point {array} Array containing station data
+ */
+const selectPinlet = point => {
+  const statusVals = ['available', 'unknown', 'broken'];
+  const speedVals = ['slow', 'fast'];
+
+  let status = statusVals.includes(point.status) ? point.status : 'in-use';
+  let speed = speedVals.includes(point.speed) ? point.speed : 'turbo';
+
+  return `${status}-${speed}`;
 };
 
 /**
@@ -99,7 +114,7 @@ const showLegs = legs => {
         type: 'Feature',
         properties: {
           description: `${getDurationString(leg.chargeTime)}`,
-          icon: 'free-fast-pinlet',
+          icon: selectPinlet(leg),
         },
         geometry: leg.destination.geometry,
       });
@@ -172,5 +187,3 @@ const showLegs = legs => {
     popup.remove();
   });
 };
-
-export { drawRoute };
