@@ -138,14 +138,7 @@ const showLegs = legs => {
       'icon-image': '{icon}',
       'icon-allow-overlap': true,
       'icon-size': ['case', ['==', ['get', 'icon'], 'free-fast-pinlet'], ['literal', 0.85], ['literal', 0.7]],
-      'icon-offset': [
-        'case',
-        ['==', ['get', 'icon'], 'free-fast-pinlet'],
-        ['literal', [0, -15]],
-        ['==', ['get', 'icon'], 'arrival'],
-        ['literal', [0, -15]],
-        ['literal', [0, 0]],
-      ],
+      'icon-offset': [0, -15],
     },
     source: {
       type: 'geojson',
@@ -166,20 +159,18 @@ const showLegs = legs => {
   });
 
   map.on('mouseenter', 'legs', e => {
-    if (e.features[0].properties.icon === 'free-fast-pinlet') {
-      map.getCanvas().style.cursor = 'pointer';
+    map.getCanvas().style.cursor = 'pointer';
 
-      const coordinates = e.features[0].geometry.coordinates;
-      const description = e.features[0].properties.description;
+    const coordinates = e.features[0].geometry.coordinates;
+    const description = e.features[0].properties.description;
 
-      while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-      }
-      popup
-        .setLngLat(coordinates)
-        .setHTML(description)
-        .addTo(map);
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
+    popup
+      .setLngLat(coordinates)
+      .setHTML(description)
+      .addTo(map);
   });
 
   map.on('mouseleave', 'legs', function() {
