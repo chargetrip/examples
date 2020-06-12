@@ -100,7 +100,7 @@ export const displayMap = ({ provider }) => {
       interactive: true,
       filter: ['>', ['get', 'count'], 1],
       layout: {
-        'icon-image': 'empty-charger',
+        'icon-image': 'cluster',
         'icon-size': 0.9,
         'icon-offset': [0, -16],
         'text-field': [
