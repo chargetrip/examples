@@ -110,8 +110,7 @@ a {
 }
 
 .info {
-  margin-top: 10px;
-  padding: 8px 16px;
+  padding: 0 1em 0.5em;
   border-bottom: 1px solid #e8edf1;
 }
 
