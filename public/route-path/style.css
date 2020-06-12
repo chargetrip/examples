@@ -27,6 +27,7 @@ ol {
 }
 
 h1 {
+  margin: 0.5em 0 0.25em;
   font-size: 1.375em;
   font-weight: 600;
 }
@@ -78,10 +79,12 @@ a {
 .header-route {
   margin-top: -5px;
   font-size: 16px;
+  color: #e8edf1;
 }
+
 .tags {
   display: flex;
-  margin-top: 1em;
+  margin: 0.5em 0 1em;
   color: #edf2f6;
 }
 
