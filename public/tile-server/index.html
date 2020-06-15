@@ -11,6 +11,24 @@
 
   <body>
     <div id="map"></div>
+    <div class="legend-link">
+      <button  id="legend-link" aria-label="display legend" title="display-legend"></button>
+    </div>
+    <div class="legend" id="legend">
+      <div class="section-title">Availability</div>
+      <ul class="section section-first">
+        <li class="section-available">Available <br><span>At least one connector is available</span></li>
+        <li class="section-in-use">In use <br><span>All connectors are in use</span></li>
+        <li class="section-unkown">Unkown <br><span>The status is currently unkown</span></li>
+        <li class="section-broken">Broken <br><span>All connectors are inoperational</span></li>
+      </ul>
+      <div class="section-title">Charging speed</div>
+      <ul class="section">
+        <li class="section-turbo">Turbo<br><span>150 kW to 350 kW</span></li>
+        <li class="section-fast">Fast<br><span>50 kW to 150 kW</span></li>
+        <li class="section-slow">Slow<br><span>1 kW to 50 kW</span></li>
+      </ul>
+    </div>
     <div class="github-link">
       <a href="https://github.com/chargetrip/examples/route" title="github examples">
         View on Github
