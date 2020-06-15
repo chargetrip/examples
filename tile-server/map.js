@@ -45,6 +45,11 @@ export const displayMap = ({ provider }) => {
     },
   });
 
+  const clusterIcon = () => {
+    if (provider === 'ocm') return 'cluster-unknown';
+    return 'cluster';
+  };
+
   /**
    * Display all stations that we request from the Tile Server.
    *
@@ -100,7 +105,7 @@ export const displayMap = ({ provider }) => {
       interactive: true,
       filter: ['>', ['get', 'count'], 1],
       layout: {
-        'icon-image': 'cluster',
+        'icon-image': clusterIcon(),
         'icon-size': 0.9,
         'icon-offset': [0, -16],
         'text-field': [
