@@ -7,6 +7,11 @@ body {
   font-size: 15px;
 }
 
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 ul,
 ol {
   padding: 0;
@@ -44,7 +49,12 @@ h1 {
   background-color: #fff;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  padding: 24px 16px;
+  padding-top: 20px;
+}
+
+.card-section {
+  border-bottom: 1px solid  #EDF2F6;
+  padding: 0px 16px;
 }
 
 .providers {
@@ -66,6 +76,7 @@ h1 {
 .clicked {
   width: 50%;
   background: #0078ff;
+  border-radius: 4px;
   color: #ffffff;
 }
 
@@ -87,9 +98,8 @@ h1 {
   display: flex;
   font-weight: 600;
   line-height: 24px;
-
   padding-top: 20px;
-  border-top: 1px solid #ccc;
+  
 }
 
 .provider-ocm {
@@ -101,13 +111,12 @@ h1 {
   line-height: 24px;
 
   padding-top: 20px;
-  border-top: 1px solid #ccc;
 }
 
 .provider-eco span {
   display: flex;
   color: #0078ff;
-  padding-left: 120px;
+  padding-left: 100px;
 }
 
 .provider img {
@@ -115,7 +124,7 @@ h1 {
 }
 
 .provider-info {
-  margin-top: -15px;
+  margin-top: -25px;
   margin-left: 60px;
   font-weight: normal;
   font-size: 14px;
@@ -123,7 +132,7 @@ h1 {
   align-items: center;
   letter-spacing: 0.2px;
 
-  color: #747884;
+  color: #404046;;
   margin-bottom: 10px;
 }
 
@@ -209,23 +218,24 @@ h1 {
 
 .legend {
   display: none;
-  position: fixed;
+  position: absolute;
   width: 320px;
-  height: 615px;
+  max-height: calc(630px - 2em);
   right: 16px;
   top: 64px;
 
   background: #FFFFFF;
   box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
+  overflow-y: auto;
 }
 
 .section {
   padding: 16px;
-  padding-bottom: 10px;
+  padding-bottom: 5px;
 }
 
-.section-first{
+.section-border{
   border-bottom: 1px solid  #EDF2F6;
 }
 
@@ -234,7 +244,7 @@ h1 {
   padding-top: 20px;
   font-weight: 600;
   font-size: 18px;
-  line-height: 24px;
+  line-height: 22px;
   color: #0C0C10;
 }
 
@@ -287,4 +297,11 @@ h1 {
 .section-slow {
   padding: 0 0 30px 60px;
   background: url('images/slow.svg') no-repeat left center;
+}
+
+.chargetrip-logo {
+  display: block;
+  height: 40px;
+  background: url('images/chargetrip.svg') no-repeat 12px center;
+  text-indent: -100%;
 }
