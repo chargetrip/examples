@@ -20,23 +20,25 @@ const client = createClient({
   exchanges: [...defaultExchanges],
 });
 
+const slow = [1, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.8, 2.9, 3, 4.6, 11, 20, 22, 30, 36];
+const fast = [43, 50];
+const turbo = [100, 120, 135, 150, 350];
 const distance = document.getElementById('range');
 const amenities = document.querySelectorAll('.amenities input[type=checkbox]');
 const amenitiesChecked = document.querySelectorAll('.amenities input[type=checkbox]:checked');
-const power = document.querySelectorAll('.speed input[type=checkbox]');
-const powerChecked = document.querySelectorAll('.speed input[type=checkbox]:checked');
+const power = document.querySelectorAll('.power input[type=checkbox]');
+let powerChecked = document.querySelectorAll('.power input[type=checkbox]:checked');
 let amenitiesOn = [];
 let powerOn = [];
-const slow = [1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.8, 2.9, 3, 43];
-const fast = [50, 100, 120, 135];
-const turbo = [150, 350];
 
 for (let i = 0; i < amenitiesChecked.length; i++) {
   amenitiesOn.push(amenitiesChecked[i].getAttribute('id'));
 }
 
 for (let index = 0; index < powerChecked.length; index++) {
-  powerOn.push(parseInt(powerChecked[index].getAttribute('id')));
+  if (powerChecked[index].getAttribute('id') == 'slow') addpower(powerOn, slow);
+  else if (powerChecked[index].getAttribute('id') == 'fast') addpower(powerOn, fast);
+  else if (powerChecked[index].getAttribute('id') == 'turbo') addpower(powerOn, turbo);
 }
 
 /**
@@ -82,18 +84,17 @@ const updateAmenities = () => {
   displayMap();
 };
 
+const addpower = (powerOn, list) => {
+  list.map(item => powerOn.push(item));
+};
+
 const updatePower = () => {
-  const item = event.target.getAttribute('id');
-  let on = document.getElementById(item).checked;
-  if (on === true) {
-    powerOn.push(parseInt(item));
-  } else {
-    for (let i = 0; i < powerOn.length; i++) {
-      console.log(powerOn[i]);
-      if (powerOn[i] == item) {
-        powerOn.splice(i, 1);
-      }
-    }
+  powerOn = [];
+  powerChecked = document.querySelectorAll('.power input[type=checkbox]:checked');
+  for (let index = 0; index < powerChecked.length; index++) {
+    if (powerChecked[index].getAttribute('id') == 'slow') addpower(powerOn, slow);
+    else if (powerChecked[index].getAttribute('id') == 'fast') addpower(powerOn, fast);
+    else if (powerChecked[index].getAttribute('id') == 'turbo') addpower(powerOn, turbo);
   }
   displayMap();
 };
