@@ -40,6 +40,8 @@ h1 {
   height: 100%;
 }
 
+/* information about the two providers */
+
 .card {
   position: absolute;
   width: 360px;
@@ -136,26 +138,7 @@ h1 {
   margin-bottom: 10px;
 }
 
-.contact-button {
-  margin-top: 10px;
-  margin-bottom: 20px;
-  padding-left: 10px;
-  height: 32px;
-  width: 134px;
-  background: #8229f0;
-  border-radius: 6px;
-}
-
-.contact-button a {
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 30px;
-}
-
-.contact-button img {
-  margin-bottom: -2px;
-  padding-right: 5px;
-}
+/* View project on the github link */
 .github-link {
   position: fixed;
   top: 16px;
@@ -196,6 +179,7 @@ h1 {
   outline: none;
 }
 
+/* Display a legend of chargeing stations */
 .legend-link { 
   width: 40px;
   height: 40px;
@@ -302,6 +286,6 @@ h1 {
 .chargetrip-logo {
   display: block;
   height: 40px;
-  background: url('images/chargetrip.svg') no-repeat 12px center;
+  background: url('images/chargetrip.svg') no-repeat 16px center;
   text-indent: -100%;
 }
