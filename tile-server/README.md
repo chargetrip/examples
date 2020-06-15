@@ -16,13 +16,11 @@ To see our Chargetrip API in action, you can go to the [Playground](https://play
 
 This example is built with vanilla JS. Only part of our extensive database is available. You need a registered `x-client-id` to access the full database. 
 
+The Tile Service we use is [Clusterbuster](https://github.com/chargetrip/clusterbuster) - one of our open-source projects. Clusterbuster creates a faster way of loading a high amount of points (clustered and filtered) on a map using vector tiles.
+
 ### Preparation
 
 Our Playground has a station database that is populated with freely available European station data from [OCM](https://openchargemap.org/site). Importing your own database or using one of the databases Chargetrip has an integration with, is possible. For more details, contact us. This example shows all stations available within the Playground that have CHADEMO or IEC_62196_T2_COMBO connectors. 
-
-### Technical stack
-
-The Tile Service we use is [Clusterbuster](https://github.com/chargetrip/clusterbuster) - one of our open-source projects. Clusterbuster creates a faster way of loading a high amount of points (clustered and filtered) on a map using vector tiles.
 
 ### Steps to take
 
