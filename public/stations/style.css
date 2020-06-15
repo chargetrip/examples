@@ -4,9 +4,6 @@
   --black: #030303;
 }
 
-
-
-
 html,
 body {
   padding: 0;
@@ -41,6 +38,7 @@ h2 {
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
+  color: #0C0C10;
 }
 
 a {
@@ -64,7 +62,7 @@ a {
   max-height: calc(100% - 2em);
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
   background-color: var(--white);
-  border-radius: 15px;
+  border-radius: 8px;
   overflow-y: auto;
 }
 
@@ -73,8 +71,8 @@ a {
 }
 
 .range-info {
-  font-size: 10px;
   padding: 10px;
+  padding-top: 0px;
   display: flex;
   justify-content: space-between;
 }
@@ -83,6 +81,7 @@ a {
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;
+  color: #404046;
 }
 
 .power {
@@ -90,19 +89,29 @@ a {
 }
 
 .power li {
-  position: relative;
-  top: -25px;
   padding-left: 25px;
   font-weight: 600;
   font-size: 15px;
   line-height: 18px;
+  color: #202024;
 }
 
 .power li span {
   font-size: 14px;
   line-height: 17px;
   color: #787884;
-  font-weight: normal;
+}
+
+.amenities {
+  position: relative;
+  padding: 10px;
+}
+
+.amenities li {
+  padding-left: 25px;
+  font-size: 15px;
+  line-height: 30px;
+  color: #404046;
 }
 
 .slider {
@@ -122,8 +131,8 @@ a {
 .slider::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  width: 40px;
-  height: 20px;
+  width: 60px;
+  height: 32px;
   border-radius: 123px;
   box-shadow: 0px 1.23077px 4.92308px rgba(37, 42, 50, 0.2);
   background: var(--white);

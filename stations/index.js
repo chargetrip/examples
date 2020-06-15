@@ -27,6 +27,9 @@ const power = document.querySelectorAll('.speed input[type=checkbox]');
 const powerChecked = document.querySelectorAll('.speed input[type=checkbox]:checked');
 let amenitiesOn = [];
 let powerOn = [];
+const slow = [1, 1.1, 1.2, 1.3, 1.4, 1.5, 1.6, 1.7, 1.8, 1.9, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.8, 2.9, 3, 43];
+const fast = [50, 100, 120, 135];
+const turbo = [150, 350];
 
 for (let i = 0; i < amenitiesChecked.length; i++) {
   amenitiesOn.push(amenitiesChecked[i].getAttribute('id'));
