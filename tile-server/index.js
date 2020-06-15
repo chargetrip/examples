@@ -25,3 +25,10 @@ document.getElementById('ocm').addEventListener('click', () => {
   searchParams.set('provider', 'ocm');
   window.location.href = '?' + searchParams.toString();
 });
+
+document.getElementById('legend-link').addEventListener('click', () => {
+  const legend = document.getElementById('legend');
+  console.log(legend);
+  if (legend.style.display === 'none') legend.style.display = 'block';
+  else legend.style.display = 'none';
+});
