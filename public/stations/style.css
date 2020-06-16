@@ -35,6 +35,7 @@ h1 {
 
 h2 {
   padding: 10px;
+  padding-bottom: 0px;
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
@@ -67,7 +68,50 @@ a {
 }
 
 .section {
+  padding: 0px 5px;
   border-bottom: 1px solid #EDF2F6;
+}
+
+/* Range slider */
+
+.slider {
+  -webkit-appearance: none;
+  align-self: center;
+  margin: 10px;
+  width: 95%;
+  height: 1px;
+  border-radius: 4px;
+  background:  #EDF2F6;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  padding-bottom: 5px;
+  margin-top: 20px;
+}
+
+.slider::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  appearance: none;
+  width: 60px;
+  height: 32px;
+  border-radius: 123px;
+  box-shadow: 0px 1.23077px 4.92308px rgba(37, 42, 50, 0.2);
+  background: var(--white);
+  cursor: pointer;
+}
+
+.range-value {
+  position: absolute;
+  text-align: center;
+  top: 72px;
+  left: 80px;
+
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  color: #202024;
+  cursor: pointer;
 }
 
 .range-info {
@@ -84,66 +128,17 @@ a {
   color: #404046;
 }
 
-.power {
-  padding: 10px;
-}
-
-.power li {
-  padding-left: 25px;
-  font-weight: 600;
-  font-size: 15px;
-  line-height: 18px;
-  color: #202024;
-}
-
-.power li span {
-  font-size: 14px;
-  line-height: 17px;
-  color: #787884;
-}
-
-.amenities {
-  position: relative;
-  padding: 10px;
-}
-
-.amenities li {
-  padding-left: 25px;
-  font-size: 15px;
-  line-height: 30px;
-  color: #404046;
-}
-
-.slider {
-  -webkit-appearance: none;
-  align-self: center;
-  margin: 10px;
-  width: 95%;
-  height: 1px;
-  background: var(--blue);
-  outline: none;
-  opacity: 0.7;
-  -webkit-transition: 0.2s;
-  transition: opacity 0.2s;
-  padding-bottom: 5px;
-}
-
-.slider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 60px;
-  height: 32px;
-  border-radius: 123px;
-  box-shadow: 0px 1.23077px 4.92308px rgba(37, 42, 50, 0.2);
-  background: var(--white);
-  cursor: pointer;
-}
-
-/* */
+/* checkboxes for power and amenities */
 .filter {
   position: relative;
   padding-bottom: 20px;
   line-height: 30px;
+}
+
+.filter-amenities {
+  position: relative;
+  padding-bottom: 20px;
+  line-height: 20px;
 }
 
 .filter div {
@@ -192,6 +187,39 @@ a {
   transform: rotate(41.67deg);
 }
 
+.power {
+  padding: 10px;
+}
+
+.power li {
+  padding-left: 25px;
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 18px;
+  color: #202024;
+}
+
+.power li span {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #787884;
+}
+
+.amenities {
+  position: relative;
+  padding: 10px;
+}
+
+.amenities li {
+  padding-left: 35px;
+  font-size: 15px;
+  line-height: 20px;
+  color: #404046;
+}
+
+/* Vieuw project on Github link */
 .github-link {
   position: fixed;
   top: 16px;
@@ -232,6 +260,7 @@ a {
   outline: none;
 }
 
+/* Link to Chargetrip website */
 .chargetrip-logo {
   display: block;
   height: 40px;

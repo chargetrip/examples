@@ -106,3 +106,19 @@ for (let j = 0; j < amenities.length; j++) {
 for (let x = 0; x < power.length; x++) {
   power[x].addEventListener('change', updatePower, false);
 }
+
+const range = document.getElementById('range');
+const rangeValue = document.getElementById('rangeV');
+rangeValue.innerHTML = `<span>${range.value / 1000} km</span>`;
+
+/**
+ * In order to display the value of the range-slider we have to calculate its position.
+ */
+const setValue = () => {
+  const percent = Number(range.value / 20 / 1000);
+  const newPosition = 10 + percent * 285;
+  rangeValue.innerHTML = `<span>${range.value / 1000} km</span>`;
+  rangeValue.style.left = `calc((${newPosition}px))`;
+};
+
+document.addEventListener('input', setValue);
