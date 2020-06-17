@@ -1,17 +1,5 @@
-import mapboxgl from 'mapbox-gl';
 import { createClient, defaultExchanges } from '@urql/core';
 import { getCarList } from './queries.js';
-
-mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjamo3em4wdnUwdHVlM3Z0ZTNrZmd1MXoxIn0.aFteYnUc_GxwjTLGvB3uCg';
-
-const map = new mapboxgl.Map({
-  container: 'map',
-  style: 'mapbox://styles/chargetrip/ck98fwwp159v71ip7xhs8bwts',
-  zoom: 5.5,
-  center: [8.7320104, 52.3758916],
-});
-
-map.on('load');
 
 /**
  * For the purpose of this example we use urgl - lightweights GraphQL client.
@@ -35,16 +23,39 @@ client
   .query(getCarList)
   .toPromise()
   .then(response => {
-    const cars = response.data;
-    console.log(cars.carList[0]);
-    const images = cars.carList[0].images;
-    images.map(img => {
-      if (img.type === 'image_thumbnail') {
-        //document.body.appendChild(img.url);
-        console.log(img.url);
-      }
-    });
+    const cars = response.data.carList;
+    //cars.map(car => {
+    //  displayCarData(car);
+    //});
+    displayCarData(cars[0]);
   })
   .catch(error => console.log(error));
 
-console.log('Car example');
+const displayCarData = car => {
+  console.log(car);
+  const img = car.images[0].url;
+  //The make model and image of the car.
+  document.getElementById('make').innerHTML = car.make;
+  document.getElementById('model').innerHTML = car.carModel;
+  document.getElementById('car-image').src = img;
+
+  //Car details
+  document.getElementById('range').innerHTML = '---';
+  document.getElementById('battery').innerHTML = car.batteryUsableKwh + ' kWh';
+  document.getElementById('efficiency').innerHTML = car.batteryEfficiency.average + ' kWH / 100 km';
+  document.getElementById('plug').innerHTML = car.connectors[0].standard;
+
+  //Weather data
+  document.getElementById('city-mild').innerHTML = car.range.best.city + ' km';
+  document.getElementById('city-cold').innerHTML = car.range.worst.city + ' km';
+  document.getElementById('highway-mild').innerHTML = car.range.best.highway + ' km';
+  document.getElementById('highway-cold').innerHTML = car.range.worst.highway + ' km';
+  document.getElementById('combined-mild').innerHTML = car.range.best.combined + ' km';
+  document.getElementById('combined-cold').innerHTML = car.range.worst.combined + ' km';
+
+  //performance
+  document.getElementById('acceleration').innerHTML = car.acceleration + ' s';
+  document.getElementById('topspeed').innerHTML = car.topSpeed + ' km/h';
+  document.getElementById('power').innerHTML = car.power + ' KW';
+  document.getElementById('torque').innerHTML = car.torque + ' Nm'
+};

@@ -7,9 +7,40 @@ query carList {
       externalId
       make
       carModel
-      edition
-      version
+      batteryUsableKwh
+      connectors{
+        standard
+      }
+      range {
+        wltp
+        best {
+          highway
+          city
+          combined
+        }
+        worst {
+          highway
+          city
+          combined
+        }
+      }
+      batteryEfficiency {
+        average
+        best {
+          highway
+          city
+          combined
+        }
+        worst {
+          highway
+          city
+          combined
+        }
+      }
+      power
+      acceleration
       topSpeed
+      torque
       images{
         type
         url
