@@ -13,6 +13,7 @@ const labels = route => {
   const label = new Array(points);
   label.fill('');
 
+  label[2] = 0;
   for (let i = 1; pos * i < distance; i++) {
     const x = ((pos * i * points) / distance).toFixed(0);
     label[x] = pos * i;
@@ -31,7 +32,7 @@ export const loadGraph = (route, elevation) => {
   const ctx = document.getElementById('elevation').getContext('2d');
   let gradient = ctx.createLinearGradient(0, 0, 0, 180);
   gradient.addColorStop(1, '#fff');
-  gradient.addColorStop(0, 'rgba(1, 99, 234, 0.6)');
+  gradient.addColorStop(0, 'rgba(1, 99, 234, 0.4)');
   const data = {
     labels: labels(route),
     datasets: [
@@ -41,7 +42,7 @@ export const loadGraph = (route, elevation) => {
         borderColor: '#0078FF',
         borderWidth: 1.5,
         backgroundColor: gradient,
-        opacity: 0.6,
+        opacity: 0.2,
         pointRadius: 0,
         data: elevation,
       },
@@ -117,8 +118,8 @@ export const imageLoader = (route, legs) => {
     for (let i = 0; i < len; i++) {
       dis = dis + legs[i].distance / 1000;
       let x = (dis * 355) / (route.distance / 1000);
-      chargers.drawImage(img, x - 13, 0, 16, 25);
+      chargers.drawImage(img, x - 13, 0);
     }
   };
-  img.src = 'images/charger.png';
+  img.src = 'images/station.svg';
 };
