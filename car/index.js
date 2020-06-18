@@ -24,10 +24,9 @@ client
   .toPromise()
   .then(response => {
     const cars = response.data.carList;
-    //cars.map(car => {
-    //  displayCarData(car);
-    //});
-    displayCarData(cars[0]);
+    cars.map(car => {
+      displayCarData(car);
+    });
   })
   .catch(error => console.log(error));
 

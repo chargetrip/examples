@@ -26,6 +26,7 @@ header {
 ul,
 ol {
   padding: 0;
+  padding-bottom: 3px;
   margin-left: 10px;
   color: #202024;
   list-style: none;
@@ -72,7 +73,7 @@ a {
 }
 
 .section {
-  padding-bottom: 10px;
+  padding-bottom: 0px;
   border-bottom: 1px solid #EDF2F6;
 }
 
