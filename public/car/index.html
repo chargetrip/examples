@@ -16,6 +16,29 @@
       </a>
       <button aria-label="remove github link" title="remove github link" onclick="this.parentElement.remove()"></button>
     </div>
+
+    <div class="section-titles">
+      <ul class="section-titles-sub">
+        <li class="section-titles-sub-range">CT Real Range</li>
+        <li class="section-titles-sub-battery">Useable battery</li>
+        <li class="section-titles-sub-efficiency">Efficiency</li>
+        <li class="section-titles-sub-plug">Plug type</li>
+      </ul>
+      <ul class="section-titles-sub">
+        <li><span>Route</span></li>
+        <li>City</li>
+        <li>Highway</li>
+        <li>Plug type</li>
+      </ul>
+      <ul class="section-titles-sub">
+        <li>Acceleration</li>
+        <li>Top speed</li>
+        <li>Total power</li>
+        <li>Total torque</li>
+      </ul>
+    </div>
+
+    <template id="car-profile">
     <div class="car-profile">
       <div class="section">
         <div class="car-maker" id="make"></div>
@@ -56,6 +79,7 @@
       </div>
       <a class="chargetrip-logo" href="https://chargetrip.com/">Powered by Chargetrip</a>
     </div>
+  </template>
   </body>
   <script src="bundle.js"></script>
 </html>

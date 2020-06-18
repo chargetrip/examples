@@ -15,7 +15,7 @@ body {
 
 header {
   position: absolute;
-  width: 1440px;
+  width: 100%;
   height: 314px;
   left: 0px;
   top: 0px;
@@ -60,8 +60,55 @@ a {
   text-decoration: none;
 }
 
-.car-profile {
+.section-titles {
   position: absolute;
+  margin-top: 50px;
+  top: 314px;
+  padding-left: 30px;
+}
+
+.section-titles-sub {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
+  line-height: 30px; 
+  color: #0C0C10;
+  padding-bottom: 50px;
+}
+
+.section-titles-sub span {
+  font-weight: 600;
+  font-size: 15px;
+  line-height: 24px;
+  color: #787884;
+}
+
+.section-titles-sub-range {
+  padding-left: 30px;
+  background: url('images/range.svg') no-repeat left center;
+}
+
+.section-titles-sub-battery {
+  padding-left: 30px;
+  background: url('images/battery.svg') no-repeat left center;
+}
+
+.section-titles-sub-efficiency {
+  padding-left: 30px;
+  background: url('images/efficiency.svg') no-repeat left center;
+}
+
+.section-titles-sub-plug {
+  padding-left: 30px;
+  background: url('images/plug.svg') no-repeat left center;
+}
+
+
+/* The car-profile template */
+.car-profile {
+  position: relative;
+  float: left;
+  margin-left: 10px;
   width: 284px;
   height: 1072px;
   left: 240px;
@@ -122,7 +169,7 @@ a {
   display: block;
   height: 40px;
   background: url('images/chargetrip.svg') no-repeat 16px center;
-  text-indent: -400%;
+  text-indent: -800%;
 }
 
 /* View project on the github link */

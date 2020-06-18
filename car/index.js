@@ -31,6 +31,9 @@ client
   .catch(error => console.log(error));
 
 const displayCarData = car => {
+  const tmpl = document.getElementById('car-profile');
+
+  document.body.appendChild(tmpl.content.cloneNode(true));
   console.log(car);
   const img = car.images[0].url;
   //The make model and image of the car.
@@ -56,5 +59,5 @@ const displayCarData = car => {
   document.getElementById('acceleration').innerHTML = car.acceleration + ' s';
   document.getElementById('topspeed').innerHTML = car.topSpeed + ' km/h';
   document.getElementById('power').innerHTML = car.power + ' KW';
-  document.getElementById('torque').innerHTML = car.torque + ' Nm'
+  document.getElementById('torque').innerHTML = car.torque + ' Nm';
 };
