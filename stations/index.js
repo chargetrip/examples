@@ -20,6 +20,12 @@ const client = createClient({
   exchanges: [...defaultExchanges],
 });
 
+/**
+ * In this example the range, power and amenities are dynamic.
+ * A charging station can be slow (< 43 kW), fast (< 100 kW) or turbo.
+ * When any of these values is changed we update the map.
+ */
+
 const slow = [1, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.8, 2.9, 3, 4.6, 11, 20, 22, 30, 36];
 const fast = [43, 50];
 const turbo = [100, 120, 135, 150, 350];
@@ -67,8 +73,6 @@ const displayMap = () => {
 
 displayMap();
 
-distance.addEventListener('input', displayMap);
-
 const updateAmenities = () => {
   const attribute = event.target.getAttribute('id');
   let on = document.getElementById(attribute).checked;
@@ -84,10 +88,18 @@ const updateAmenities = () => {
   displayMap();
 };
 
-const addpower = (powerOn, list) => {
-  list.map(item => powerOn.push(item));
+/**
+ * Adds all values of that speed to the list of powers we are requesting.
+ * @param powerOn {object} All powers that we want to request.
+ * @param speed {object} All charging powers that belong to that speed.
+ */
+const addpower = (powerOn, speed) => {
+  speed.map(item => powerOn.push(item));
 };
 
+/**
+ * Update what power we are requesting and upodate the map.
+ */
 const updatePower = () => {
   powerOn = [];
   powerChecked = document.querySelectorAll('.power input[type=checkbox]:checked');
@@ -99,6 +111,24 @@ const updatePower = () => {
   displayMap();
 };
 
+const range = document.getElementById('range');
+const rangeValue = document.getElementById('rangeV');
+const bubble = document.getElementById('range-bubble');
+rangeValue.innerHTML = `<span>${range.value / 1000} km</span>`;
+
+/**
+ * In order to display the value of the range-slider we have to calculate its position.
+ */
+const setValue = () => {
+  const percent = Number(range.value / 20 / 1000);
+  const newPosition = percent * 285;
+  rangeValue.innerHTML = `<span>${range.value / 1000} km</span>`;
+  bubble.style.left = `calc((${newPosition}px))`;
+};
+
+/**
+ * Event listeners for all dynamic data.
+ */
 for (let j = 0; j < amenities.length; j++) {
   amenities[j].addEventListener('change', updateAmenities, false);
 }
@@ -107,18 +137,5 @@ for (let x = 0; x < power.length; x++) {
   power[x].addEventListener('change', updatePower, false);
 }
 
-const range = document.getElementById('range');
-const rangeValue = document.getElementById('rangeV');
-rangeValue.innerHTML = `<span>${range.value / 1000} km</span>`;
-
-/**
- * In order to display the value of the range-slider we have to calculate its position.
- */
-const setValue = () => {
-  const percent = Number(range.value / 20 / 1000);
-  const newPosition = 10 + percent * 285;
-  rangeValue.innerHTML = `<span>${range.value / 1000} km</span>`;
-  rangeValue.style.left = `calc((${newPosition}px))`;
-};
-
 document.addEventListener('input', setValue);
+distance.addEventListener('input', displayMap);
