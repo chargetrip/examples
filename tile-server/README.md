@@ -1,8 +1,8 @@
 # Display all stations with the Vector Tile Server
 
-This tutorial explains how to show charging stations on a map by using Chargetrip Vector Tile Server:
+This tutorial explains how to show charging stations on a map by using the Chargetrip Vector Tile Server:
 
-1. Chargetrip Tile Server offers a pre-rendered fully clustered charge station solution with the ability to filter stations;
+1. The Chargetrip Tile Server offers a pre-rendered fully clustered charge station solution with the ability to filter stations;
 2. Zoom in/out and recenter the map when clicking on a cluster;
 3. This example shows stations from two different providers: EcoMovement and Open Charge Map.
 
@@ -20,7 +20,7 @@ The Tile Service we use is [Clusterbuster](https://github.com/chargetrip/cluster
 
 ### Steps to take
 
-This examples uses Chargetrip Tile Service to show the stations on the map. Our Tile Service is not only super fast, but also secures the data of our providers, like EcoMovement. This example shows only part of EcoMovement database. If you want to use a full database, please contact us.
+This examples uses the Chargetrip Tile Service to show the stations on the map. Our Tile Service is not only super fast, but also secures the data of our providers, like EcoMovement. This example shows only part of EcoMovement database. If you want to use a full database, please contact us.
 
 1. We have to fetch the stations from our Tile Server. You need to add a set of filters to the tile requests for rendering stations on your map. You can read all the details about the Tile Server in our [Graph API documentation](https://docs.chargetrip.com/#tile-service). In this example we fetch stations with either a CHADEMO or IEC_62196_T2_COMBO connector. You can see them in the request.
 2. After we have accessed the tile server, we can show the stations on a map. We use [MapboxGL JS](https://docs.mapbox.com/mapbox-gl-js/overview/#quickstart) in this example.
