@@ -1,6 +1,15 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script>
+      const searchParams = new URLSearchParams(document.location.search);
+      const provider = searchParams.get('provider');
+
+      if (!provider) {
+        window.history.replaceState(null, null, '?provider=eco#eco');
+      }
+    </script>
+
     <meta charset="utf-8" />
     <title>Chargetrip API: Tile Service example</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
@@ -11,22 +20,20 @@
 
   <body>
     <div id="map"></div>
-    <div class="legend-link">
-      <button  id="legend-link" aria-label="display legend" title="display-legend"></button>
-    </div>
+    <button class="legend-button" aria-label="display legend" title="display-legend"></button>
     <div class="legend" id="legend">
       <div class="section-title">Availability</div>
       <ul class="section section-border">
-        <li class="section-available">Available <br><span>At least one connector is available</span></li>
-        <li class="section-in-use">In use <br><span>All connectors are in use</span></li>
-        <li class="section-unkown">Unkown <br><span>The status is currently unkown</span></li>
-        <li class="section-broken">Broken <br><span>All connectors are inoperational</span></li>
+        <li class="section-available">Available <br /><span>At least one connector is available</span></li>
+        <li class="section-in-use">In use <br /><span>All connectors are in use</span></li>
+        <li class="section-unkown">Unkown <br /><span>The status is currently unkown</span></li>
+        <li class="section-broken">Broken <br /><span>All connectors are inoperational</span></li>
       </ul>
       <div class="section-title">Charging speed</div>
       <ul class="section">
-        <li class="section-turbo">Turbo<br><span>150 kW to 350 kW</span></li>
-        <li class="section-fast">Fast<br><span>50 kW to 150 kW</span></li>
-        <li class="section-slow">Slow<br><span>1 kW to 50 kW</span></li>
+        <li class="section-turbo">Turbo<br /><span>150 kW to 350 kW</span></li>
+        <li class="section-fast">Fast<br /><span>50 kW to 150 kW</span></li>
+        <li class="section-slow">Slow<br /><span>1 kW to 50 kW</span></li>
       </ul>
     </div>
     <div class="github-link">
@@ -39,26 +46,28 @@
     <div class="card">
       <div class="card-section">
         <div><h1>Charging Station Provider</h1></div>
-         <div class="providers">
-          <a class="eco" id="eco">EcoMovement </a>
-          <a class="ocm" id="ocm">Open Charge</a>
+        <div class="providers">
+          <a id="eco" href="?provider=eco#eco">EcoMovement</a>
+          <a id="ocm" href="?provider=ocm#ocm">Open Charge</a>
         </div>
       </div>
       <div class="card-section">
         <div class="provider-eco">
           EcoMovement
-         <span>Premium</span>
+          <span>Premium</span>
         </div>
         <div class="provider-info">
-         High quality dynamic charging locations data. Verified and more extensive database of charging points.
+          High quality dynamic charging locations data. Verified and more extensive database of charging points. For the
+          purpose of this example, only part of it is public. If you want to use the full database, contact us at
+          <a href="https://chargetrip.com">Chargetrip</a>.
         </div>
       </div>
       <div class="card-section">
-      <div class="provider-ocm">Open Charge Map</div>
-      <div class="provider-info">
-        Global and public charging locations data. Provided for free.
+        <div class="provider-ocm">Open Charge Map</div>
+        <div class="provider-info">
+          Global and public charging locations data. Provided for free.
+        </div>
       </div>
-    </div>
       <a class="chargetrip-logo" href="https://chargetrip.com/">Powered by Chargetrip</a>
     </div>
   </body>

@@ -20,8 +20,7 @@ ol {
 }
 
 a {
-  text-decoration: none;
-  color: #ffffff;
+  color: #0078ff;
 }
 
 h1 {
@@ -55,43 +54,41 @@ h1 {
 }
 
 .card-section {
-  border-bottom: 1px solid  #EDF2F6;
+  border-bottom: 1px solid #edf2f6;
   padding: 0px 16px;
 }
 
 .providers {
-  cursor: pointer;
   display: flex;
-  height: 35px;
+  padding: 4px;
   background: #f3f6f8;
-  border: 1.49026px solid #e8edf1;
+  border: 1px solid #e8edf1;
   box-sizing: border-box;
   border-radius: 6px;
   margin-top: 20px;
   margin-bottom: 20px;
-  font-weight: 600;
-  line-height: 32px;
-  align-items: center;
-  text-align: center;
 }
 
-.clicked {
-  width: 50%;
-  background: #0078ff;
+.providers a {
+  height: 32px;
+  width: 160px;
+  line-height: 32px;
+  font-weight: 600;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: #141519;
+  background: transparent;
   border-radius: 4px;
+}
+
+.providers a:target {
+  background: #0078ff;
   color: #ffffff;
 }
 
-.eco {
-  color: #141519;
-  height: 100%;
-  width: 50%;
-}
-
-.ocm {
-  color: #141519;
-  height: 100%;
-  width: 50%;
+.providers a:focus {
+  outline: none;
 }
 
 .provider-eco {
@@ -101,7 +98,6 @@ h1 {
   font-weight: 600;
   line-height: 24px;
   padding-top: 15px;
-  
 }
 
 .provider-ocm {
@@ -133,7 +129,7 @@ h1 {
   align-items: center;
   letter-spacing: 0.2px;
 
-  color: #404046;;
+  color: #404046;
   margin-bottom: 20px;
 }
 
@@ -162,6 +158,8 @@ h1 {
   margin: 0 8px 0 0;
   background: url('images/github.svg') no-repeat left center;
   border-right: 1px solid #54545c;
+  color: #fff;
+  text-decoration: none;
 }
 
 .github-link button {
@@ -179,24 +177,22 @@ h1 {
 }
 
 /* Display a legend of chargeing stations */
-.legend-link { 
-  width: 40px;
-  height: 40px;
+.legend-button {
   position: fixed;
-  background-color: #fff; 
   right: 16px;
   top: 16px;
   box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.08);
   border-radius: 50%;
-}
-
-.legend-link button {
-  background: url('images/legend.svg') no-repeat center center;
+  background: url('images/legend.svg') no-repeat center center #fff;
   -webkit-appearance: none;
   width: 40px;
   height: 40px;
   cursor: pointer;
   border: none;
+}
+
+.legend-button:focus {
+  outline: none;
 }
 
 .legend {
@@ -207,7 +203,7 @@ h1 {
   right: 16px;
   top: 64px;
 
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0px 16px 32px rgba(0, 0, 0, 0.08);
   border-radius: 8px;
   overflow-y: auto;
@@ -218,8 +214,8 @@ h1 {
   padding-bottom: 5px;
 }
 
-.section-border{
-  border-bottom: 1px solid  #EDF2F6;
+.section-border {
+  border-bottom: 1px solid #edf2f6;
 }
 
 .section-title {
@@ -228,7 +224,7 @@ h1 {
   font-weight: 600;
   font-size: 18px;
   line-height: 22px;
-  color: #0C0C10;
+  color: #0c0c10;
 }
 
 .section li {
