@@ -26,9 +26,9 @@ const client = createClient({
  * When any of these values is changed we update the map.
  */
 
-const slow = [1, 2, 2.1, 2.2, 2.3, 2.4, 2.5, 2.6, 2.8, 2.9, 3, 4.6, 11, 20, 22, 30, 36];
-const fast = [43, 50];
-const turbo = [100, 120, 135, 150, 350];
+const slow = [3, 3.5, 3.6, 3.7, 4, 6, 7, 7.4, 8, 10, 11, 13, 14, 16, 18, 20, 22, 36, 40];
+const fast = [43, 45, 50, 60, 80];
+const turbo = [100, 120, 15, 129, 135, 150, 175, 200, 250, 350, 400];
 const distance = document.getElementById('range');
 const amenities = document.querySelectorAll('.amenities input[type=checkbox]');
 const amenitiesChecked = document.querySelectorAll('.amenities input[type=checkbox]:checked');
