@@ -8,32 +8,6 @@ const map = new mapboxgl.Map({
   center: [4.8979755, 52.3745403],
 });
 
-const popup = new mapboxgl.Popup({
-  closeButton: false,
-  closeOnClick: false,
-});
-
-map.on('mouseenter', 'path', e => {
-  map.getCanvas().style.cursor = 'pointer';
-
-  let coordinates = e.features[0].geometry.coordinates;
-  let description = e.features[0].properties.description;
-
-  while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-    coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-  }
-
-  popup
-    .setLngLat(coordinates)
-    .setHTML(description)
-    .addTo(map);
-});
-
-map.on('mouseleave', 'path', function() {
-  map.getCanvas().style.cursor = '';
-  popup.remove();
-});
-
 /**
  * Return what icon will be used to display the charging station, depending on the speed and status.
  *

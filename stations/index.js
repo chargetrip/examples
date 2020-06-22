@@ -42,9 +42,13 @@ for (let i = 0; i < amenitiesChecked.length; i++) {
 }
 
 for (let index = 0; index < powerChecked.length; index++) {
-  if (powerChecked[index].getAttribute('id') == 'slow') addpower(powerOn, slow);
-  else if (powerChecked[index].getAttribute('id') == 'fast') addpower(powerOn, fast);
-  else if (powerChecked[index].getAttribute('id') == 'turbo') addpower(powerOn, turbo);
+  if (powerChecked[index].getAttribute('id') == 'slow') {
+    addpower(powerOn, slow);
+  } else if (powerChecked[index].getAttribute('id') == 'fast') {
+    addpower(powerOn, fast);
+  } else if (powerChecked[index].getAttribute('id') == 'turbo') {
+    addpower(powerOn, turbo);
+  }
 }
 
 /**
@@ -104,9 +108,13 @@ const updatePower = () => {
   powerOn = [];
   powerChecked = document.querySelectorAll('.power input[type=checkbox]:checked');
   for (let index = 0; index < powerChecked.length; index++) {
-    if (powerChecked[index].getAttribute('id') == 'slow') addpower(powerOn, slow);
-    else if (powerChecked[index].getAttribute('id') == 'fast') addpower(powerOn, fast);
-    else if (powerChecked[index].getAttribute('id') == 'turbo') addpower(powerOn, turbo);
+    if (powerChecked[index].getAttribute('id') == 'slow') {
+      addpower(powerOn, slow);
+    } else if (powerChecked[index].getAttribute('id') == 'fast') {
+      addpower(powerOn, fast);
+    } else if (powerChecked[index].getAttribute('id') == 'turbo') {
+      addpower(powerOn, turbo);
+    }
   }
   displayMap();
 };
