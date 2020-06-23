@@ -4,27 +4,26 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjamo3em4wdnUwdHVlM3Z0Z
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/chargetrip/ck98fwwp159v71ip7xhs8bwts',
-  zoom: 12.4,
+  zoom: 11.4,
   center: [4.8979755, 52.3745403],
 });
 
 /**
- * Return what icon will be used to display the charging station, depending on the speed and status.
- *
- * @param point {array} Array containing station data
+ * Icon for the charging station differs base on the speed (slow, fast, turbo) and status(available or no).
+ * @param station {object} Station data
  */
-const selectPinlet = point => {
+const selectPinlet = station => {
   const statusVals = ['available', 'unknown', 'broken'];
   const speedVals = ['slow', 'fast'];
 
-  let status = statusVals.includes(point.status) ? point.status : 'in-use';
-  let speed = speedVals.includes(point.speed) ? point.speed : 'turbo';
+  let status = statusVals.includes(station.status) ? station.status : 'in-use';
+  let speed = speedVals.includes(station.speed) ? station.speed : 'turbo'; //TODO:: why do we fall back to turbo? because of the color?
 
   return `${status}-${speed}`;
 };
 
 /**
- * Draw the stations on the map and show data about the station on hover.
+ * Draw the stations on the map.
  *
  * @param stations {array} Array of stations
  */
@@ -32,13 +31,14 @@ const selectPinlet = point => {
 export const loadStation = stations => {
   if (map.getLayer('path')) map.removeLayer('path');
   if (map.getSource('path')) map.removeSource('path');
-  const points = stations.map(point => ({
+
+  const points = stations.map(station => ({
     type: 'Feature',
     properties: {
-      icon: selectPinlet(point),
-      description: point.address,
+      icon: selectPinlet(station),
+      description: station.address,
     },
-    geometry: point.location,
+    geometry: station.location,
   }));
 
   map.addLayer({
@@ -47,7 +47,7 @@ export const loadStation = stations => {
     layout: {
       'icon-image': '{icon}',
       'icon-allow-overlap': true,
-      'icon-size': 0.55,
+      'icon-size': 0.9,
     },
     source: {
       type: 'geojson',
@@ -59,7 +59,7 @@ export const loadStation = stations => {
   });
 };
 
-export const yourLocation = () => {
+export const showCenter = () => {
   if (map.getSource('start')) return;
   map.addSource('start', {
     type: 'geojson',
@@ -76,13 +76,14 @@ export const yourLocation = () => {
       ],
     },
   });
+
   map.addLayer({
     id: 'start',
     type: 'symbol',
     source: 'start',
     layout: {
       'icon-allow-overlap': true,
-      'icon-image': 'your-location',
+      'icon-image': 'location_big',
       'icon-size': 1,
     },
   });
