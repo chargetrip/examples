@@ -1,36 +1,38 @@
 <!DOCTYPE html>
 <html lang="nl">
   <head>
-    <title>API: Car example</title>
+    <title>Chargetrip API: Query the car example</title>
     <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Query the list of cars with Chargetrip API and compare the models" />
+    <meta name="keywords" content="Chargetrip, Chargetrip API, EV, ev-cars, ev-routing" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;400;600&display=swap" rel="stylesheet" />
     <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
-    <header></header>
     <div class="github-link">
-      <a href="https://github.com/chargetrip/examples/tree/master/route" title="github project">
+      <a href="https://github.com/chargetrip/examples/tree/master/car" title="github project">
         View on Github
       </a>
       <button aria-label="remove github link" title="remove github link" onclick="this.parentElement.remove()"></button>
     </div>
 
-    <div class="section-titles">
-      <ul class="section-titles-sub">
-        <li class="section-titles-sub-range">CT Real Range</li>
-        <li class="section-titles-sub-battery">Useable battery</li>
-        <li class="section-titles-sub-efficiency">Efficiency</li>
-        <li class="section-titles-sub-plug">Plug type</li>
+    <div class="bg">
+      <ul class="section-titles">
+        <li class="icon range">CT Real Range</li>
+        <li class="icon battery">Useable battery</li>
+        <li class="icon efficiency">Efficiency</li>
+        <li class="icon plug">Plug type</li>
       </ul>
-      <ul class="section-titles-sub">
-        <li><span>Route</span></li>
+      <ul class="section-titles">
+        <h5>Route</h5>
         <li>City</li>
         <li>Highway</li>
         <li>Plug type</li>
       </ul>
-      <ul class="section-titles-sub">
+      <ul class="section-titles">
         <li>Acceleration</li>
         <li>Top speed</li>
         <li>Total power</li>
@@ -39,47 +41,45 @@
     </div>
 
     <template id="car-profile">
-    <div class="car-profile">
-      <div class="section">
-        <div class="car-maker" id="make"></div>
-        <div class="car-model" id="model"></div>
-        <img id="car-image" class="car-image">
-      </div>
+      <div class="car-profile">
+        <header>
+          <h1 id="make"></h1>
+          <p id="model"></p>
+          <img id="car-image" class="car-image" alt="car image" />
+        </header>
 
-      <div class="section">
-        <h2>Car details</h2>
-        <ul>
+        <div class="section">
+          <h2>Car details</h2>
+          <ul>
             <li id="range"></li>
             <li id="battery"></li>
             <li id="efficiency"></li>
             <li id="plug"></li>
-        </ul>
-      </div>
-
-      <div class=section>
-        <h2>Weather data</h2>
-        <div class="weather-types">
-          <span>mild</span> <span>cold</span>
+          </ul>
         </div>
-        <ul>
-          <li class="weather-list"><span id="city-mild"></span> <span id="city-cold"></span></li>
-          <li class="weather-list"><span id="highway-mild"></span> <span id="highway-cold"></span></li>
-          <li class="weather-list"><span id="combined-mild"></span> <span id="combined-cold"></span></li>
-        </ul>
-      </div>
 
-      <div class="section">
-        <h2>Performance</h2>
-        <ul>
-          <li id="acceleration"></li>
-          <li id="topspeed"></li>
-          <li id="power"></li>
-          <li id="torque"></li>
-        </ul>
+        <div class="section">
+          <h2>Weather data</h2>
+          <div class="weather-types weather-types-title"><span>mild</span> <span>cold</span></div>
+          <ul>
+            <li class="weather-types"><span id="city-mild"></span> <span id="city-cold"></span></li>
+            <li class="weather-types"><span id="highway-mild"></span> <span id="highway-cold"></span></li>
+            <li class="weather-types"><span id="combined-mild"></span> <span id="combined-cold"></span></li>
+          </ul>
+        </div>
+
+        <div class="section">
+          <h2>Performance</h2>
+          <ul>
+            <li id="acceleration"></li>
+            <li id="topspeed"></li>
+            <li id="power"></li>
+            <li id="torque"></li>
+          </ul>
+        </div>
+        <a class="chargetrip-logo" href="https://chargetrip.com/">Powered by Chargetrip</a>
       </div>
-      <a class="chargetrip-logo" href="https://chargetrip.com/">Powered by Chargetrip</a>
-    </div>
-  </template>
+    </template>
   </body>
   <script src="bundle.js"></script>
 </html>
