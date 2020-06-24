@@ -9,18 +9,12 @@ const map = new mapboxgl.Map({
 });
 
 /**
- * Icon for the charging station differs base on the speed (slow, fast, turbo) and status(available or no).
+ * Icon for the charging station differs base on the speed (slow, fast, turbo),
+ * and status(available, busy, unkown or broken).
+ * If a charging station has multiple speeds the fastest speed will be shown.
  * @param station {object} Station data
  */
-const selectPinlet = station => {
-  const statusVals = ['available', 'unknown', 'broken'];
-  const speedVals = ['slow', 'fast'];
-
-  let status = statusVals.includes(station.status) ? station.status : 'in-use';
-  let speed = speedVals.includes(station.speed) ? station.speed : 'turbo'; //TODO:: why do we fall back to turbo? because of the color?
-
-  return `${status}-${speed}`;
-};
+const selectPinlet = station => `${station.status}-${station.speed}`;
 
 /**
  * Draw the stations on the map.

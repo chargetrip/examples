@@ -1,7 +1,7 @@
 import { createClient, defaultExchanges } from '@urql/core';
 import { getStationsAround } from './queries.js';
 import { loadStation, showCenter } from './map.js';
-import { defaultFilters, initFilters } from './filters.js';
+import { initFilters } from './filters.js';
 
 /**
  * For the purpose of this example we use urgl - lightweights GraphQL client.
@@ -23,8 +23,7 @@ const client = createClient({
 
 /**
  * In this example we fetch the closest stations around Oudekerksplein, 1012 GZ Amsterdam, Noord-Holland, Netherlands
- * with a radius of 5000 meters which have a supermarket and
- * at least one connector of 50 kWh or 22 kWh
+ * with a radius of 5000 meters
  */
 const fetchStations = ({ distance, power, amenities }) =>
   client

@@ -1,7 +1,7 @@
 /**
  * In this example the range, power and amenities are dynamic.
  * A charging station can be slow (< 43 kW), fast (< 100 kW) or turbo.
- * When any of these values is changed we update the map.
+ * When any of these values are changed we update the map.
  */
 
 const powers = {
@@ -23,8 +23,8 @@ const rangeSlider = document.getElementById('range');
 const rangeThumb = document.getElementById('range-thumb');
 
 const updateRangeSliderValue = () => {
-  const percent = Number(rangeSlider.value / 20 / 1000);
-  const newPosition = percent * 285; //TODO:: magic number :)
+  const percent = (rangeSlider.value - 1000) / 19000;
+  const newPosition = percent * rangeSlider.offsetWidth - percent * 60;
 
   rangeThumb.innerHTML = `${rangeSlider.value / 1000} km`;
   rangeThumb.style.left = `calc((${newPosition}px))`;
@@ -46,15 +46,15 @@ const getFilters = () => {
   };
 };
 
-export const initFilters = updateFunc => {
+export const initFilters = callback => {
   rangeSlider.addEventListener('input', () => {
     updateRangeSliderValue();
-    updateFunc(getFilters());
+    callback(getFilters());
   });
 
   const filters = [...document.querySelectorAll('.filters input')];
-  filters.forEach(input => input.addEventListener('change', () => updateFunc(getFilters())));
+  filters.forEach(input => input.addEventListener('change', () => callback(getFilters())));
 
   updateRangeSliderValue();
-  updateFunc(defaultFilters);
+  callback(defaultFilters);
 };
