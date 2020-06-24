@@ -38,10 +38,11 @@
       </ul>
     </div>
 
-    <template id="car-profile">
+    <div id="target">Loading...</div>
+    <script id="template" type="x-tmpl-mustache">
     <div class="car-profile">
       <div class="section">
-        <div class="car-maker" id="make"></div>
+        <div class="car-maker"> {{maker}}</div>
         <div class="car-model" id="model"></div>
         <img id="car-image" class="car-image">
       </div>
@@ -79,7 +80,7 @@
       </div>
       <a class="chargetrip-logo" href="https://chargetrip.com/">Powered by Chargetrip</a>
     </div>
-  </template>
+  </script>
   </body>
   <script src="bundle.js"></script>
 </html>
