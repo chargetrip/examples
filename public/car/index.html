@@ -40,21 +40,22 @@
       </ul>
     </div>
 
-    <template id="car-profile">
+    <div id="target">Loading...</div>
+    <script id="template" type="x-tmpl-mustache">
       <div class="car-profile">
         <header>
-          <h1 id="make"></h1>
-          <p id="model"></p>
-          <img id="car-image" class="car-image" alt="car image" />
+          <h1> {{make}}</h1>
+          <p> {{model}}</p>
+          <img class="car-image" alt="car image" {{image}}/>
         </header>
 
         <div class="section">
           <h2>Car details</h2>
           <ul>
-            <li id="range"></li>
-            <li id="battery"></li>
-            <li id="efficiency"></li>
-            <li id="plug"></li>
+            <li> {{range}}</li>
+            <li> {{battery}}</li>
+            <li> {{efficiency}}</li>
+            <li> {{plug}}</li>
           </ul>
         </div>
 
@@ -62,24 +63,24 @@
           <h2>Weather data</h2>
           <div class="weather-types weather-types-title"><span>mild</span> <span>cold</span></div>
           <ul>
-            <li class="weather-types"><span id="city-mild"></span> <span id="city-cold"></span></li>
-            <li class="weather-types"><span id="highway-mild"></span> <span id="highway-cold"></span></li>
-            <li class="weather-types"><span id="combined-mild"></span> <span id="combined-cold"></span></li>
+            <li class="weather-types"><span>{{cityMild}}</span> <span>{{cityCold}}</span></li>
+            <li class="weather-types"><span>{{highwayMild}}</span> <span>{{highwayCold}}</span></li>
+            <li class="weather-types"><span>{{combinedMild}}</span> <span>{{combinedCold}}</span></li>
           </ul>
         </div>
 
         <div class="section">
           <h2>Performance</h2>
           <ul>
-            <li id="acceleration"></li>
-            <li id="topspeed"></li>
-            <li id="power"></li>
-            <li id="torque"></li>
+            <li>{{acceleration}}</li>
+            <li>{{topspeed}}</li>
+            <li>{{power}}</li>
+            <li>{{torque}}</li>
           </ul>
         </div>
         <a class="chargetrip-logo" href="https://chargetrip.com/">Powered by Chargetrip</a>
       </div>
-    </template>
+    </script>
   </body>
   <script src="bundle.js"></script>
 </html>

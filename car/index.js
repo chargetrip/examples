@@ -27,14 +27,33 @@ client
   .toPromise()
   .then(response => {
     const cars = response.data.carList;
-    cars.map(car => {
-      displayCarData(car);
-    });
+    displayCarData(cars);
   })
   .catch(error => console.log(error));
 
-const displayCarData = car => {
-  let template = document.getElementById('template').innerHTML;
-  let rendered = Mustache.render(template, { make: car.make });
-  document.getElementById('target').innerHTML = rendered;
+const displayCarData = cars => {
+  cars.map(car => {
+    const img = car.images[0].url;
+
+    let template = document.getElementById('template').innerHTML;
+    let rendered = Mustache.render(template, {
+      make: car.make,
+      model: car.carModel,
+      range: '---',
+      battery: car.batteryUsableKwh + ' kWh',
+      efficiency: car.batteryEfficiency.average + ' kWh',
+      plug: car.connectors[0].standardd,
+      cityMild: car.range.best.city + ' km',
+      cityCold: car.range.worst.city + ' km',
+      highwayMild: car.range.best.highway + ' km',
+      highwayCold: car.range.worst.highway + ' km',
+      combinedMild: car.range.best.combined + ' km',
+      combinedCold: car.range.worst.combined + ' km',
+      acceleration: car.acceleration + ' s',
+      topspeed: car.topSpeed + ' Km/h',
+      power: car.power + ' KW',
+      torque: car.torque + ' Nm',
+    });
+    document.getElementById('target').innerHTML = rendered;
+  });
 };
