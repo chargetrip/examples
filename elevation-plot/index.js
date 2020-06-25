@@ -102,8 +102,8 @@ const drawRoutePolyline = (data, id) => {
  */
 const displayRouteData = data => {
   // The highest point in the elevation plot
-  document.getElementById('highest').innerHTML = `Highest ${(data.elevationUp / 1000).toFixed(0)}km`;
+  document.getElementById('highest').innerHTML = `Up ${(data.elevationUp / 1000).toFixed(0)}km`;
 
   // The lowest point in the elevation plot
-  document.getElementById('lowest').innerHTML = `Lowest ${(data.elevationDown / 1000).toFixed(0)}km`;
+  document.getElementById('lowest').innerHTML = `Down ${(data.elevationDown / 1000).toFixed(0)}km`;
 };
