@@ -31,6 +31,11 @@ client
   })
   .catch(error => console.log(error));
 
+/**
+ * To display the car profiles we use Mustache.
+ * To render the templates we have created an object storing all the data we want to display.
+ * @param cars {object} All cars we have fetched from the API
+ */
 const displayCarData = cars => {
   let profiles = [];
 
@@ -42,7 +47,7 @@ const displayCarData = cars => {
       range: car.range.best.city + ' km',
       battery: car.batteryUsableKwh + ' kWh',
       efficiency: car.batteryEfficiency.average + ' kWh',
-      plug: car.connectors[0].standardd,
+      plug: car.connectors[0].standard,
       cityMild: car.range.best.city + ' km',
       cityCold: car.range.worst.city + ' km',
       highwayMild: car.range.best.highway + ' km',
