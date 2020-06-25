@@ -1,6 +1,6 @@
 import { createClient, defaultExchanges } from '@urql/core';
 import { getCarList } from './queries.js';
-import Mustache from 'mustache';
+import { displayCarsData } from './cars';
 
 /**
  * For the purpose of this example we use urgl - lightweights GraphQL client.
@@ -22,48 +22,17 @@ const client = createClient({
   exchanges: [...defaultExchanges],
 });
 
+/**
+ * You can access a list of all available cars using the `carList` query.
+ * In this example we use our playground, which has only 4 card available.
+ * Chargetrip operates an extensive database of EV makes, editions, and versions, each with their specific consumption models.
+ * You need a registered x-client-id to access the full car database.
+ * Contact us if you are interested in working with the full database.
+ * **/
 client
   .query(getCarList)
   .toPromise()
   .then(response => {
-    const cars = response.data.carList;
-    displayCarData(cars);
+    displayCarsData(response.data.carList);
   })
   .catch(error => console.log(error));
-
-/**
- * To display the car profiles we use Mustache.
- * To render the templates we have created an object storing all the data we want to display.
- * @param cars {object} All cars we have fetched from the API
- */
-const displayCarData = cars => {
-  let profiles = [];
-
-  cars.map(car => {
-    profiles.push({
-      make: car.make,
-      model: car.carModel,
-      image: car.images[0].url,
-      range: car.range.best.city + ' km',
-      battery: car.batteryUsableKwh + ' kWh',
-      efficiency: car.batteryEfficiency.average + ' kWh',
-      plug: car.connectors[0].standard,
-      cityMild: car.range.best.city + ' km',
-      cityCold: car.range.worst.city + ' km',
-      highwayMild: car.range.best.highway + ' km',
-      highwayCold: car.range.worst.highway + ' km',
-      combinedMild: car.range.best.combined + ' km',
-      combinedCold: car.range.worst.combined + ' km',
-      acceleration: car.acceleration + ' s',
-      topspeed: car.topSpeed + ' Km/h',
-      power: car.power + ' KW',
-      torque: car.torque + ' Nm',
-    });
-  });
-
-  let template = document.getElementById('template').innerHTML;
-  let rendered = Mustache.render(template, {
-    carProfile: profiles,
-  });
-  document.getElementById('target').innerHTML = rendered;
-};
