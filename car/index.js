@@ -38,7 +38,8 @@ const displayCarData = cars => {
     profiles.push({
       make: car.make,
       model: car.carModel,
-      range: '---',
+      image: car.images[0].url,
+      range: car.range.best.city + ' km',
       battery: car.batteryUsableKwh + ' kWh',
       efficiency: car.batteryEfficiency.average + ' kWh',
       plug: car.connectors[0].standardd,
