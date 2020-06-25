@@ -32,11 +32,10 @@ client
   .catch(error => console.log(error));
 
 const displayCarData = cars => {
-  cars.map(car => {
-    const img = car.images[0].url;
+  let profiles = [];
 
-    let template = document.getElementById('template').innerHTML;
-    let rendered = Mustache.render(template, {
+  cars.map(car => {
+    profiles.push({
       make: car.make,
       model: car.carModel,
       range: '---',
@@ -54,6 +53,11 @@ const displayCarData = cars => {
       power: car.power + ' KW',
       torque: car.torque + ' Nm',
     });
-    document.getElementById('target').innerHTML = rendered;
   });
+
+  let template = document.getElementById('template').innerHTML;
+  let rendered = Mustache.render(template, {
+    carProfile: profiles,
+  });
+  document.getElementById('target').innerHTML = rendered;
 };

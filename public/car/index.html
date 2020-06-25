@@ -42,6 +42,7 @@
 
     <div id="target">Loading...</div>
     <script id="template" type="x-tmpl-mustache">
+      {{#carProfile}}
       <div class="car-profile">
         <header>
           <h1> {{make}}</h1>
@@ -80,6 +81,7 @@
         </div>
         <a class="chargetrip-logo" href="https://chargetrip.com/">Powered by Chargetrip</a>
       </div>
+      {{/carProfile}}
     </script>
   </body>
   <script src="bundle.js"></script>
