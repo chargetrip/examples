@@ -231,7 +231,15 @@ a {
   margin-left: -4px;
 }
 
-.chargetrip {
-  background: url('images/chargetrip.svg') no-repeat 16px center;
+/* Link to Chargetrip website */
+.chargetrip-logo {
+  display: inline-block;
   height: 40px;
+  line-height: 40px;
+  background: url('images/chargetrip.svg') no-repeat right center transparent;
+  padding-right: 90px;
+  font-size: 12px;
+  font-weight: 600;
+  margin: 0 15px;
+  color: var(--black);
 }

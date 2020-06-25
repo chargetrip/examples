@@ -117,7 +117,7 @@ export const imageLoader = (route, legs) => {
   img.onload = function() {
     for (let i = 0; i < len; i++) {
       dis = dis + legs[i].distance / 1000;
-      let x = (dis * 355) / (route.distance / 1000);
+      let x = (dis * 355) / (route.distance / 1000); //magic number
       chargers.drawImage(img, x - 13, 0);
     }
   };

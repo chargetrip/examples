@@ -63,9 +63,9 @@ export default [
     plugins,
   },
   {
-    input: 'route-path/index.js',
+    input: 'elevation-plot/index.js',
     output: {
-      file: 'public/route-path/bundle.js',
+      file: 'public/elevation-plot/bundle.js',
       format: 'iife',
       sourcemap: true,
     },

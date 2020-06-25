@@ -38,7 +38,7 @@ export const findClosest = (polyline, location) => {
 const markElevationPlot = (closestIndex, coordinates) => {
   const total = coordinates.length;
   const position = (closestIndex * 99) / total / 100;
-  document.getElementById('line').style.marginLeft = position * 358 + 'px';
+  document.getElementById('line').style.marginLeft = position * 358 + 'px'; //magic number
 };
 
 /**
