@@ -12,7 +12,6 @@ const labels = route => {
   const pos = 100;
   const label = new Array(points);
   label.fill('');
-
   label[2] = 0;
   for (let i = 1; pos * i < distance; i++) {
     const x = ((pos * i * points) / distance).toFixed(0);
@@ -22,7 +21,7 @@ const labels = route => {
 };
 
 /**
- * Create an elevation Graph using the point from the elevationPlot.
+ * Create an elevation Graph using the points from the elevationPlot.
  * @param elevation {object} 100 points of elevation.
  * @param label {object} The labels that will be displayed on the xAxis.
  */
@@ -38,7 +37,6 @@ export const loadGraph = (route, elevation) => {
     datasets: [
       {
         label: 'elevation',
-        responsive: false,
         borderColor: '#0078FF',
         borderWidth: 1.5,
         backgroundColor: gradient,
@@ -95,6 +93,9 @@ export const loadGraph = (route, elevation) => {
         bottom: 0,
       },
     },
+    tooltips: {
+      enabled: false,
+    },
   };
   new Chart(ctx, {
     type: 'line',
@@ -110,6 +111,7 @@ export const loadGraph = (route, elevation) => {
  */
 
 export const imageLoader = (route, legs) => {
+  const elevationGraph = document.getElementById('elevation');
   let chargers = document.getElementById('charge').getContext('2d');
   const img = new Image();
   const len = legs.length - 1;
@@ -117,8 +119,9 @@ export const imageLoader = (route, legs) => {
   img.onload = function() {
     for (let i = 0; i < len; i++) {
       dis = dis + legs[i].distance / 1000;
-      let x = (dis * 355) / (route.distance / 1000); //magic number
-      chargers.drawImage(img, x - 13, 0);
+      console.log(dis);
+      let x = (dis * elevationGraph.offsetWidth) / (route.distance / 1000);
+      chargers.drawImage(img, x - 30, 0);
     }
   };
   img.src = 'images/station.svg';

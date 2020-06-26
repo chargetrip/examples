@@ -45,6 +45,7 @@ export const drawPolyline = (map, coordinates) => {
 /**
  * With this function we will mark the route up until the point that was clicked.
  * @param coordinates {object} The coordinates until the point that was clicked.
+ * @param map {object}
  */
 export const drawClickedLine = (map, coordinates) => {
   if (map.getLayer('clicked-polyline')) map.removeLayer('clicked-polyline');
@@ -91,8 +92,8 @@ export const drawClickedLine = (map, coordinates) => {
  * Show the charging station, origin and destination on the map.
  *
  * Last leg of the route is a destination point.
- * All other legs are either charging stations or via points (if route has stops).
- *
+ * All other legs are either charging stations or via points (if the route has stops).
+ * @param map {object}
  * @param legs {array} route legs
  */
 export const showLegs = (map, legs) => {
@@ -101,7 +102,7 @@ export const showLegs = (map, legs) => {
   let route = [];
   let points = [];
 
-  // we want to show origin point on the map
+  // we want to show the origin point on the map
   // to do that we use the origin of the first leg
   route.push({
     type: 'Feature',
@@ -202,6 +203,11 @@ export const showLegs = (map, legs) => {
   });
 };
 
+/**
+ * Display the end of the clicked polyline.
+ * @param map {object}
+ * @param end {object} The coordinates of the end of the clicked line.
+ */
 export const addLineEnd = (map, end) => {
   if (map.getLayer('end')) map.removeLayer('end');
   if (map.getSource('point')) map.removeSource('point');

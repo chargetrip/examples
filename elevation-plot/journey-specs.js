@@ -2,7 +2,7 @@ import { getRoutePath } from './queries.js';
 
 /**
  * Show route path specific information like elevation, consumption, speed etc.
- *
+ * The temperature and maxspeed are not yet part of the API. This will be added soon.
  * @param path {object} route path specification.
  */
 export const displaySpecs = path => {
@@ -15,7 +15,7 @@ export const displaySpecs = path => {
 };
 
 /**
- * Find the closest point in the polyline, to were the user has clicked on the map.
+ * Find the closest point in the polyline.
  * @param polyline {object} polyline coordinates.
  * @param location {object} the location that was clicked on the polyline.
  */
@@ -36,9 +36,10 @@ export const findClosest = (polyline, location) => {
 };
 
 const markElevationPlot = (closestIndex, coordinates) => {
+  const elevatetionGraph = document.getElementById('elevation');
   const total = coordinates.length;
   const position = (closestIndex * 99) / total / 100;
-  document.getElementById('line').style.marginLeft = position * 358 + 'px'; //magic number
+  document.getElementById('line').style.marginLeft = position * elevatetionGraph.offsetWidth + 'px';
 };
 
 /**
