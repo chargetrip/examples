@@ -1,7 +1,7 @@
 import Chart from 'chart.js';
 
 /**
- * Calculate where the ditance labels should be placed.
+ * Calculate where the distance labels should be placed.
  * Here we want to display the distance every 100 m.
  * @param route {object} All data requested about the route.
  */

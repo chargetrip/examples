@@ -38,10 +38,10 @@ const client = createClient({
 });
 
 /**
- * To create a route you need:
+ * To create a route you need to:
  *
- * 1. Create a new route and receive back its ID;
- * 2. Subscribe to route updates in order to receive its details.
+ * 1. create a new route and receive back its ID;
+ * 2. subscribe to route updates in order to receive its details.
  */
 client
   .mutation(createRoute)
