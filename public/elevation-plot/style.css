@@ -14,7 +14,6 @@ body {
 }
 
 span {
-  margin: 0;
   font-weight: 600;
   line-height: 30px;
 }
@@ -143,13 +142,12 @@ a {
 }
 
 .chart {
-  width: 102%;
-  margin-left: -5px;
+  padding: 5px;
 }
 
 .charge {
   position: absolute;
-  top: 317px;
+  top: 315px;
   left: 10px;
   outline: none;
   z-index: 3;
@@ -218,17 +216,14 @@ a {
 }
 
 .line {
-  position: absolute;
-  top: 216px;
-  height: 135px;
+  position: relative;
+  top: -160px;
+  left: 10px;
+  margin-bottom: -150px;
+  height: 133px;
   width: 2px;
-  left: 1px;
   background-color: #ea8538;
   z-index: 3;
-}
-
-.line img {
-  margin-left: -4px;
 }
 
 /* Link to Chargetrip website */

@@ -44,7 +44,7 @@ export const drawRoute = (coordinates, legs) => {
       splitPolyline(line, closest);
       return;
     });
-    if (map.getLayer('chargers')) console.log('yes');
+    if (map.getLayer('chargers'));
     else {
       if (map.getLayer('end')) map.removeLayer('end');
       if (map.getSource('point')) map.removeSource('point');

@@ -6,15 +6,14 @@ import Chart from 'chart.js';
  * @param route {object} All data requested about the route.
  */
 
-const labels = route => {
-  const distance = route.distance / 1000;
+const createLabelsForElevation = route => {
+  const distanceInKm = route.distance / 1000;
   const points = route.elevationPlot.length;
   const pos = 100;
-  const label = new Array(points);
-  label.fill('');
-  label[2] = 0;
-  for (let i = 1; pos * i < distance; i++) {
-    const x = ((pos * i * points) / distance).toFixed(0);
+  const label = new Array(points).fill('');
+  label[0] = 0;
+  for (let i = 1; pos * i < distanceInKm; i++) {
+    const x = ((pos * i * points) / distanceInKm).toFixed(0);
     label[x] = pos * i;
   }
   return label;
@@ -22,8 +21,8 @@ const labels = route => {
 
 /**
  * Create an elevation Graph using the points from the elevationPlot.
- * @param elevation {object} 100 points of elevation.
- * @param label {object} The labels that will be displayed on the xAxis.
+ * @param elevation {array} 100 points of elevation.
+ * @param label {array} The labels that will be displayed on the xAxis.
  */
 
 export const loadGraph = (route, elevation) => {
@@ -33,7 +32,7 @@ export const loadGraph = (route, elevation) => {
   gradient.addColorStop(1, '#fff');
   gradient.addColorStop(0, 'rgba(1, 99, 234, 0.4)');
   const data = {
-    labels: labels(route),
+    labels: createLabelsForElevation(route),
     datasets: [
       {
         label: 'elevation',
@@ -97,11 +96,7 @@ export const loadGraph = (route, elevation) => {
       enabled: false,
     },
   };
-  new Chart(ctx, {
-    type: 'line',
-    data: data,
-    options: options,
-  });
+  new Chart(ctx, { type: 'line', data, options });
 };
 
 /**
@@ -115,13 +110,12 @@ export const imageLoader = (route, legs) => {
   let chargers = document.getElementById('charge').getContext('2d');
   const img = new Image();
   const len = legs.length - 1;
-  let dis = 0;
+  let distanceKm = 0;
   img.onload = function() {
     for (let i = 0; i < len; i++) {
-      dis = dis + legs[i].distance / 1000;
-      console.log(dis);
-      let x = (dis * elevationGraph.offsetWidth) / (route.distance / 1000);
-      chargers.drawImage(img, x - 30, 0);
+      distanceKm = distanceKm + legs[i].distance / 1000;
+      let x = (distanceKm * elevationGraph.offsetWidth) / (route.distance / 1000);
+      chargers.drawImage(img, x - 15, 0);
     }
   };
   img.src = 'images/station.svg';
