@@ -283,8 +283,8 @@ h1 {
   display: inline-block;
   height: 40px;
   line-height: 38px;
-  background-size: 72px;
   background: url('images/chargetrip.svg') no-repeat right center transparent;
+  background-size: 72px;
   padding-right: 80px;
   font-size: 12px;
   font-weight: 600;
