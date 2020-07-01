@@ -114,8 +114,6 @@ a {
 #cars {
   display: flex;
   margin: 80px 0 24px 240px;
-  /* margin-top: 79px;
-  margin-left: 240px; */
   padding: 0 16px 0 32px;
   justify-content: flex-start;
 }
