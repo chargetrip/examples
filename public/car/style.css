@@ -60,12 +60,11 @@ a {
   top: 312px;
   left: 0;
   bottom: 0;
-  height: 100%;
   z-index: -1;
   width: 100%;
   padding: 75px 35px;
   margin-bottom: 0;
-  background: #e5e5e5;
+  background: #ffffff;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
 }
@@ -114,16 +113,15 @@ a {
 
 #cars {
   display: flex;
-  margin-top: 79px;
-  margin-left: 240px;
+  margin: 80px 0 24px 240px;
+  /* margin-top: 79px;
+  margin-left: 240px; */
   padding: 0 16px 0 32px;
   justify-content: flex-start;
 }
 
 .car-profile {
   width: 25%;
-  /* max-width: 284px;
-  min-width: 284px; */
   margin-left: 10px;
   box-shadow: 0 0.5px 6px rgba(0, 0, 0, 0.04), 0px 2px 10px rgba(0, 0, 0, 0.05), 0px 3px 24px rgba(0, 0, 0, 0.06);
   background: #ffffff;
@@ -187,14 +185,15 @@ a {
   display: inline-block;
   visibility: hidden;
   height: 40px;
-  padding-right: 90px;
+  padding-right: 80px;
   margin: 0 15px;
   background: url('images/chargetrip.svg') no-repeat right center transparent;
   color: #0c0c10;
   text-decoration: none;
   font-size: 12px;
   font-weight: 600;
-  line-height: 40px;
+  line-height: 38px;
+  background-size: 72px;
 }
 
 .car-profile:last-child .chargetrip-logo {
