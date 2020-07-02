@@ -34,7 +34,7 @@ export const drawPolyline = (map, coordinates) => {
     },
     paint: {
       'line-color': '#0078FF',
-      'line-width': 3,
+      'line-width': 6,
     },
   });
 };
@@ -70,7 +70,6 @@ export const drawClickedLine = (map, coordinates) => {
     {
       id: 'clicked-polyline',
       type: 'line',
-      options: 'beforeLayer',
       source: 'clicked-source',
       layout: {
         'line-join': 'round',
@@ -78,7 +77,7 @@ export const drawClickedLine = (map, coordinates) => {
       },
       paint: {
         'line-color': '#EA8538',
-        'line-width': 4,
+        'line-width': 7,
       },
     },
     'route',
