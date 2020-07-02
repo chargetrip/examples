@@ -123,7 +123,7 @@ export const showLegs = (map, legs) => {
       layout: {
         'icon-image': '{icon}',
         'icon-allow-overlap': true,
-        'icon-size': 0.7,
+        'icon-size': 0.9,
         'icon-offset': ['case', ['==', ['get', 'icon'], 'arrival'], ['literal', [0, -15]], ['literal', [0, 0]]],
       },
       source: {
@@ -135,24 +135,6 @@ export const showLegs = (map, legs) => {
       },
     });
   }
-
-  map.addLayer({
-    id: 'chargers',
-    type: 'symbol',
-    layout: {
-      'icon-image': '{icon}',
-      'icon-allow-overlap': true,
-      'icon-size': 0.85,
-      'icon-offset': [0, -15],
-    },
-    source: {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: points,
-      },
-    },
-  });
 };
 
 /**
@@ -184,7 +166,7 @@ export const addLineEnd = (map, end) => {
     source: 'point',
     layout: {
       'icon-image': 'elipse',
-      'icon-size': 1,
+      'icon-size': 1.2,
     },
   });
 };
