@@ -12,7 +12,7 @@ const map = new mapboxgl.Map({
 });
 
 /**
- * Draw route polyline and show charging stations on the map.
+ * Draw route polyline and show the point of origin and destinatio on the map.
  *
  * @param coordinates {array} Array of coordinates
  * @param legs {array} route legs (stops) - each leg represents either a charging station, or via point or final point

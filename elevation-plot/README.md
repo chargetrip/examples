@@ -2,7 +2,7 @@
 
 This tutorial expands on the route example. It will not only show a route on a map but also display information about the journey specs and the elevation levels:
 
-1.  Display a route on a map along with the charging stations;
+1.  Display a route on a map;
 2.  Display an elevation plot;
 3.  Display information about a specific point in your journey;
 4.  Updating the journey specs for a specific location in your journey, when you click on the polyline.
@@ -27,7 +27,7 @@ Chargetrip operates an extensive database of EVs, each with their specific consu
 
 Our Playground has a station database that is populated with freely available European station data from [OCM](https://openchargemap.org/site). Importing your own database or using one of the databases Chargetrip has an integration with, is possible. For more details, contact us.
 
-If you are not yet familiar with using our API to plan a route. The route example we have build for you is a good first step. This example expands on that.
+If you are not yet familiar with, using our API to plan a route. The route example we have build for you is a good first step. This example expands on that.
 
 ### Steps to take
 
