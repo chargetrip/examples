@@ -1,10 +1,7 @@
-import mapboxgl from 'mapbox-gl';
-import { getDurationString } from '../utils';
-
 /**
  * Draw route polyline on a map.
  *
- * @param coordinates {object} polyline coordinates
+ * @param coordinates {array} polyline coordinates
  */
 export const drawPolyline = (map, coordinates) => {
   const geojson = {
@@ -44,7 +41,7 @@ export const drawPolyline = (map, coordinates) => {
 
 /**
  * With this function we will mark the route up until the point that was clicked.
- * @param coordinates {object} The coordinates until the point that was clicked.
+ * @param coordinates {array} The coordinates until the point that was clicked.
  * @param map {object}
  */
 export const drawClickedLine = (map, coordinates) => {
@@ -94,7 +91,7 @@ export const drawClickedLine = (map, coordinates) => {
  * Last leg of the route is a destination point.
  * All other legs are either charging stations or via points (if the route has stops).
  * @param map {object}
- * @param legs {array} route legs
+ * @param legs {array} route legs (stops) - each leg represents either a charging station, or via point or final point
  */
 export const showLegs = (map, legs) => {
   if (legs.length === 0) return;
@@ -111,27 +108,12 @@ export const showLegs = (map, legs) => {
     },
     geometry: legs[0].origin.geometry,
   });
-  legs.map((leg, index) => {
-    // add charging stations
-    if (index !== legs.length - 1) {
-      points.push({
-        type: 'Feature',
-        properties: {
-          description: `${getDurationString(leg.chargeTime)}`,
-          icon: 'unknown-turbo',
-        },
-        geometry: leg.destination.geometry,
-      });
-    } else {
-      // add destination point (last leg)
-      route.push({
-        type: 'Feature',
-        properties: {
-          icon: 'arrival',
-        },
-        geometry: leg.destination.geometry,
-      });
-    }
+  route.push({
+    type: 'Feature',
+    properties: {
+      icon: 'arrival',
+    },
+    geometry: legs[legs.length - 1].destination.geometry,
   });
 
   // draw origin and destination points on a map
@@ -172,41 +154,12 @@ export const showLegs = (map, legs) => {
       },
     },
   });
-
-  /**
-   * Display the charge time on a hover.
-   */
-
-  const popup = new mapboxgl.Popup({
-    closeButton: false,
-    closeOnClick: false,
-  });
-
-  map.on('mouseenter', 'chargers', e => {
-    map.getCanvas().style.cursor = 'pointer';
-
-    const coordinates = e.features[0].geometry.coordinates;
-    const description = e.features[0].properties.description;
-
-    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-    }
-    popup
-      .setLngLat(coordinates)
-      .setHTML(description)
-      .addTo(map);
-  });
-
-  map.on('mouseleave', 'chargers', function() {
-    map.getCanvas().style.cursor = '';
-    popup.remove();
-  });
 };
 
 /**
  * Display the end of the clicked polyline.
  * @param map {object}
- * @param end {object} The coordinates of the end of the clicked line.
+ * @param end {array} The coordinates of the end of the clicked line.
  */
 export const addLineEnd = (map, end) => {
   if (map.getLayer('end')) map.removeLayer('end');

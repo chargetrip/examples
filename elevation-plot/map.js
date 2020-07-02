@@ -33,34 +33,32 @@ export const drawRoute = (coordinates, legs) => {
   map.on('mouseleave', 'polyline', () => {
     map.getCanvas().style.cursor = '';
   });
-  map.on('click', () => {
-    map.on('click', 'polyline', e => {
-      const line = Object.assign([], coordinates);
-      const location = [e.lngLat.lng, e.lngLat.lat];
-      let closest = findClosest(coordinates, location);
-      while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-        coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-      }
-      splitPolyline(line, closest);
-      return;
-    });
-    if (map.getLayer('chargers'));
-    else {
-      if (map.getLayer('end')) map.removeLayer('end');
-      if (map.getSource('point')) map.removeSource('point');
-      if (map.getLayer('clicked-polyline')) map.removeLayer('clicked-polyline');
-      if (map.getSource('clicked-source')) map.removeSource('clicked-source');
-      showLegs(map, legs);
+  map.on('click', 'polyline', e => {
+    const line = Object.assign([], coordinates);
+    const location = [e.lngLat.lng, e.lngLat.lat];
+    let closest = findClosest(coordinates, location);
+    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
+      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
     }
+    splitPolyline(line, closest);
+    return;
   });
+  if (map.getLayer('chargers'));
+  else {
+    if (map.getLayer('end')) map.removeLayer('end');
+    if (map.getSource('point')) map.removeSource('point');
+    if (map.getLayer('clicked-polyline')) map.removeLayer('clicked-polyline');
+    if (map.getSource('clicked-source')) map.removeSource('clicked-source');
+    showLegs(map, legs);
+  }
   return map;
 };
 
 /**
  * Create a second polyline up untill the point that was clicked.
  *
- * @param coordinates {object} the coordinates that need to be split
- * @param closest {object} the point at which the coordinates need to be split.
+ * @param coordinates {array} the coordinates that need to be split
+ * @param closest {array} the point at which the coordinates need to be split.
  */
 const splitPolyline = (coordinates, closest) => {
   const end = coordinates[closest];

@@ -5,7 +5,6 @@ import Chart from 'chart.js';
  * Here we want to display the distance every 100 m.
  * @param route {object} All data requested about the route.
  */
-
 const createLabelsForElevation = route => {
   const distanceInKm = route.distance / 1000;
   const points = route.elevationPlot.length;
@@ -24,7 +23,6 @@ const createLabelsForElevation = route => {
  * @param elevation {array} 100 points of elevation.
  * @param label {array} The labels that will be displayed on the xAxis.
  */
-
 export const loadGraph = (route, elevation) => {
   Chart.defaults.global.defaultFontFamily = 'Inter';
   const ctx = document.getElementById('elevation').getContext('2d');
@@ -57,7 +55,7 @@ export const loadGraph = (route, elevation) => {
           },
           ticks: {
             min: 0,
-            padding: 0,
+            padding: 5,
             autoSkip: false,
             maxRotation: 0,
             minRotation: 0,
@@ -102,9 +100,8 @@ export const loadGraph = (route, elevation) => {
 /**
  * This function will display the charging stations within the elevation graph.
  * @param route {object} All information about the route.
- * @param legs {object} The legs of the route.
+ * @param legs {array} route legs (stops) - each leg represents either a charging station, or via point or final point
  */
-
 export const imageLoader = (route, legs) => {
   const elevationGraph = document.getElementById('elevation');
   let chargers = document.getElementById('charge').getContext('2d');

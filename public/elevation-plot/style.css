@@ -13,6 +13,32 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+#hideMe {
+  -moz-animation: cssAnimation 0s ease-in 5s forwards;
+  /* Firefox */
+  -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+  /* Safari and Chrome */
+  -o-animation: cssAnimation 0s ease-in 5s forwards;
+  /* Opera */
+  animation: cssAnimation 0s ease-in 5s forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+@keyframes cssAnimation {
+  to {
+    width: 0;
+    height: 0;
+    overflow: hidden;
+  }
+}
+@-webkit-keyframes cssAnimation {
+  to {
+    width: 0;
+    height: 0;
+    visibility: hidden;
+  }
+}
+
 span {
   font-weight: 600;
   line-height: 30px;
@@ -49,6 +75,27 @@ a {
   bottom: 0;
   width: 100%;
   height: 100%;
+}
+
+.tooltip {
+  position: absolute;
+  width: 221px;
+  height: 24px;
+  left: 50%;
+  top: 46%;
+
+  background: #0c0c0f;
+  border-radius: 2px;
+  transition: opacity 500ms;
+}
+
+.tooltip span {
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 24px;
+  color: #ffffff;
+  border-radius: 109.6px;
+  padding-left: 8px;
 }
 
 .journey-specs {
@@ -147,7 +194,7 @@ a {
 
 .charge {
   position: absolute;
-  top: 315px;
+  top: 310px;
   left: 10px;
   outline: none;
   z-index: 3;
@@ -217,7 +264,7 @@ a {
 
 .line {
   position: relative;
-  top: -160px;
+  top: -165px;
   left: 10px;
   margin-bottom: -150px;
   height: 133px;

@@ -20,6 +20,8 @@
       <button aria-label="remove github link" title="remove github link" onclick="this.parentElement.remove()"></button>
     </div>
 
+    <div class="tooltip" id="hideMe"><span>Click on the line to see more details</span></div>
+
     <div class="journey-specs" id="journey">
       <header class="header">
         <h1>Journey Specs</h1>
@@ -32,7 +34,7 @@
       </header>
 
       <h2>Elevation levels</h2>
-      <div class="chart"><canvas id="elevation" height="130px"></canvas></div>
+      <div class="chart" id="chart"><canvas id="elevation" height="130px"></canvas></div>
       <div class="line" id="line"></div>
       <canvas class="charge" id="charge"></canvas>
       <h2>Details</h2>
