@@ -130,7 +130,7 @@ a {
 
 .tags {
   display: flex;
-  margin: 12px 0 24px;
+  margin: 12px 0 20px;
   color: #edf2f6;
 }
 
@@ -194,7 +194,7 @@ a {
 
 .charge {
   position: absolute;
-  top: 302px;
+  top: 298px;
   left: 10px;
   outline: none;
   z-index: 3;
@@ -264,10 +264,10 @@ a {
 
 .line {
   position: relative;
-  top: -166px;
+  top: -163px;
   left: 10px;
   margin-bottom: -150px;
-  height: 133px;
+  height: 130px;
   width: 2px;
   background-color: #ea8538;
   z-index: 3;
