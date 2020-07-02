@@ -96,7 +96,6 @@ export const showLegs = (map, legs) => {
   if (legs.length === 0) return;
 
   let route = [];
-  let points = [];
 
   // we want to show the origin point on the map
   // to do that we use the origin of the first leg
