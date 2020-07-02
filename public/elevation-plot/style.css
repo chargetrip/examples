@@ -52,16 +52,16 @@ ol {
 }
 
 h1 {
-  margin: 0.5em 0 0.125em;
-  font-size: 1.375em;
+  margin: 8px 0 2px;
+  font-size: 22px;
   font-weight: 600;
 }
 
 h2 {
-  font-size: 1.125em;
+  font-size: 18px;
   font-weight: 600;
-  padding: 1.5em 1em 0;
-  margin: 0 0 0.75em;
+  padding: 24px 16px 0;
+  margin: 0 0 12px;
   color: #0c0c10;
 }
 a {
@@ -109,7 +109,7 @@ a {
   max-height: calc(100% - 2em);
   border-radius: 8px;
 
-  width: 22.5em;
+  width: 360px;
 }
 
 .header {
@@ -118,7 +118,7 @@ a {
   color: #ffffff;
   display: flex;
   flex-direction: column;
-  padding: 1em 0em;
+  padding: 16px 0px;
   border-radius: 8px;
   align-items: center;
 }
@@ -130,33 +130,33 @@ a {
 
 .tags {
   display: flex;
-  margin: 0.75em 0 1.5em;
+  margin: 12px 0 24px;
   color: #edf2f6;
 }
 
 .tag {
   display: flex;
   border: 1px solid #ffffff;
-  padding: 0 0.5rem;
+  padding: 0 8px;
   font-size: 14px;
   font-weight: 600;
-  height: 1.5rem;
+  height: 24px;
   align-items: center;
-  margin: 0 0.25rem;
-  border-radius: 0.75rem;
+  margin: 0 4px;
+  border-radius: 12px;
 }
 
 .rounded-corners {
   position: absolute;
   width: 100%;
-  height: 0.5em;
+  height: 8px;
   background-color: #ffffff;
   bottom: 0;
-  border-radius: 0.5em 0.5em 0 0;
+  border-radius: 8px 8px 0 0;
 }
 
 .info {
-  padding: 0 1em 0.5em;
+  padding: 0 16px 8px;
   border-bottom: 1px solid #e8edf1;
 }
 
@@ -165,7 +165,7 @@ a {
   justify-content: space-between;
   align-items: center;
   padding: 0px 0px 0 30px;
-  line-height: 3em;
+  line-height: 48px;
 }
 
 .info-elevation {
@@ -194,7 +194,7 @@ a {
 
 .charge {
   position: absolute;
-  top: 310px;
+  top: 302px;
   left: 10px;
   outline: none;
   z-index: 3;
@@ -264,7 +264,7 @@ a {
 
 .line {
   position: relative;
-  top: -165px;
+  top: -166px;
   left: 10px;
   margin-bottom: -150px;
   height: 133px;

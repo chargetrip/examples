@@ -37,6 +37,7 @@ const markElevationPlot = (closestIndex, coordinates) => {
   const elevatetionGraph = document.getElementById('chart');
   const total = coordinates.length;
   const percentage = closestIndex / total;
+  console.log(elevatetionGraph.offsetWidth);
   document.getElementById('line').style.marginLeft = percentage * (elevatetionGraph.offsetWidth - 20) + 'px';
 };
 
