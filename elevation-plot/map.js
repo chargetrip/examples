@@ -46,7 +46,7 @@ export const drawRoute = (id, coordinates, legs) => {
     });
 
     positionElevationIndicator(position);
-    splitPolyline([...coordinates], closestPoint);
+    splitPolyline([...coordinates], closestPoint, closestPointIndex);
   });
 };
 
@@ -56,8 +56,8 @@ export const drawRoute = (id, coordinates, legs) => {
  * @param coordinates {array} the coordinates that need to be split
  * @param closestPoint {array} the point at which the coordinates need to be split.
  */
-const splitPolyline = (coordinates, closestPoint) => {
-  const clickedRoute = coordinates.splice(0, closestPoint);
+const splitPolyline = (coordinates, closestPoint, closestPointIndex) => {
+  const clickedRoute = coordinates.splice(0, closestPointIndex);
 
   drawClickedLine(clickedRoute);
   addLineEnd(closestPoint);
@@ -94,25 +94,23 @@ export const showLegs = legs => {
   });
 
   // draw origin and destination points on a map
-  if (!map.getLayer('route')) {
-    map.addLayer({
-      id: 'route',
-      type: 'symbol',
-      layout: {
-        'icon-image': '{icon}',
-        'icon-allow-overlap': true,
-        'icon-size': 0.9,
-        'icon-offset': ['case', ['==', ['get', 'icon'], 'arrival'], ['literal', [0, -15]], ['literal', [0, 0]]],
+  map.addLayer({
+    id: 'route',
+    type: 'symbol',
+    layout: {
+      'icon-image': '{icon}',
+      'icon-allow-overlap': true,
+      'icon-size': 0.9,
+      'icon-offset': ['case', ['==', ['get', 'icon'], 'arrival'], ['literal', [0, -15]], ['literal', [0, 0]]],
+    },
+    source: {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: route,
       },
-      source: {
-        type: 'geojson',
-        data: {
-          type: 'FeatureCollection',
-          features: route,
-        },
-      },
-    });
-  }
+    },
+  });
 };
 
 /**
@@ -164,6 +162,7 @@ export const drawPolyline = coordinates => {
 export const drawClickedLine = coordinates => {
   if (map.getLayer('clicked-polyline')) map.removeLayer('clicked-polyline');
   if (map.getSource('clicked-source')) map.removeSource('clicked-source');
+  console.log(coordinates);
   const geojson = {
     type: 'FeatureCollection',
     features: [
