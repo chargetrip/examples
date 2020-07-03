@@ -3,9 +3,9 @@ import Chart from 'chart.js';
 Chart.defaults.global.defaultFontFamily = 'Inter';
 
 /**
- * Create an elevation Graph using the points from the elevationPlot.
+ * Create an elevation graph using the points from the elevationPlot.
  *
- * @param route {object} Route data
+ * @param route {object} Route data.
  */
 export const loadGraph = route => {
   const { elevationPlot } = route;
@@ -133,7 +133,7 @@ const displayStationMarkers = route => {
 /**
  * Move the elevation indicator to a point on the graph to show the current position on the polyline.
  *
- * @param position {number} xAxis position of the indicator
+ * @param position {number} xAxis position of the indicator.
  */
 export const positionElevationIndicator = position => {
   const elevatetionGraph = document.getElementById('elevationGraph');
@@ -142,10 +142,10 @@ export const positionElevationIndicator = position => {
 };
 
 /**
- * Show information about highest and lowest points of the elevation profile.
+ * Show information about the amout of km we are going up and down on the route.
  *
- * @param elevationUp {number} highest point of the elevation profile.
- * @param elevationDown {number} lowest point of the elevation profile.
+ * @param elevationUp {number} The total number of meters which are going up on the route.
+ * @param elevationDown {number} The total number of meters which are going down on the route.
  */
 export const displayElevationData = (elevationUp, elevationDown) => {
   document.getElementById('loader').remove();
@@ -160,7 +160,8 @@ export const displayElevationData = (elevationUp, elevationDown) => {
 
 /**
  * Show route path specific information like elevation, consumption, speed etc.
- * The temperature and maxspeed are not yet part of the API. This will be added soon.
+ * The temperature and maxspeed are not yet available in our API. This will be added soon.
+ *
  * @param path {object} route path specification.
  */
 export const displaySpecs = path => {

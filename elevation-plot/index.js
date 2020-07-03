@@ -12,8 +12,8 @@ import { loadGraph, displayElevationData, displaySpecs } from './elevationGraph'
  * To draw a route on a map we use Mapbox GL JS. This tool uses the format [longitude,latitude],
  * so we have to reverse every pair.
  *
- * @param data {object} route specification
- * @param id {string} route ID
+ * @param data {object} route specification.
+ * @param id {string} route ID.
  */
 fetchRoute((routeId, routeData) => {
   drawRoutePolyline(routeId, routeData);

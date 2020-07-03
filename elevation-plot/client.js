@@ -8,7 +8,7 @@ import { pipe, subscribe } from 'wonka';
  * To establish a connection with Chargetrip GraphQL API you need to have an API key.
  * The key in this example is a public one and gives access only to a part of our extensive database.
  * You need a registered `x-client-id` to access the full database.
- * Read more about an authorisation in our documentation (https://docs.chargetrip.com/#authorisation).
+ * Read more about authorisation in our documentation (https://docs.chargetrip.com/#authorisation).
  */
 const headers = {
   'x-client-id': '5e8c22366f9c5f23ab0eff39',
@@ -54,8 +54,8 @@ export const fetchRoute = callback => {
         subscribe(result => {
           const { status, route } = result.data.routeUpdatedById;
 
-          // you can keep listening to the route changes to update route information
-          // for this example we want to only draw the initial route
+          // You can keep listening to the route changes to update route information.
+          // For this example we want to only draw the initial route.
           if (status === 'done' && route) {
             unsubscribe();
             callback(routeId, result.data.routeUpdatedById.route);

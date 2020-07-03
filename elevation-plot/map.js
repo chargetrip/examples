@@ -55,7 +55,7 @@ export const drawRoute = (id, coordinates, legs) => {
  *
  * @param coordinates {array} polyline coordinates
  */
-export const drawPolyline = coordinates => {
+const drawPolyline = coordinates => {
   const geojson = {
     type: 'FeatureCollection',
     features: [
@@ -99,7 +99,7 @@ export const drawPolyline = coordinates => {
  *
  * @param legs {array} route legs (stops) - each leg represents either a charging station, or via point or final point
  */
-export const showLegs = legs => {
+const showLegs = legs => {
   if (!legs || legs.length === 0) return;
   let route = [];
 
@@ -157,7 +157,7 @@ const splitPolyline = (coordinates, closestPoint, closestPointIndex) => {
  *
  * @param coordinates {array} The coordinates until the point that was clicked.
  */
-export const drawClickedLine = coordinates => {
+const drawClickedLine = coordinates => {
   if (map.getLayer('clicked-polyline')) map.removeLayer('clicked-polyline');
   if (map.getSource('clicked-source')) map.removeSource('clicked-source');
   const geojson = {
@@ -202,7 +202,7 @@ export const drawClickedLine = coordinates => {
  *
  * @param end {array} The coordinates of the end of the clicked line.
  */
-export const addLineEnd = end => {
+const addLineEnd = end => {
   if (map.getLayer('end')) map.removeLayer('end');
   if (map.getSource('point')) map.removeSource('point');
   map.addSource('point', {
