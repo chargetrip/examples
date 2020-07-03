@@ -16,11 +16,11 @@ import { loadGraph, displayElevationData, displaySpecs } from './elevationGraph'
  * @param id {string} route ID
  */
 fetchRoute((routeId, routeData) => {
-  drawRoutePolyline(routeData, routeId);
+  drawRoutePolyline(routeId, routeData);
   loadGraph(routeData);
 });
 
-const drawRoutePolyline = (data, id) => {
+const drawRoutePolyline = (id, data) => {
   const decodedData = mapboxPolyline.decode(data.polyline);
   const reversed = decodedData.map(item => item.reverse());
   const { elevationUp, elevationDown } = data;
@@ -28,6 +28,7 @@ const drawRoutePolyline = (data, id) => {
   drawRoute(id, reversed, data.legs);
   displayElevationData(elevationUp, elevationDown);
 
+  // fetch information about start of the route
   fetchRoutePath(id, reversed[0]).then(data => {
     displaySpecs(data);
   });

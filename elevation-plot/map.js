@@ -254,5 +254,5 @@ const findClosestPoint = (polyline, location) => {
     }
   }
 
-  return [closestPoint, closestPointIndex];
+  return [polyline[closestPointIndex], closestPointIndex];
 };
