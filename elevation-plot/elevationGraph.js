@@ -148,6 +148,9 @@ export const positionElevationIndicator = position => {
  * @param elevationDown {number} lowest point of the elevation profile.
  */
 export const displayElevationData = (elevationUp, elevationDown) => {
+  document.getElementById('loader').remove();
+  document.querySelector('.tags').style.display = 'flex';
+
   // The highest point of the elevation plot
   document.getElementById('highestPoint').innerHTML = `Highest ${(elevationUp / 1000).toFixed(0)}km`;
 
