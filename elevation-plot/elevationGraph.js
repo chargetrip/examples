@@ -138,7 +138,7 @@ const displayStationMarkers = route => {
 export const positionElevationIndicator = position => {
   const elevatetionGraph = document.getElementById('elevationGraph');
   document.getElementById('elevationIndicator').style.marginLeft =
-    position * (elevatetionGraph.offsetWidth - 20) + 'px';
+    position * (elevatetionGraph.offsetWidth - 10) + 'px';
 };
 
 /**
