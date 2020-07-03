@@ -3,24 +3,6 @@ import Chart from 'chart.js';
 Chart.defaults.global.defaultFontFamily = 'Inter';
 
 /**
- * Calculate where the distance labels should be placed.
- * Here we want to display the distance every 100 m.
- * @param route {object} All data requested about the route.
- */
-const createLabelsForElevation = route => {
-  const distanceInKm = route.distance / 1000;
-  const points = route.elevationPlot.length;
-  const pos = 100;
-  const label = new Array(points).fill('');
-  label[0] = 0;
-  for (let i = 1; pos * i < distanceInKm; i++) {
-    const x = ((pos * i * points) / distanceInKm).toFixed(0);
-    label[x] = pos * i;
-  }
-  return label;
-};
-
-/**
  * Create an elevation Graph using the points from the elevationPlot.
  *
  * @param route {object} Route data
@@ -102,6 +84,24 @@ export const loadGraph = route => {
 
   new Chart(ctx, { type: 'line', data, options });
   displayStationMarkers(route);
+};
+
+/**
+ * Calculate where the distance labels should be placed.
+ * Here we want to display the distance every 100 m.
+ * @param route {object} All data requested about the route.
+ */
+const createLabelsForElevation = route => {
+  const distanceInKm = route.distance / 1000;
+  const points = route.elevationPlot.length;
+  const pos = 100;
+  const label = new Array(points).fill('');
+  label[0] = 0;
+  for (let i = 1; pos * i < distanceInKm; i++) {
+    const x = ((pos * i * points) / distanceInKm).toFixed(0);
+    label[x] = pos * i;
+  }
+  return label;
 };
 
 /**

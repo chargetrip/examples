@@ -12,10 +12,10 @@ const map = new mapboxgl.Map({
 });
 
 /**
- * Draw route polyline and show the point of origin and destinatio on the map.
+ * Draw route polyline and show the point of origin and destination on the map.
  *
- * @param coordinates {array} Array of coordinates
- * @param legs {array} route legs (stops) - each leg represents either a charging station, or via point or final point
+ * @param coordinates {array} Array of coordinates.
+ * @param legs {array} route legs (stops) - each leg represents either a charging station, or via point or final point.
  */
 export const drawRoute = (id, coordinates, legs) => {
   if (map.loaded()) {
@@ -47,69 +47,6 @@ export const drawRoute = (id, coordinates, legs) => {
 
     positionElevationIndicator(position);
     splitPolyline([...coordinates], closestPoint, closestPointIndex);
-  });
-};
-
-/**
- * Create a second polyline up untill the point that was clicked.
- *
- * @param coordinates {array} the coordinates that need to be split
- * @param closestPoint {array} the point at which the coordinates need to be split.
- */
-const splitPolyline = (coordinates, closestPoint, closestPointIndex) => {
-  const clickedRoute = coordinates.splice(0, closestPointIndex);
-
-  drawClickedLine(clickedRoute);
-  addLineEnd(closestPoint);
-};
-
-/**
- * Show the charging station, origin and destination on the map.
- *
- * Last leg of the route is a destination point.
- * All other legs are either charging stations or via points (if the route has stops).
- *
- * @param legs {array} route legs (stops) - each leg represents either a charging station, or via point or final point
- */
-export const showLegs = legs => {
-  if (!legs || legs.length === 0) return;
-  let route = [];
-
-  // we want to show the origin point on the map
-  // to do that we use the origin of the first leg
-  route.push({
-    type: 'Feature',
-    properties: {
-      icon: 'location_big',
-    },
-    geometry: legs[0].origin.geometry,
-  });
-
-  route.push({
-    type: 'Feature',
-    properties: {
-      icon: 'arrival',
-    },
-    geometry: legs[legs.length - 1].destination.geometry,
-  });
-
-  // draw origin and destination points on a map
-  map.addLayer({
-    id: 'route',
-    type: 'symbol',
-    layout: {
-      'icon-image': '{icon}',
-      'icon-allow-overlap': true,
-      'icon-size': 0.9,
-      'icon-offset': ['case', ['==', ['get', 'icon'], 'arrival'], ['literal', [0, -15]], ['literal', [0, 0]]],
-    },
-    source: {
-      type: 'geojson',
-      data: {
-        type: 'FeatureCollection',
-        features: route,
-      },
-    },
   });
 };
 
@@ -155,14 +92,74 @@ export const drawPolyline = coordinates => {
 };
 
 /**
+ * Show the origin and destination on the map.
+ *
+ * The destination of the last leg is the destination point.
+ * The origin of the first leg is the origin of our route.
+ *
+ * @param legs {array} route legs (stops) - each leg represents either a charging station, or via point or final point
+ */
+export const showLegs = legs => {
+  if (!legs || legs.length === 0) return;
+  let route = [];
+
+  route.push({
+    type: 'Feature',
+    properties: {
+      icon: 'location_big',
+    },
+    geometry: legs[0].origin.geometry,
+  });
+
+  route.push({
+    type: 'Feature',
+    properties: {
+      icon: 'arrival',
+    },
+    geometry: legs[legs.length - 1].destination.geometry,
+  });
+
+  // draw origin and destination points on a map
+  map.addLayer({
+    id: 'route',
+    type: 'symbol',
+    layout: {
+      'icon-image': '{icon}',
+      'icon-allow-overlap': true,
+      'icon-size': 0.9,
+      'icon-offset': ['case', ['==', ['get', 'icon'], 'arrival'], ['literal', [0, -15]], ['literal', [0, 0]]],
+    },
+    source: {
+      type: 'geojson',
+      data: {
+        type: 'FeatureCollection',
+        features: route,
+      },
+    },
+  });
+};
+
+/**
+ * Create a second polyline up untill the point that was clicked.
+ *
+ * @param coordinates {array} the coordinates that need to be split.
+ * @param closestPoint {array} the point at which the coordinates need to be split.
+ */
+const splitPolyline = (coordinates, closestPoint, closestPointIndex) => {
+  const clickedRoute = coordinates.splice(0, closestPointIndex);
+
+  drawClickedLine(clickedRoute);
+  addLineEnd(closestPoint);
+};
+
+/**
  * With this function we will mark the route up until the point that was clicked.
+ *
  * @param coordinates {array} The coordinates until the point that was clicked.
- * @param map {object}
  */
 export const drawClickedLine = coordinates => {
   if (map.getLayer('clicked-polyline')) map.removeLayer('clicked-polyline');
   if (map.getSource('clicked-source')) map.removeSource('clicked-source');
-  console.log(coordinates);
   const geojson = {
     type: 'FeatureCollection',
     features: [
@@ -202,7 +199,7 @@ export const drawClickedLine = coordinates => {
 
 /**
  * Display the end of the clicked polyline.
- * @param map {object}
+ *
  * @param end {array} The coordinates of the end of the clicked line.
  */
 export const addLineEnd = end => {
