@@ -152,10 +152,10 @@ export const displayElevationData = (elevationUp, elevationDown) => {
   document.querySelector('.tags').style.display = 'flex';
 
   // The highest point of the elevation plot
-  document.getElementById('highestPoint').innerHTML = `Highest ${(elevationUp / 1000).toFixed(0)}km`;
+  document.getElementById('upHill').innerHTML = `Uphill ${(elevationUp / 1000).toFixed(0)}km`;
 
   // The lowest point of the elevation plot
-  document.getElementById('lowestPoint').innerHTML = `Lowest ${(elevationDown / 1000).toFixed(0)}km`;
+  document.getElementById('downHill').innerHTML = `Downhill ${(elevationDown / 1000).toFixed(0)}km`;
 };
 
 /**
