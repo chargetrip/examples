@@ -4,6 +4,7 @@
     "es6": true
   },
   "parser": "babel-eslint",
+  "plugins": ["babel"],
   "extends": ["eslint:recommended", "plugin:prettier/recommended"],
   "parserOptions": {
     "ecmaVersion": 2018,
