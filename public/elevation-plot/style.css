@@ -110,6 +110,7 @@ a {
   border-radius: 8px;
 
   width: 360px;
+  scrollbar-width: none;
 }
 
 .header {
