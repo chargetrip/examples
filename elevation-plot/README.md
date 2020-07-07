@@ -1,6 +1,6 @@
-# Get information about elevation in your journey with Chargetrip API
+# Get an elevation profile about your route with the Chargetrip API
 
-This tutorial expands on the route example. It will not only show a route on a map but also display information about the journey specs and the elevation levels:
+This tutorial expands on the route example. It will not only show a route on a map but also display journey specifications, and elevation levels:
 
 1.  Display a route on a map;
 2.  Display an elevation plot;
@@ -26,8 +26,6 @@ For this example, we use **Tesla model S**, **Amsterdam** as an origin, and **Be
 Chargetrip operates an extensive database of EVs, each with their specific consumption models. You can find more information about our database and available queries by checking [Chargetrip API documentation](https://docs.chargetrip.com/#cars).
 
 Our Playground has a station database that is populated with freely available European station data from [OCM](https://openchargemap.org/site). Importing your own database or using one of the databases Chargetrip has an integration with, is possible. For more details, contact us.
-
-If you are not yet familiar with, using our API to plan a route. The route example we have build for you is a good first step. This example expands on that.
 
 ### Steps to take
 

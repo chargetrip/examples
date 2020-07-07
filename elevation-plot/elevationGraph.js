@@ -123,7 +123,7 @@ const displayStationMarkers = route => {
     for (let i = 0; i < amountOfStations; i++) {
       distanceKm = distanceKm + legs[i].distance / 1000;
       let x = (distanceKm * elevationGraph.offsetWidth) / (route.distance / 1000);
-      chargers.drawImage(img, x - 15, 0);
+      chargers.drawImage(img, x - 15, elevationGraph.offsetHeight - 60);
     }
   };
 
@@ -149,7 +149,7 @@ export const positionElevationIndicator = position => {
  */
 export const displayElevationData = (elevationUp, elevationDown) => {
   document.getElementById('loader').remove();
-  document.querySelector('.tags').style.display = 'flex';
+  document.getElementById('elevationIndicator').style.display = 'block';
 
   // The highest point of the elevation plot
   document.getElementById('upHill').innerHTML = `Uphill ${(elevationUp / 1000).toFixed(0)}km`;
@@ -160,7 +160,6 @@ export const displayElevationData = (elevationUp, elevationDown) => {
 
 /**
  * Show route path specific information like elevation, consumption, speed etc.
- * The temperature and maxspeed are not yet available in our API. This will be added soon.
  *
  * @param path {object} route path specification.
  */

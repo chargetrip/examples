@@ -13,17 +13,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-#hideMe {
-  -moz-animation: cssAnimation 0s ease-in 5s forwards;
-  /* Firefox */
-  -webkit-animation: cssAnimation 0s ease-in 5s forwards;
-  /* Safari and Chrome */
-  -o-animation: cssAnimation 0s ease-in 5s forwards;
-  /* Opera */
-  animation: cssAnimation 0s ease-in 5s forwards;
-  -webkit-animation-fill-mode: forwards;
-  animation-fill-mode: forwards;
-}
 @keyframes cssAnimation {
   to {
     width: 0;
@@ -31,6 +20,7 @@ body {
     overflow: hidden;
   }
 }
+
 @-webkit-keyframes cssAnimation {
   to {
     width: 0;
@@ -87,6 +77,16 @@ a {
   background: #0c0c0f;
   border-radius: 2px;
   transition: opacity 500ms;
+
+  -moz-animation: cssAnimation 0s ease-in 5s forwards;
+  /* Firefox */
+  -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+  /* Safari and Chrome */
+  -o-animation: cssAnimation 0s ease-in 5s forwards;
+  /* Opera */
+  animation: cssAnimation 0s ease-in 5s forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
 }
 
 .tooltip span {
@@ -118,8 +118,8 @@ a {
   color: #ffffff;
   display: flex;
   flex-direction: column;
-  padding: 16px 0px;
-  border-radius: 8px;
+  padding: 16px 0 24px;
+  border-radius: 8px 8px 0 0;
   align-items: center;
 }
 
@@ -128,31 +128,29 @@ a {
   color: #e8edf1;
 }
 
+.content {
+  border-radius: 8px 8px 0 0;
+  position: relative;
+  top: -8px;
+  background: white;
+}
+
 .tags {
-  display: none;
-  margin: 12px 0 20px;
+  text-align: center;
+  margin: 9px 0;
   color: #edf2f6;
 }
 
 .tag {
-  display: flex;
+  display: inline-block;
   border: 1px solid #ffffff;
   padding: 0 8px;
   font-size: 14px;
   font-weight: 600;
-  height: 24px;
+  line-height: 24px;
   align-items: center;
   margin: 0 4px;
   border-radius: 12px;
-}
-
-.rounded-corners {
-  position: absolute;
-  width: 100%;
-  height: 8px;
-  background-color: #ffffff;
-  bottom: 0;
-  border-radius: 8px 8px 0 0;
 }
 
 .info {
@@ -164,7 +162,7 @@ a {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 0px 0 30px;
+  padding: 0 0 0 30px;
   line-height: 48px;
 }
 
@@ -176,30 +174,69 @@ a {
   background: url('images/consumption.svg') no-repeat left center;
 }
 
-.info-temperature {
-  background: url('images/temperature.svg') no-repeat left center;
-}
-
-.info-speed-limit {
-  background: url('images/speed-limit.svg') no-repeat left center;
-}
-
 .info-average-speed {
   background: url('images/average-speed.svg') no-repeat left center;
 }
 
 .chart {
-  padding: 5px;
+  position: relative;
+  padding: 0 5px;
+  min-height: 150px;
 }
 
-.charge {
+.stations-layer {
   position: absolute;
-  top: 299px;
+  bottom: 0;
   left: 10px;
   outline: none;
   z-index: 3;
 }
 
+.elevation-indicator {
+  display: none;
+  position: absolute;
+  bottom: 27px;
+  left: 10px;
+  height: 125px;
+  width: 2px;
+  background-color: #ea8538;
+  z-index: 3;
+}
+
+#loader {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+/* Mapbox style overrides */
+.mapboxgl-popup-tip {
+  display: none;
+}
+
+.mapboxgl-popup-close-button {
+  display: none;
+}
+
+.mapboxgl-popup-content {
+  width: 50px;
+  padding: 1px;
+
+  background: #030303;
+  margin-bottom: 30px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 22px;
+  text-align: center;
+
+  color: #ffffff;
+}
+
+/* Github link */
 .github {
   position: fixed;
   display: flex;
@@ -238,39 +275,6 @@ a {
 
 .github button:focus {
   outline: none;
-}
-
-.mapboxgl-popup-tip {
-  display: none;
-}
-
-.mapboxgl-popup-close-button {
-  display: none;
-}
-
-.mapboxgl-popup-content {
-  width: 50px;
-  padding: 1px;
-
-  background: #030303;
-  margin-bottom: 30px;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 22px;
-  text-align: center;
-
-  color: #ffffff;
-}
-
-.line {
-  position: relative;
-  top: -162px;
-  left: 10px;
-  margin-bottom: -150px;
-  height: 130px;
-  width: 2px;
-  background-color: #ea8538;
-  z-index: 3;
 }
 
 /* Link to Chargetrip website */

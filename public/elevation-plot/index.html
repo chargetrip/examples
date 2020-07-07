@@ -20,57 +20,53 @@
       <button aria-label="remove github link" title="remove github link" onclick="this.parentElement.remove()"></button>
     </div>
 
-    <div class="tooltip" id="hideMe"><span>Click on the line to see more details</span></div>
+    <div class="tooltip">
+      <span>Click on the line to see more details</span>
+    </div>
 
     <div class="journey-specs" id="journey">
       <header class="header">
         <h1>Journey Specs</h1>
         <div class="header-route">Amsterdam • Berlin</div>
-        <span id="loader">Loading...</span>
         <div class="tags">
-          <div id="upHill" class="tag"></div>
-          <div id="downHill" class="tag"></div>
+          <div id="upHill" class="tag">Uphill --•--</div>
+          <div id="downHill" class="tag">Downhill --•--</div>
         </div>
-        <div class="rounded-corners"></div>
       </header>
 
-      <h2>Elevation levels</h2>
-      <div class="chart">
-        <canvas id="elevationGraph" height="130px"></canvas>
-      </div>
-      <div class="line" id="elevationIndicator"></div>
-      <canvas class="charge" id="stationsLayer"></canvas>
-      <h2>Details</h2>
+      <div class="content">
+        <h2>Elevation levels</h2>
+        <div class="chart">
+          <div id="loader">Loading...</div>
+          <canvas id="elevationGraph" height="130px"></canvas>
+          <div class="elevation-indicator" id="elevationIndicator"></div>
+          <canvas class="stations-layer" id="stationsLayer"></canvas>
+        </div>
 
-      <ul class="info">
-        <li class="info-elevation">
-          Elevation
-          <span id="height">--•--</span>
-        </li>
-        <li class="info-consumption">
-          Consumption Estimation
-          <span id="consumption">--•--</span>
-        </li>
-        <li class="info-temperature">
-          Temperature
-          <span id="temperature">--•--</span>
-        </li>
-        <li class="info-speed-limit">
-          Speed Limit
-          <span id="speed-limit">--•--</span>
-        </li>
-        <li class="info-average-speed">
-          Average Speed
-          <span id="average-speed">--•--</span>
-        </li>
-      </ul>
-      <a
-        class="chargetrip-logo"
-        href="https://chargetrip.com/"
-        aria-label="Made with love at Chargetrip"
-        title="Made with love at Chargetrip"
-        >Made with ❤️ at</a
-      >
+        <h2>Details</h2>
+        <ul class="info">
+          <li class="info-elevation">
+            Elevation
+            <span id="height">--•--</span>
+          </li>
+          <li class="info-consumption">
+            Consumption Estimation
+            <span id="consumption">--•--</span>
+          </li>
+          <li class="info-average-speed">
+            Average Speed
+            <span id="average-speed">--•--</span>
+          </li>
+        </ul>
+
+        <a
+          class="chargetrip-logo"
+          href="https://chargetrip.com/"
+          aria-label="Made with love at Chargetrip"
+          title="Made with love at Chargetrip"
+          >Made with ❤️ at</a
+        >
+      </div>
     </div>
   </body>
   <script src="bundle.js"></script>
