@@ -1,4 +1,4 @@
-# Get an elevation profile about your route with the Chargetrip API
+# Get an elevation profile of your route with the Chargetrip API
 
 This tutorial expands on the route example. It will not only show a route on a map but also display journey specifications, and elevation levels:
 
