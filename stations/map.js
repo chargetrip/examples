@@ -31,7 +31,6 @@ export const loadStation = stations => {
     type: 'Feature',
     properties: {
       icon: selectPinlet(station),
-      description: station.address,
     },
     geometry: station.location,
   }));
