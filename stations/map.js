@@ -23,7 +23,7 @@ const selectPinlet = station => `${station.status}-${station.speed}`;
  */
 
 export const loadStation = stations => {
-  document.getElementById('stationAmount').innerHTML = 'Showing ' + stations.length + ' stations';
+  document.getElementById('stationAmount').innerHTML = stations.length;
   if (map.getLayer('path')) map.removeLayer('path');
   if (map.getSource('path')) map.removeSource('path');
 

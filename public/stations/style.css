@@ -76,7 +76,7 @@ a {
   line-height: 28px;
   color: #ffffff;
 }
-.station-filters header span {
+.station-filters header .subtext {
   color: #e8edf1;
   font-style: normal;
   font-weight: normal;
