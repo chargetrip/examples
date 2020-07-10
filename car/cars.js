@@ -15,7 +15,7 @@ export const displayCarsData = (cars = []) => {
       range: `${car.range?.best?.city ?? 'Unknown'} km`,
       battery: `${car.batteryUsableKwh ?? 'Unknown'} kWh`,
       efficiency: `${car.batteryEfficiency?.average ?? 'Unknown'} kWh`,
-      plug: car.connectors?.[0].standard ?? 'Unknown',
+      plug: car.connectors?.[0]?.standard ?? 'Unknown',
       cityMild: `${car.range?.best?.city ?? 'Unknown'} km`,
       cityCold: `${car.range?.worst?.city ?? 'Unknown'} km`,
       highwayMild: `${car.range?.best?.highway ?? 'Unknown'} km`,

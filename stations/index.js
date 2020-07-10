@@ -1,6 +1,6 @@
 import { createClient, defaultExchanges } from '@urql/core';
 import { getStationsAround } from './queries.js';
-import { loadStation, showCenter } from './map.js';
+import { showStations, showCenter } from './map.js';
 import { initFilters } from './filters.js';
 
 /**
@@ -50,7 +50,7 @@ const displayMap = filters => {
   fetchStations(filters)
     .then(stations => {
       showCenter();
-      loadStation(stations);
+      showStations(stations);
     })
     .catch(error => console.log(error));
 };
