@@ -21,10 +21,18 @@ export const drawRoute = (id, coordinates, legs) => {
   if (map.loaded()) {
     drawPolyline(coordinates);
     showLegs(legs);
+    // fetch information about start of the route
+    fetchRoutePath(id, coordinates[0]).then(data => {
+      displaySpecs(data);
+    });
   } else {
     map.on('load', () => {
       drawPolyline(coordinates);
       showLegs(legs);
+      // fetch information about start of the route
+      fetchRoutePath(id, coordinates[0]).then(data => {
+        displaySpecs(data);
+      });
     });
   }
 

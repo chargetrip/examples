@@ -1,6 +1,6 @@
 import { drawRoute } from './map.js';
 import * as mapboxPolyline from '@mapbox/polyline';
-import { fetchRoute, fetchRoutePath } from './client';
+import { fetchRoute } from './client';
 import { loadGraph, displayElevationData, displaySpecs } from './elevationGraph';
 
 /**
@@ -27,9 +27,4 @@ const drawRoutePolyline = (id, data) => {
 
   drawRoute(id, reversed, data?.legs);
   displayElevationData(elevationUp, elevationDown);
-
-  // fetch information about start of the route
-  fetchRoutePath(id, reversed[0]).then(data => {
-    displaySpecs(data);
-  });
 };
