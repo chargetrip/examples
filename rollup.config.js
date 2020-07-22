@@ -71,4 +71,13 @@ export default [
     },
     plugins,
   },
+  {
+    input: 'alternative-stations/index.js',
+    output: {
+      file: 'public/alternative-stations/bundle.js',
+      format: 'iife',
+      sourcemap: true,
+    },
+    plugins,
+  },
 ];
