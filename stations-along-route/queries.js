@@ -19,7 +19,7 @@ mutation newRoute{
           id: "5d161be5c9eef46132d9d20a"
           battery: {
             capacity: { value: 72.5, type: kwh }
-            stateOfCharge: { value: 72.5, type: kwh }
+            stateOfCharge: { value: 2.5, type: kwh }
             finalStateOfCharge: { value: 0, type: kwh }
           }
           plugs: { chargingPower: 150, standard: TESLA_S }
@@ -40,9 +40,10 @@ mutation newRoute{
           }
           destination: {
             type: Feature
-            geometry: { type: Point, coordinates: [13.3888599, 52.5170365] }
-            properties: { name: "Berlin, Germany" }
+            geometry: { type: Point, coordinates: [5.1214, 52.0907] }
+            properties: { name: "Utrecht, Netherlands" }
           }
+          stationsAlongRouteRadius: 2000
         }
       }
     )
@@ -59,14 +60,9 @@ subscription routeUpdatedById($id: ID!){
         money
         co2
       }
-      chargeTime
       distance
       duration
       consumption
-      elevationPlot
-      elevationUp
-      elevationDown
-      id
       polyline
       legs{
         distance
@@ -84,6 +80,15 @@ subscription routeUpdatedById($id: ID!){
             coordinates
           }
         }
+      }
+      stationsAlongRoute{
+        location{
+          type
+          coordinates
+        }
+        speed
+        status
+        distance
       }
     }
   }

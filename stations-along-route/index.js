@@ -4,6 +4,7 @@ import { SubscriptionClient } from 'subscriptions-transport-ws';
 import { createRoute, routeUpdate } from './queries.js';
 import { drawRoute } from './map.js';
 import * as mapboxPolyline from '@mapbox/polyline';
+import { getDurationString } from '../utils';
 
 /**
  * Example application of how to build a route with the Chargetrip API.
@@ -85,5 +86,22 @@ const drawRoutePolyline = data => {
   const decodedData = mapboxPolyline.decode(data.polyline);
   const reversed = decodedData.map(item => item.reverse());
 
-  drawRoute(reversed, data.legs);
+  drawRoute(reversed, data.legs, data.stationsAlongRoute);
+  displayRouteData(data);
+};
+
+const displayRouteData = data => {
+  document.getElementById('loader').remove();
+  document.querySelector('.tags').style.display = 'flex';
+
+  // the total duration of the journey (including charge time), in seconds
+  document.getElementById('duration').innerHTML = `${getDurationString(data.duration ?? 0)}`;
+
+  // the total distance of the route, in meters
+  document.getElementById('distance').innerHTML = data.distance ? `${(data.distance / 1000).toFixed(0)} km` : 'Unknown';
+
+  // the total energy used of the route, in kWh
+  document.getElementById('consumption-overview').innerHTML = data.consumption
+    ? `${data.consumption.toFixed(2)} kWh`
+    : 'Unknown';
 };

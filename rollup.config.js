@@ -72,9 +72,9 @@ export default [
     plugins,
   },
   {
-    input: 'alternative-stations/index.js',
+    input: 'stations-along-route/index.js',
     output: {
-      file: 'public/alternative-stations/bundle.js',
+      file: 'public/stations-along-route/bundle.js',
       format: 'iife',
       sourcemap: true,
     },

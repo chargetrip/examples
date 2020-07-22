@@ -26,17 +26,19 @@ ol {
 
 h1 {
   margin: 0;
-  font-size: 16px;
-  font-weight: 200;
-  line-height: 24px;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 28px;
 }
 
 h2 {
   padding: 8px 16px 0;
   margin-bottom: 10px;
-  font-size: 18px;
-  font-weight: 600;
+  font-weight: normal;
+  font-size: 16px;
   line-height: 24px;
+  color: #e8edf1;
 }
 
 a {
@@ -82,25 +84,42 @@ section:last-child {
   color: #e8edf1;
 }
 
-.info {
-  padding: 8px 16px;
+.tags {
+  display: none;
+  margin-top: 16px;
 }
 
-.info li {
+.tag {
   display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-  line-height: 18px;
+  align-items: center;
+  padding: 0 12px;
+  margin: 0 6px;
+  border: 1px solid #ffffff;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 24px;
 }
 
-.info.trip li {
-  padding: 0 0 0 30px;
-  line-height: 50px;
+.station-type {
+  padding: 20px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 20px;
+}
+.station-type span {
+  font-size: 16px;
+  height: 50px;
 }
 
-.trip {
-  padding: 8px 16px;
-  border-bottom: 1px solid #e8edf1;
+.station-type-fast {
+  padding: 40px;
+  background: url('images/along-fast.svg') no-repeat left center;
+}
+
+.station-type-turbo {
+  padding: 40px;
+  background: url('images/along-turbo.svg') no-repeat left center;
 }
 
 /* View project on the github link */
