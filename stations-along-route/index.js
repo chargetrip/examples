@@ -8,6 +8,7 @@ import { getDurationString } from '../utils';
 
 /**
  * Example application of how to build a route with the Chargetrip API.
+ * This route will show alternative stations along the route.
  * Please have a look to Readme file in this repo for more details.
  *
  * For the purpose of this example we use urgl - lightweights GraphQL client.
@@ -57,7 +58,7 @@ client
     const { unsubscribe } = pipe(
       client.executeSubscription(createRequest(routeUpdate, { id: routeId })),
       subscribe(result => {
-        const { status, route } = result.data.routeUpdatedById;
+        const { status, route } = result.data?.routeUpdatedById;
 
         // you can keep listening to the route changes to update route information
         // for this example we want to only draw the initial route
@@ -106,7 +107,7 @@ const displayRouteData = data => {
     : 'Unknown';
 
   // the total  number of alternative stations along the route
-  document.getElementById('amount').innerHTML = data.stationsAlongRoute.length;
+  document.getElementById('amount').innerHTML = data.stationsAlongRoute?.length;
 };
 
 document.querySelector('.legend-button').addEventListener('click', () => {

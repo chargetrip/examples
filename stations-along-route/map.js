@@ -16,8 +16,8 @@ const popup = new mapboxgl.Popup({
   closeOnClick: false,
 });
 
-map.on('mouseenter', 'legs', e => {
-  if (e.features[0]?.properties?.icon !== 'arrival' && e.features[0]?.properties?.icon !== 'location_big') {
+map.on('mouseenter', 'stations-along-route', e => {
+  {
     map.getCanvas().style.cursor = 'pointer';
 
     const coordinates = e.features[0]?.geometry?.coordinates;
@@ -101,7 +101,7 @@ const drawPolyline = coordinates => {
 };
 
 /**
- * Show the charging station, origin and destination on the map.
+ * Show the charging stations, origin and destination on the map.
  *
  * Last leg of the route is a destination point.
  * All other legs are either charging stations or via points (if route has stops).
@@ -129,7 +129,6 @@ const showLegs = legs => {
       points.push({
         type: 'Feature',
         properties: {
-          description: `${getDurationString(leg.chargeTime)}`,
           icon: 'free-turbo',
         },
         geometry: leg.destination?.geometry,
@@ -182,7 +181,7 @@ const showAlternatives = alternatives => {
     locations.push({
       type: 'Feature',
       properties: {
-        description: station.distance + 'm',
+        description: station.distance + ' meters',
         icon: selectPinlet(station),
       },
       geometry: station.location,
