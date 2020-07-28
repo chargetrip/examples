@@ -104,4 +104,16 @@ const displayRouteData = data => {
   document.getElementById('consumption-overview').innerHTML = data.consumption
     ? `${data.consumption.toFixed(2)} kWh`
     : 'Unknown';
+
+  // the total  number of alternative stations along the route
+  document.getElementById('amount').innerHTML = data.stationsAlongRoute.length;
 };
+
+document.querySelector('.legend-button').addEventListener('click', () => {
+  const legend = document.getElementById('legend');
+  if (legend.style.display !== 'block') {
+    legend.style.display = 'block';
+  } else {
+    legend.style.display = 'none';
+  }
+});
