@@ -8,7 +8,7 @@ import { getDurationString } from '../utils';
 import { createInstructions } from './directions';
 
 /**
- * Example application of how to build a route with the Chargetrip API.
+ * Example application of how to build a route + directions with the Chargetrip API.
  * Please have a look to Readme file in this repo for more details.
  *
  * For the purpose of this example we use urgl - lightweights GraphQL client.
@@ -24,24 +24,6 @@ const headers = {
 const subscriptionClient = new SubscriptionClient('wss://api.chargetrip.io/graphql', {
   reconnect: true,
   connectionParams: headers,
-});
-
-// Add event listeners for 'click' on the tabs.
-document.querySelector('.car-details-button').addEventListener('click', () => {
-  const carTab = document.getElementById('car-tab');
-  const turnByTurnTab = document.getElementById('directions-tab');
-  document.querySelector('.turn-by-turn-button').classList.remove('focused');
-  document.querySelector('.car-details-button').classList.add('focused');
-  turnByTurnTab.style.display = 'none';
-  carTab.style.display = 'block';
-});
-document.querySelector('.turn-by-turn-button').addEventListener('click', () => {
-  const carTab = document.getElementById('car-tab');
-  const turnByTurnTab = document.getElementById('directions-tab');
-  document.querySelector('.car-details-button').classList.remove('focused');
-  document.querySelector('.turn-by-turn-button').classList.add('focused');
-  turnByTurnTab.style.display = 'block';
-  carTab.style.display = 'none';
 });
 
 const client = createClient({
@@ -145,3 +127,21 @@ const displayRouteData = data => {
   // the total amount of CO2 which were used with a petrol vehicle
   document.getElementById('co2').innerHTML = data.saving?.co2 ? `${data.saving.co2 / 1000} Kg` : 'Unknown';
 };
+
+// Add event listeners for 'click' on the tabs.
+document.querySelector('.car-details-button').addEventListener('click', () => {
+  const carTab = document.getElementById('car-tab');
+  const turnByTurnTab = document.getElementById('directions-tab');
+  document.querySelector('.turn-by-turn-button').classList.remove('focused');
+  document.querySelector('.car-details-button').classList.add('focused');
+  turnByTurnTab.style.display = 'none';
+  carTab.style.display = 'block';
+});
+document.querySelector('.turn-by-turn-button').addEventListener('click', () => {
+  const carTab = document.getElementById('car-tab');
+  const turnByTurnTab = document.getElementById('directions-tab');
+  document.querySelector('.car-details-button').classList.remove('focused');
+  document.querySelector('.turn-by-turn-button').classList.add('focused');
+  turnByTurnTab.style.display = 'block';
+  carTab.style.display = 'none';
+});
