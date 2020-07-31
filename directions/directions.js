@@ -1,11 +1,12 @@
 export const createCoordinatesString = data => {
   return data.legs
     .map((leg, i) => {
-      if (i === data.legs.length - 1) {
-        const [long, lat] = leg.destination.geometry.coordinates;
-        return `${long},${lat}`;
+      if (i === 0) {
+        const [originLong, originLat] = leg.origin.geometry.coordinates;
+        const [destinationLong, destinationLat] = leg.destination.geometry.coordinates;
+        return `${originLong},${originLat};${destinationLong},${destinationLat}`;
       }
-      const [long, lat] = leg.origin.geometry.coordinates;
+      const [long, lat] = leg.destination.geometry.coordinates;
       return `${long},${lat}`;
     })
     .join(';');
