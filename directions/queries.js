@@ -69,6 +69,7 @@ subscription routeUpdatedById($id: ID!){
       id
       polyline
       legs{
+        name
         distance
         chargeTime
         origin{
