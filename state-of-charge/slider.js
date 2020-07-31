@@ -8,7 +8,7 @@ rangeSlider.value = initialSOC;
 
 export const getStateOfCharge = () => rangeSlider.value;
 
-rangeSlider.addEventListener('input', () => {
+rangeSlider.addEventListener('change', () => {
   fetchRoute(rangeSlider.value, routeData => {
     drawRoutePolyline(routeData);
   });
