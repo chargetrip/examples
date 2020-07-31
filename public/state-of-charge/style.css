@@ -58,6 +58,39 @@ a {
   height: 100%;
 }
 
+.tooltip {
+  display: none;
+  position: absolute;
+  width: 221px;
+  height: 24px;
+  left: 50%;
+  top: 46%;
+
+  background: #0c0c0f;
+  border-radius: 2px;
+  transition: opacity 500ms;
+
+  -moz-animation: cssAnimation 0s ease-in 5s forwards;
+  /* Firefox */
+  -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+  /* Safari and Chrome */
+  -o-animation: cssAnimation 0s ease-in 5s forwards;
+  /* Opera */
+  animation: cssAnimation 0s ease-in 5s forwards;
+  -webkit-animation-fill-mode: forwards;
+  animation-fill-mode: forwards;
+}
+
+.tooltip span {
+  text-align: center;
+  font-weight: 600;
+  font-size: 12px;
+  line-height: 24px;
+  color: #ffffff;
+  border-radius: 109.6px;
+  padding-left: 55px;
+}
+
 .journey-specs {
   position: absolute;
   top: 16px;
