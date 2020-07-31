@@ -1,5 +1,5 @@
 import mapboxgl from 'mapbox-gl';
-import { getDurationString } from '../utils';
+import { sliderUpdate } from './slider';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjamo3em4wdnUwdHVlM3Z0ZTNrZmd1MXoxIn0.aFteYnUc_GxwjTLGvB3uCg';
 
@@ -21,7 +21,9 @@ map.on('mouseenter', 'legs', e => {
     map.getCanvas().style.cursor = 'pointer';
 
     const coordinates = e.features[0]?.geometry?.coordinates;
-    const description = e.features[0]?.properties?.description;
+    const description = `Expected state of charge at arrival ${(e.features[0]?.properties?.description / 1000).toFixed(
+      0,
+    )} km`;
 
     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
       coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
@@ -63,6 +65,8 @@ export const drawRoute = (coordinates, legs) => {
  * @param coordinates {array} polyline coordinates
  */
 const drawPolyline = coordinates => {
+  if (map.getLayer('polyline')) map.removeLayer('polyline');
+  if (map.getSource('polyline-source')) map.removeSource('polyline-source');
   const geojson = {
     type: 'FeatureCollection',
     features: [
@@ -107,6 +111,8 @@ const drawPolyline = coordinates => {
  * @param legs {array} route legs
  */
 const showLegs = legs => {
+  if (map.getLayer('legs')) map.removeLayer('legs');
+  if (map.getSource('legs')) map.removeSource('legs');
   if (legs.length === 0) return;
 
   let points = [];
@@ -116,6 +122,7 @@ const showLegs = legs => {
   points.push({
     type: 'Feature',
     properties: {
+      description: legs[0].rangeStart,
       icon: 'location_big',
     },
     geometry: legs[0].origin?.geometry,
@@ -127,7 +134,7 @@ const showLegs = legs => {
       points.push({
         type: 'Feature',
         properties: {
-          description: `${getDurationString(leg.chargeTime)}`,
+          description: leg.rangeEnd,
           icon: 'unknown-turbo',
         },
         geometry: leg.destination?.geometry,
@@ -138,12 +145,12 @@ const showLegs = legs => {
         type: 'Feature',
         properties: {
           icon: 'arrival',
+          description: leg.rangeEnd,
         },
         geometry: leg.destination?.geometry,
       });
     }
   });
-
   // draw route points on a map
   map.addLayer({
     id: 'legs',

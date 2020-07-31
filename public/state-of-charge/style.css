@@ -225,7 +225,7 @@ input[type='range']::-moz-range-thumb {
 }
 
 .mapboxgl-popup-content {
-  width: 50px;
+  width: 100px;
   padding: 1px;
   margin-bottom: 30px;
   background: #030303;

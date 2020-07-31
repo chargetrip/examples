@@ -11,7 +11,7 @@ import qql from 'graphql-tag';
  *   - min power of chargers is 43 kWh
  *   - one passenger in the car (drive alone)
  */
-export const createRoute = qql`
+export const createRoute = (soc, currentLocation) => `
 mutation newRoute{
     newRoute(
       input: {
@@ -19,7 +19,7 @@ mutation newRoute{
           id: "5d161be5c9eef46132d9d20a"
           battery: {
             capacity: { value: 72.5, type: kwh }
-            stateOfCharge: { value: 72.5, type: kwh }
+            stateOfCharge: { value: ${soc}, type: km }
             finalStateOfCharge: { value: 0, type: kwh }
           }
           plugs: { chargingPower: 150, standard: TESLA_S }
@@ -34,14 +34,12 @@ mutation newRoute{
         routeRequest: {
           origin: {
             type: Feature
-            geometry: { type: Point, coordinates: [4.8951679, 52.3702157] }
-            properties: { name: "Amsterdam, Netherlands" }
+            geometry: { type: Point, coordinates: [${currentLocation}] }
 
           }
           destination: {
             type: Feature
             geometry: { type: Point, coordinates: [13.3888599, 52.5170365] }
-            properties: { name: "Berlin, Germany" }
           }
         }
       }
