@@ -299,8 +299,8 @@ section:last-child {
 }
 
 .mapboxgl-popup-content {
-  width: 75px;
-  padding: 1px;
+  max-width: 100px;
+  padding: 5px 10px;
   margin-bottom: 30px;
   background: #030303;
   color: #ffffff;
