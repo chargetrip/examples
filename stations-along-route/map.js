@@ -17,6 +17,7 @@ const map = new mapboxgl.Map({
  * @param legs {array} route legs (stops) - each leg represents either a charging station, or via point or final point
  */
 export const drawRoute = (coordinates, legs, alternatives) => {
+  const slider = document.getElementById('alternative');
   if (map.loaded()) {
     drawPolyline(coordinates);
     showLegs(legs);
@@ -26,10 +27,9 @@ export const drawRoute = (coordinates, legs, alternatives) => {
       showLegs(legs);
     });
   }
-  document.querySelector('.station-data').addEventListener('click', () => {
-    const legend = document.getElementById('legend');
+  slider.addEventListener('input', () => {
     if (map.getLayer('stations-along-route') && map.getSource('stations-along-route')) {
-      document.getElementById('amount').innerHTML = 0;
+      document.getElementById('amount').innerHTML = alternatives.length;
       map.removeLayer('stations-along-route');
       map.removeSource('stations-along-route');
     } else {

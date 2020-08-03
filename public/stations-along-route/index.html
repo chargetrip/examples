@@ -39,7 +39,6 @@
       <header>
         <h1>Stations along the route</h1>
         <h2>Amsterdam • Utrecht</h2>
-        <span id="loader">Loading...</span>
         <div class="tags">
           <div id="distance" class="tag"></div>
           <div id="duration" class="tag"></div>
@@ -47,9 +46,16 @@
         </div>
       </header>
 
-      <button class="station-data">Show Alternative stations</button>
       <ul class="info">
-        <li class="info-amount">Number of alternative stations <span id="amount">--•--</span></li>
+        <h2>Alternative station data</h2>
+        <li class="info-show">
+          Show alternative stations
+          <label class="switch" id="alternative">
+            <input type="checkbox" />
+            <span class="slider"></span>
+          </label>
+        </li>
+        <li class="info-amount">Number of alternative stations <span id="amount">0</span></li>
       </ul>
 
       <a
