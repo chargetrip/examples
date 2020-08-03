@@ -51,6 +51,7 @@ subscription routeUpdatedById($id: ID!){
   routeUpdatedById(id: $id) {
     status
     route {
+      duration
       polyline
       legs{
         rangeEnd
