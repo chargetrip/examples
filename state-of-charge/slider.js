@@ -9,7 +9,7 @@ rangeSlider.value = initialSOC;
 export const updateRangeSliderValue = () => {
   const percent = rangeSlider.value / 435;
   const newPosition = percent * rangeSlider.offsetWidth - 70 * percent;
-
+  console.log(newPosition);
   rangeThumb.innerHTML = `${rangeSlider.value} km`;
   rangeThumb.style.left = `calc((${newPosition}px))`;
 };

@@ -1,7 +1,7 @@
 import { drawRoute } from './map.js';
 import * as mapboxPolyline from '@mapbox/polyline';
 import { fetchRoute } from './client';
-import { getStateOfCharge, updateRangeSliderValue } from './slider';
+import { getStateOfCharge } from './slider';
 import { getDurationString } from '../utils';
 
 /**
@@ -17,7 +17,6 @@ import { getDurationString } from '../utils';
  * @param id {string} route ID.
  */
 fetchRoute(getStateOfCharge(), routeData => {
-  updateRangeSliderValue();
   drawRoutePolyline(routeData);
 });
 /*

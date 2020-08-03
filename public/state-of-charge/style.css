@@ -253,6 +253,7 @@ input[type='range']::-moz-range-thumb {
 .range-thumb {
   position: absolute;
   top: -2px;
+  left: 268.5px;
   width: 70px;
   color: #202024;
   text-align: center;
