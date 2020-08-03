@@ -1,5 +1,6 @@
 import { fetchRoute } from './client';
 import { drawRoutePolyline } from './index';
+import { getDurationString } from '../utils';
 
 const initialSOC = 435;
 const rangeSlider = document.getElementById('range');
@@ -21,6 +22,7 @@ rangeSlider.addEventListener('input', () => {
 rangeSlider.addEventListener('change', () => {
   document.getElementById('calculating').style.display = 'flex';
   fetchRoute(rangeSlider.value, routeData => {
+    document.getElementById('duration').innerHTML = `${getDurationString(routeData.duration ?? 0)}`;
     drawRoutePolyline(routeData);
   });
 });

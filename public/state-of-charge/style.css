@@ -39,7 +39,7 @@ h1 {
 }
 
 h2 {
-  padding: 8px 16px 0;
+  padding-top: 10px;
   margin-bottom: 10px;
   font-size: 18px;
   font-weight: 600;
@@ -265,7 +265,7 @@ input[type='range']::-moz-range-thumb {
 
 .range-info {
   display: flex;
-  padding-top: 15px;
+  padding-top: 10px;
   justify-content: space-between;
   color: #404046;
   font-size: 14px;
