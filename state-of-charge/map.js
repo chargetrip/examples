@@ -125,8 +125,9 @@ const drawPolyline = coordinates => {
 /**
  * Show the charging station, origin and destination on the map.
  *
- * Last leg of the route is a destination point.
- * All other legs are either charging stations or via points (if route has stops).
+ * The origin of the first leg is the start of your route.
+ * The destination of the last is the destination of your route.
+ * The desitinatation of all other legs are charging stations or via points.
  *
  * @param legs {array} route legs
  */

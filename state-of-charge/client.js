@@ -35,8 +35,6 @@ const client = createClient({
   ],
 });
 
-let currentLocation = [4.8951679, 52.3702157];
-
 /*
  * To create a route you need to:
  *
@@ -46,7 +44,7 @@ let currentLocation = [4.8951679, 52.3702157];
 
 export const fetchRoute = (soc, callback) => {
   client
-    .mutation(createRoute(soc, currentLocation))
+    .mutation(createRoute(soc))
     .toPromise()
     .then(response => {
       const routeId = response.data.newRoute;
