@@ -22,18 +22,34 @@
     </div>
 
     <div class="tooltip" id="calculating">
-      <span>Re-calculating route</span>
+      <div class="tooltip-icon">
+        <div class="icon animation"></div>
+        <div class="line"></div>
+      </div>
+      <div class="tooltip-info">
+        Recalculating route <br />
+        <span>Please wait...</span>
+      </div>
+    </div>
+    <div class="journey-specs">
+      <header>
+        <span id="loader">Loading...</span>
+        <span class="duration" id="duration"></span>
+        <h1>Amsterdam • Berlin</h1>
+      </header>
     </div>
 
-    <div class="journey-specs">
+    <div class="journey-specs-details">
       <div class="section">
-        <h2>Initial state of charge</h2>
-        <div class="range-slider">
-          <label class="range-thumb" id="range-thumb" for="range"></label>
-          <input type="range" min="0" max="435" step="1" id="range" />
-          <div class="range-info">
-            <span>0 km</span>
-            <span>435 km</span>
+        <div class="slider-container">
+          <h2>Initial state of charge</h2>
+          <div class="range-slider">
+            <label class="range-thumb" id="range-thumb" for="range"></label>
+            <input type="range" min="0" max="435" step="1" id="range" />
+            <div class="range-info">
+              <span>0 km</span>
+              <span>435 km</span>
+            </div>
           </div>
         </div>
       </div>

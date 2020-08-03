@@ -1,7 +1,8 @@
 import { drawRoute } from './map.js';
 import * as mapboxPolyline from '@mapbox/polyline';
 import { fetchRoute } from './client';
-import { getStateOfCharge } from './slider';
+import { getStateOfCharge, updateRangeSliderValue } from './slider';
+import { getDurationString } from '../utils';
 
 /**
  * Draw a route on a map.
@@ -16,6 +17,7 @@ import { getStateOfCharge } from './slider';
  * @param id {string} route ID.
  */
 fetchRoute(getStateOfCharge(), routeData => {
+  updateRangeSliderValue();
   drawRoutePolyline(routeData);
 });
 /*
@@ -34,4 +36,17 @@ export const drawRoutePolyline = data => {
   const reversed = decodedData.map(item => item.reverse());
 
   drawRoute(reversed, data.legs);
+  displayRouteData(data);
+};
+
+/**
+ * Show journey specific information like duration, consumption, costs etc.
+ *
+ * @param data {object} route specification
+ */
+const displayRouteData = data => {
+  document.getElementById('loader').remove();
+
+  // the total duration of the journey (including charge time), in seconds
+  document.getElementById('duration').innerHTML = `${getDurationString(data.duration ?? 0)}`;
 };
