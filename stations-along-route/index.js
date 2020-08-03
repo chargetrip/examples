@@ -107,7 +107,7 @@ const displayRouteData = data => {
     : 'Unknown';
 
   // the total  number of alternative stations along the route
-  document.getElementById('amount').innerHTML = data.stationsAlongRoute?.length;
+  document.getElementById('amount').innerHTML = 0;
 };
 
 document.querySelector('.legend-button').addEventListener('click', () => {

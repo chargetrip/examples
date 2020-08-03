@@ -83,13 +83,21 @@ section:last-child {
   color: #e8edf1;
 }
 
-.alternative-data {
+.station-data {
+  -webkit-appearance: none;
+  align-items: center;
+  margin-left: 40px;
   padding: 20px;
   font-style: normal;
   font-weight: 600;
   font-size: 18px;
   line-height: 24px;
   color: #0c0c10;
+  cursor: pointer;
+}
+
+.station-data:focus {
+  outline: none;
 }
 
 .info {
@@ -290,22 +298,4 @@ section:last-child {
   font-weight: 600;
   margin: 0 15px;
   color: var(--black);
-}
-
-/* Mapbox styles */
-.mapboxgl-popup-tip,
-.mapboxgl-popup-close-button {
-  display: none;
-}
-
-.mapboxgl-popup-content {
-  max-width: 100px;
-  padding: 5px 10px;
-  margin-bottom: 30px;
-  background: #030303;
-  color: #ffffff;
-  text-align: center;
-  font-size: 12px;
-  font-weight: 600;
-  line-height: 22px;
 }

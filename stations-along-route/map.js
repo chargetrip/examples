@@ -6,37 +6,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjamo3em4wdnUwdHVlM3Z0Z
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/chargetrip/ck98fwwp159v71ip7xhs8bwts',
-  zoom: 10.3,
-  center: [4.99, 52.2288],
-});
-
-// Display the charge time on a hover
-const popup = new mapboxgl.Popup({
-  closeButton: false,
-  closeOnClick: false,
-});
-
-map.on('mouseenter', 'stations-along-route', e => {
-  {
-    map.getCanvas().style.cursor = 'pointer';
-
-    const coordinates = e.features[0]?.geometry?.coordinates;
-    const description = e.features[0]?.properties?.description;
-
-    while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
-      coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
-    }
-
-    popup
-      .setLngLat(coordinates)
-      .setHTML(description)
-      .addTo(map);
-  }
-});
-
-map.on('mouseleave', 'legs', function() {
-  map.getCanvas().style.cursor = '';
-  popup.remove();
+  zoom: 7.5,
+  center: [6, 52.2288],
 });
 
 /**
@@ -49,14 +20,23 @@ export const drawRoute = (coordinates, legs, alternatives) => {
   if (map.loaded()) {
     drawPolyline(coordinates);
     showLegs(legs);
-    showAlternatives(alternatives);
   } else {
     map.on('load', () => {
       drawPolyline(coordinates);
       showLegs(legs);
-      showAlternatives(alternatives);
     });
   }
+  document.querySelector('.station-data').addEventListener('click', () => {
+    const legend = document.getElementById('legend');
+    if (map.getLayer('stations-along-route') && map.getSource('stations-along-route')) {
+      document.getElementById('amount').innerHTML = 0;
+      map.removeLayer('stations-along-route');
+      map.removeSource('stations-along-route');
+    } else {
+      showAlternatives(alternatives);
+      document.getElementById('amount').innerHTML = alternatives.length;
+    }
+  });
 };
 
 /**
@@ -181,7 +161,6 @@ const showAlternatives = alternatives => {
     locations.push({
       type: 'Feature',
       properties: {
-        description: station.distance + ' meters',
         icon: selectPinlet(station),
       },
       geometry: station.location,

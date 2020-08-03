@@ -20,7 +20,7 @@ mutation newRoute{
           id: "5d161be5c9eef46132d9d20a"
           battery: {
             capacity: { value: 72.5, type: kwh }
-            stateOfCharge: { value: 2.5, type: kwh }
+            stateOfCharge: { value: 50.5, type: kwh }
             finalStateOfCharge: { value: 0, type: kwh }
           }
           plugs: { chargingPower: 150, standard: TESLA_S }
@@ -41,8 +41,8 @@ mutation newRoute{
           }
           destination: {
             type: Feature
-            geometry: { type: Point, coordinates: [5.1214, 52.0907] }
-            properties: { name: "Utrecht, Netherlands" }
+            geometry: { type: Point, coordinates: [8.0472, 52.2799] }
+            properties: { name: "Dusseldorf, Germany" }
           }
           stationsAlongRouteRadius: 2000
         }
