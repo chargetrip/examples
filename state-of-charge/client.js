@@ -35,16 +35,16 @@ const client = createClient({
   ],
 });
 
-/**
+/*
  * To create a route you need to:
  *
  * 1. create a new route and receive back its ID;
  * 2. subscribe to route updates in order to receive its details.
  */
 
-export const fetchRoute = callback => {
+export const fetchRoute = (soc, callback) => {
   client
-    .mutation(createRoute)
+    .mutation(createRoute(soc))
     .toPromise()
     .then(response => {
       const routeId = response.data.newRoute;
@@ -57,26 +57,12 @@ export const fetchRoute = callback => {
           // You can keep listening to the route changes to update route information.
           // For this example we want to only draw the initial route.
           if (status === 'done' && route) {
+            document.getElementById('calculating').style.display = 'none';
             unsubscribe();
-            callback(routeId, result.data?.routeUpdatedById?.route);
+            callback(result.data?.routeUpdatedById?.route);
           }
         }),
       );
     })
     .catch(error => console.log(error));
 };
-
-/**
- * Fetch route path data.
- *
- * @param id {string} Route ID
- * @param point {array} Coordinates of the path
- *
- * @returns {Promise<OperationResult<any> | void>}
- */
-export const fetchRoutePath = (id, point) =>
-  client
-    .query(getRoutePath(id, point))
-    .toPromise()
-    .then(response => response.data)
-    .catch(error => console.log(error));

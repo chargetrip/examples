@@ -1,12 +1,12 @@
 import mapboxgl from 'mapbox-gl';
-import { getDurationString } from '../utils';
+import { sliderUpdate } from './slider';
 
-mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjazhpaG8ydTIwNWNpM21ud29xeXc2amhlIn0.rGKgR3JfG9Z5dCWjUI_oGA';
+mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjamo3em4wdnUwdHVlM3Z0ZTNrZmd1MXoxIn0.aFteYnUc_GxwjTLGvB3uCg';
 
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/chargetrip/ck98fwwp159v71ip7xhs8bwts',
-  zoom: 5,
+  zoom: 6,
   center: [8.1320104, 52.3758916],
 });
 
@@ -21,7 +21,9 @@ map.on('mouseenter', 'legs', e => {
     map.getCanvas().style.cursor = 'pointer';
 
     const coordinates = e.features[0]?.geometry?.coordinates;
-    const description = e.features[0]?.properties?.description;
+    const description = `Expected state of charge at arrival ${(e.features[0]?.properties?.description / 1000).toFixed(
+      0,
+    )} km`;
 
     while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
       coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
@@ -63,6 +65,8 @@ export const drawRoute = (coordinates, legs) => {
  * @param coordinates {array} polyline coordinates
  */
 const drawPolyline = coordinates => {
+  if (map.getLayer('polyline')) map.removeLayer('polyline');
+  if (map.getSource('polyline-source')) map.removeSource('polyline-source');
   const geojson = {
     type: 'FeatureCollection',
     features: [
@@ -94,7 +98,7 @@ const drawPolyline = coordinates => {
     },
     paint: {
       'line-color': 'red',
-      'line-width': 8,
+      'line-width': 6,
       // 'line-gradient' must be specified using an expression
       // with the special 'line-progress' property
       'line-gradient': [
@@ -121,12 +125,15 @@ const drawPolyline = coordinates => {
 /**
  * Show the charging station, origin and destination on the map.
  *
- * Last leg of the route is a destination point.
- * All other legs are either charging stations or via points (if route has stops).
+ * The origin of the first leg is the start of your route.
+ * The destination of the last is the destination of your route.
+ * The desitinatation of all other legs are charging stations or via points.
  *
  * @param legs {array} route legs
  */
 const showLegs = legs => {
+  if (map.getLayer('legs')) map.removeLayer('legs');
+  if (map.getSource('legs')) map.removeSource('legs');
   if (legs.length === 0) return;
 
   let points = [];
@@ -136,21 +143,22 @@ const showLegs = legs => {
   points.push({
     type: 'Feature',
     properties: {
+      description: legs[0].rangeStart,
       icon: 'location_big',
     },
     geometry: legs[0].origin?.geometry,
   });
 
-  legs.map((leg, index) => {
+  for (let i = 0; i < legs.length; i++) {
     // add charging stations
-    if (index !== legs.length - 1) {
+    if (i !== legs.length - 1) {
       points.push({
         type: 'Feature',
         properties: {
-          description: `${getDurationString(leg.chargeTime)}`,
+          description: legs[i].rangeEnd,
           icon: 'unknown-turbo',
         },
-        geometry: leg.destination?.geometry,
+        geometry: legs[i].destination?.geometry,
       });
     } else {
       // add destination point (last leg)
@@ -158,11 +166,12 @@ const showLegs = legs => {
         type: 'Feature',
         properties: {
           icon: 'arrival',
+          description: legs[i].rangeEnd,
         },
-        geometry: leg.destination?.geometry,
+        geometry: legs[i].destination?.geometry,
       });
     }
-  });
+  }
 
   // draw route points on a map
   map.addLayer({
