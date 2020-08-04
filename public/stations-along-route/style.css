@@ -162,7 +162,7 @@ section:last-child {
   height: 0;
 }
 
-/* The slider */
+/* The ON and OFF slider */
 .slider {
   position: absolute;
   cursor: pointer;
