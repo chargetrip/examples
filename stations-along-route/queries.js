@@ -42,7 +42,7 @@ mutation newRoute{
           destination: {
             type: Feature
             geometry: { type: Point, coordinates: [8.0472, 52.2799] }
-            properties: { name: "Dusseldorf, Germany" }
+            properties: { name: "Osnabrück, Germany" }
           }
           stationsAlongRouteRadius: 2000
         }
@@ -56,11 +56,6 @@ subscription routeUpdatedById($id: ID!){
   routeUpdatedById(id: $id) {
     status
     route {
-      charges
-      saving {
-        money
-        co2
-      }
       distance
       duration
       consumption
@@ -89,7 +84,6 @@ subscription routeUpdatedById($id: ID!){
         }
         speed
         status
-        distance
       }
     }
   }

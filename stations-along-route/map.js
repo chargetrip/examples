@@ -1,5 +1,4 @@
 import mapboxgl from 'mapbox-gl';
-import { getDurationString } from '../utils';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjamo3em4wdnUwdHVlM3Z0ZTNrZmd1MXoxIn0.aFteYnUc_GxwjTLGvB3uCg';
 
@@ -18,6 +17,8 @@ const map = new mapboxgl.Map({
  */
 export const drawRoute = (coordinates, legs, alternatives) => {
   const slider = document.getElementById('alternative');
+  const sliderSwitch = document.getElementById('switch');
+
   if (map.loaded()) {
     drawPolyline(coordinates);
     showLegs(legs);
@@ -29,12 +30,16 @@ export const drawRoute = (coordinates, legs, alternatives) => {
   }
   slider.addEventListener('input', () => {
     if (map.getLayer('stations-along-route') && map.getSource('stations-along-route')) {
-      document.getElementById('amount').innerHTML = alternatives.length;
+      document.getElementById('amount').innerHTML = '0';
+      document.getElementById('switch').innerHTML = 'OFF';
+      sliderSwitch.style.left = '22px';
       map.removeLayer('stations-along-route');
       map.removeSource('stations-along-route');
     } else {
       showAlternatives(alternatives);
       document.getElementById('amount').innerHTML = alternatives.length;
+      document.getElementById('switch').innerHTML = 'ON';
+      sliderSwitch.style.left = '5px';
     }
   });
 };

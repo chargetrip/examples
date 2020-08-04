@@ -88,7 +88,31 @@ const drawRoutePolyline = data => {
   const reversed = decodedData.map(item => item.reverse());
 
   drawRoute(reversed, data.legs, data.stationsAlongRoute);
+  displayRouteData(data);
+};
+
+/**
+ * Show journey specific information like duration, consumption etc.
+ *
+ * @param data {object} route specification
+ */
+const displayRouteData = data => {
+  document.getElementById('loader').remove();
+  document.querySelector('.tags').style.display = 'flex';
+
+  // the total duration of the journey (including charge time), in seconds
+  document.getElementById('duration').innerHTML = `${getDurationString(data.duration ?? 0)}`;
+
+  // the total distance of the route, in meters
+  document.getElementById('distance').innerHTML = data.distance ? `${(data.distance / 1000).toFixed(0)} km` : 'Unknown';
+
+  // the amount of alternative stations on this route
   document.getElementById('amount').innerHTML = 0;
+
+  // the total energy used of the route, in kWh
+  document.getElementById('consumption-overview').innerHTML = data.consumption
+    ? `${data.consumption.toFixed(2)} kWh`
+    : 'Unknown';
 };
 
 document.querySelector('.legend-button').addEventListener('click', () => {
