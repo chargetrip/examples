@@ -86,10 +86,11 @@ const drawPolyline = coordinates => {
 };
 
 /**
- * Show the charging stations, origin and destination on the map.
+ * Show the charging station, origin and destination on the map.
  *
- * Last leg of the route is a destination point.
- * All other legs are either charging stations or via points (if route has stops).
+ * The origin of the first leg is the start of your route.
+ * The destination of the last is the destination of your route.
+ * The desitinatation of all other legs are charging stations or via points.
  *
  * @param legs {array} route legs
  */
@@ -108,15 +109,15 @@ const showLegs = legs => {
     geometry: legs[0].origin?.geometry,
   });
 
-  legs.map((leg, index) => {
+  for (let i = 0; i < legs.length; i++) {
     // add charging stations
-    if (index !== legs.length - 1) {
+    if (i !== legs.length - 1) {
       points.push({
         type: 'Feature',
         properties: {
           icon: 'free-turbo',
         },
-        geometry: leg.destination?.geometry,
+        geometry: legs[i].destination?.geometry,
       });
     } else {
       // add destination point (last leg)
@@ -125,10 +126,10 @@ const showLegs = legs => {
         properties: {
           icon: 'arrival',
         },
-        geometry: leg.destination?.geometry,
+        geometry: legs[i].destination?.geometry,
       });
     }
-  });
+  }
 
   // draw route points on a map
   map.addLayer({
@@ -160,16 +161,15 @@ const selectPinlet = station => `along-${station.speed}`;
 
 const showAlternatives = alternatives => {
   if (alternatives.length === 0) return;
-  let locations = [];
 
-  alternatives.map(station => {
-    locations.push({
+  const locations = alternatives.map(station => {
+    return {
       type: 'Feature',
       properties: {
         icon: selectPinlet(station),
       },
       geometry: station.location,
-    });
+    };
   });
   // draw route points on a map
   map.addLayer({

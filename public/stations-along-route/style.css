@@ -125,7 +125,7 @@ section:last-child {
 .info h2 {
   padding: 20px 0 0 0;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 16px;
   line-height: 24px;
   color: #0c0c10;
 }
@@ -171,6 +171,7 @@ section:last-child {
   right: 0;
   bottom: 0;
   background-color: #ccc;
+  border: 1px solid #ccc;
   border-radius: 4px;
   -webkit-transition: 0.4s;
   transition: 0.4s;
