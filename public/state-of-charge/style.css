@@ -186,7 +186,7 @@ a {
 }
 
 .slider-container {
-  margin: 0 10px;
+  margin: 0 16px;
 }
 .section {
   border-bottom: 1px solid #edf2f6;
@@ -253,7 +253,7 @@ input[type='range']::-moz-range-thumb {
 .range-thumb {
   position: absolute;
   top: -2px;
-  left: 268.5px;
+  left: 259.5px;
   width: 70px;
   color: #202024;
   text-align: center;

@@ -149,16 +149,16 @@ const showLegs = legs => {
     geometry: legs[0].origin?.geometry,
   });
 
-  legs.map((leg, index) => {
+  for (let i = 0; i < legs.length; i++) {
     // add charging stations
-    if (index !== legs.length - 1) {
+    if (i !== legs.length - 1) {
       points.push({
         type: 'Feature',
         properties: {
-          description: leg.rangeEnd,
+          description: legs[i].rangeEnd,
           icon: 'unknown-turbo',
         },
-        geometry: leg.destination?.geometry,
+        geometry: legs[i].destination?.geometry,
       });
     } else {
       // add destination point (last leg)
@@ -166,12 +166,13 @@ const showLegs = legs => {
         type: 'Feature',
         properties: {
           icon: 'arrival',
-          description: leg.rangeEnd,
+          description: legs[i].rangeEnd,
         },
-        geometry: leg.destination?.geometry,
+        geometry: legs[i].destination?.geometry,
       });
     }
-  });
+  }
+
   // draw route points on a map
   map.addLayer({
     id: 'legs',
