@@ -16,7 +16,7 @@ const map = new mapboxgl.Map({
  * @param legs {array} route legs (stops) - each leg represents either a charging station, or via point or final point
  */
 export const drawRoute = (coordinates, legs, alternatives) => {
-  const slider = document.getElementById('alternative');
+  const onSwitch = document.getElementById('alternative');
   const sliderSwitch = document.getElementById('switch');
 
   if (map.loaded()) {
@@ -28,7 +28,7 @@ export const drawRoute = (coordinates, legs, alternatives) => {
       showLegs(legs);
     });
   }
-  slider.addEventListener('input', () => {
+  onSwitch.addEventListener('input', () => {
     if (map.getLayer('stations-along-route') && map.getSource('stations-along-route')) {
       document.getElementById('amount').innerHTML = '0';
       document.getElementById('switch').innerHTML = 'OFF';

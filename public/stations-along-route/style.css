@@ -150,8 +150,8 @@ section:last-child {
 .switch {
   position: relative;
   display: inline-block;
-  height: 22px;
-  width: 50px;
+  height: 24px;
+  width: 56px;
   border-radius: 4px;
 }
 
@@ -163,7 +163,7 @@ section:last-child {
 }
 
 /* The ON and OFF slider */
-.slider {
+.switch-slider {
   position: absolute;
   cursor: pointer;
   top: 0;
@@ -177,43 +177,44 @@ section:last-child {
   transition: 0.4s;
 }
 
-.slider-text {
+.switch-slider-text {
   position: relative;
   top: -13px;
-  left: 22px;
+  left: 23px;
   font-weight: 600;
   font-size: 12px;
   line-height: 15px;
   color: #ffffff;
 }
 
-.slider:before {
+.switch-slider:before {
   position: absolute;
   content: '';
   height: 16px;
   width: 16px;
   left: 4px;
-  top: 2px;
+  top: 3px;
   background-color: white;
   border-radius: 4px;
   -webkit-transition: 0.4s;
   transition: 0.4s;
 }
 
-input:checked + .slider {
+input:checked + .switch-slider {
   border-radius: 4px;
   background-color: #1f97ff;
   border: 1px solid #086cc2;
 }
 
-input:focus + .slider {
+input:focus + .switch-slider {
   box-shadow: 0 0 1px #2196f3;
 }
 
-input:checked + .slider:before {
+input:checked + .switch-slider:before {
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
+  left: 8px;
 }
 
 .tags {
@@ -371,6 +372,7 @@ input:checked + .slider:before {
 
 .section-alternative {
   padding: 0 0 30px 60px;
+  margin-bottom: 8px;
   background: url('images/alternative-station.svg') no-repeat left center;
 }
 
