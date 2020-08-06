@@ -63,7 +63,6 @@ client
         // for this example we want to only draw the initial route
         if (status === 'done' && route) {
           unsubscribe();
-
           drawRoutePolyline(route); // draw a polyline on a map
           displayRouteData(route); // fill in the route information
         }
@@ -79,7 +78,6 @@ client
       .then(response => {
         const { status, route } = response.data.route;
         if (status === 'done' && route) {
-          console.log({ route });
           unsubscribe();
           drawRoutePolyline(route);
           displayRouteData(route);

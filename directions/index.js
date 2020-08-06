@@ -81,7 +81,6 @@ client
       .then(response => {
         const { status, route } = response.data.route;
         if (status === 'done' && route) {
-          console.log({ route });
           unsubscribe();
           drawRoutePolyline(route);
           displayRouteData(route);

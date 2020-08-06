@@ -58,7 +58,7 @@ export const fetchRoute = callback => {
           // For this example we want to only draw the initial route.
           if (status === 'done' && route) {
             unsubscribe();
-            callback(routeId, result.data?.routeUpdatedById?.route);
+            callback(routeId, route);
           }
         }),
       );
@@ -73,7 +73,7 @@ export const fetchRoute = callback => {
           const { status, route } = response.data.route;
           if (status === 'done' && route) {
             unsubscribe();
-            callback(routeId, response.data?.routeUpdatedById?.route);
+            callback(routeId, route);
           }
         });
     })

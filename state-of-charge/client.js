@@ -53,13 +53,12 @@ export const fetchRoute = (soc, callback) => {
         client.executeSubscription(createRequest(routeUpdate, { id: routeId })),
         subscribe(result => {
           const { status, route } = result.data?.routeUpdatedById;
-
           // You can keep listening to the route changes to update route information.
           // For this example we want to only draw the initial route.
           if (status === 'done' && route) {
             document.getElementById('calculating').style.display = 'none';
             unsubscribe();
-            callback(result.data?.routeUpdatedById?.route);
+            callback(route);
           }
         }),
       );
@@ -71,10 +70,10 @@ export const fetchRoute = (soc, callback) => {
         .query(queryRoute, { id: routeId })
         .toPromise()
         .then(result => {
-          const { status, route } = response.data.route;
+          const { status, route } = result.data.route;
           if (status === 'done' && route) {
             unsubscribe();
-            callback(routeId, result.data?.routeUpdatedById?.route);
+            callback(routeId, route);
           }
         });
     })
