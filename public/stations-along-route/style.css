@@ -124,6 +124,7 @@ section:last-child {
 
 .info h2 {
   padding: 20px 0 0 0;
+  margin-bottom: 12px;
   font-weight: 600;
   font-size: 16px;
   line-height: 24px;
@@ -135,7 +136,7 @@ section:last-child {
   align-items: center;
   padding: 0 0 0 30px;
   font-size: 15px;
-  line-height: 46px;
+  line-height: 48px;
 }
 
 .info-amount {
@@ -332,17 +333,18 @@ input:checked + .switch-slider:before {
 }
 
 .section {
-  padding: 16px;
-  padding-bottom: 5px;
+  /* padding: 16px;
+  padding-bottom: 5px; */
 }
 
 .section-border {
   border-bottom: 1px solid #edf2f6;
+  padding-bottom: 16px;
 }
 
 .section-title {
-  padding-left: 16px;
-  padding-top: 20px;
+  padding: 24px 16px 0 16px;
+  margin-bottom: 12px;
   font-weight: 600;
   font-size: 18px;
   line-height: 22px;
@@ -350,7 +352,8 @@ input:checked + .switch-slider:before {
 }
 
 .section li {
-  padding: 8px;
+  padding: 13px 0 9px 8px;
+  margin: 0 20px;
   padding-left: 40px;
   font-weight: 600;
   font-size: 15px;
@@ -377,12 +380,10 @@ input:checked + .switch-slider:before {
 }
 
 .section-turbo {
-  padding: 0 0 30px 60px;
   background: url('images/turbo.svg') no-repeat left center;
 }
 
 .section-fast {
-  padding: 0 0 30px 60px;
   background: url('images/fast.svg') no-repeat left center;
 }
 
