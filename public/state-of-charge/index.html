@@ -21,16 +21,6 @@
       <button aria-label="remove github link" title="remove github link" onclick="this.parentElement.remove()"></button>
     </div>
 
-    <div class="tooltip" id="calculating">
-      <div class="tooltip-icon">
-        <div class="icon animation"></div>
-        <div class="line"></div>
-      </div>
-      <div class="tooltip-info">
-        Recalculating route <br />
-        <span>Please wait...</span>
-      </div>
-    </div>
     <div class="journey-specs">
       <header>
         <span id="loader">Loading...</span>
@@ -60,6 +50,17 @@
         title="Made with love at Chargetrip"
         >Made with ❤️ at</a
       >
+    </div>
+
+    <div class="notification" id="reroutingNotification">
+      <div class="notification-icon">
+        <div class="icon animation"></div>
+        <div class="line"></div>
+      </div>
+      <div class="notification-info">
+        Recalculating route <br />
+        <span>Please wait...</span>
+      </div>
     </div>
   </body>
   <script src="bundle.js"></script>
