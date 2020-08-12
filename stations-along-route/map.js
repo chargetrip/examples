@@ -19,6 +19,7 @@ export const drawRoute = (coordinates, legs, alternatives) => {
   const onSwitch = document.getElementById('alternative');
   const sliderSwitch = document.getElementById('switch');
 
+  document.getElementById('check').onclick = 'return true';
   if (map.loaded()) {
     drawPolyline(coordinates);
     showLegs(legs);
