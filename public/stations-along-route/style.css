@@ -218,6 +218,10 @@ input:checked + .switch-slider:before {
   left: 8px;
 }
 
+input:checked + .switch-slider .switch-slider-text {
+  left: 5px;
+}
+
 .tags {
   display: none;
   margin-top: 10px;
