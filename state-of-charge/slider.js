@@ -4,7 +4,7 @@ import { drawRoutePolyline } from './index';
 const rangeSlider = document.getElementById('range');
 
 rangeSlider.addEventListener('input', () => {
-  const percent = rangeSlider.value / rangeSlider.max;
+  const percent = (rangeSlider.value - rangeSlider.min) / (rangeSlider.max - rangeSlider.min);
   const thumbPosition = percent * rangeSlider.offsetWidth - 70 * percent;
 
   const rangeThumb = document.getElementById('range-thumb');
