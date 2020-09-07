@@ -76,15 +76,13 @@ section {
   -webkit-appearance: button;
 }
 
-#station-info {
-  max-height: 95vh;
-}
-
 .station-info {
+  position: fixed;
+  left: 15px;
   display: flex;
   flex-direction: column;
   width: 460px;
-  max-height: 100%;
+  max-height: 95vh;
   margin-top: 16px;
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
   background-color: var(--white);
@@ -94,18 +92,22 @@ section {
 .station-info header {
   padding: 30px;
   background-color: #202024;
+  border-radius: 8px 8px 0 0;
   color: #ffffff;
   text-align: center;
   font-size: 22px;
   font-style: normal;
   font-weight: 600;
   line-height: 28px;
-  border-radius: 8px 8px 0 0;
 }
 
 .station-info .content {
   flex: 1;
   overflow-y: auto;
+}
+
+.station-info .content.empty {
+  padding: 20px 15px;
 }
 
 .section {
@@ -149,10 +151,9 @@ section {
   justify-content: center;
   align-items: center;
   width: 50px;
-  height: 70px;
+  height: 80px;
   margin-right: 15px;
-  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-  background: #004294;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 }
 
 .icon {
@@ -191,6 +192,21 @@ section {
   opacity: 0.5;
 }
 
+.amenity-list {
+  overflow: hidden;
+}
+
+.amenity {
+  float: left;
+  height: 32px;
+  padding: 0 12px;
+  margin-right: 5px;
+  margin-bottom: 10px;
+  background: #e8edf1;
+  border-radius: 100px;
+  line-height: 32px;
+}
+
 /* Vieuw project on Github link */
 .github-link {
   position: fixed;
@@ -216,6 +232,7 @@ section {
   margin: 0 8px 0 0;
   background: url('images/github.svg') no-repeat left center;
   border-right: 1px solid #54545c;
+  text-decoration: none;
 }
 
 .github-link button {
@@ -245,7 +262,16 @@ footer {
   background: url('images/chargetrip.svg') no-repeat right center transparent;
   background-size: 72px;
   color: var(--black);
+  text-decoration: none;
   font-size: 12px;
   font-weight: 600;
   line-height: 38px;
+}
+
+#map {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
 }

@@ -11,10 +11,12 @@
       rel="stylesheet"
     />
     <link rel="icon" href="../favicon-57.png" type="image/x-icon" />
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
+    <div id="map"></div>
     <div class="github-link">
       <a href="https://github.com/chargetrip/examples/tree/master/station-info" title="github project">
         View on Github
@@ -22,11 +24,26 @@
       <button aria-label="remove github link" title="remove github link" onclick="this.parentElement.remove()"></button>
     </div>
 
-    <div id="station-info">Loading...</div>
+    <div id="stationInfo" class="station-info">
+      <header>
+        <h1>Station info example</h1>
+      </header>
+      <div class="content empty">
+        Click the station on the map to see its details
+      </div>
+      <footer>
+        <a
+          class="chargetrip-logo"
+          href="https://chargetrip.com/"
+          aria-label="Made with love at Chargetrip"
+          title="Made with love at Chargetrip"
+          >Made with ❤️ at</a
+        >
+      </footer>
+    </div>
 
     <script id="station-info-template" type="x-tmpl-mustache">
       {{#station}}
-        <div class="station-info">
           <header>
             <h1>Station "{{name}}"</h1>
           </header>
@@ -46,13 +63,23 @@
 
               <p>
                 <span class="label">Opening hours:</span>
-                {{#twenty4seven}} {{twenty4seven}} {{/twenty4seven}}
-                {{^twenty4seven}} Unknown {{/twenty4seven}}
+                {{twenty4seven}}
               </p>
 
               <p>
                 <span class="label">Parking:</span>
                 {{parking}}
+              </p>
+
+              <p>
+                <span class="label">Amenities:</span>
+                <ul class="amenity-list">
+                  {{#amenities}}
+                    <li class="amenity">
+                      {{.}}
+                    </li>
+                  {{/amenities}}
+                </ul>
               </p>
             </section>
 
@@ -64,7 +91,7 @@
                   <li class="connector {{status}}">
                     <div class="connector-icon">
                       <svg viewBox="0 0 25 25" class="icon">
-                        <use xlink:href="images/plug-defs.svg#plug-default"></use>
+                        <use xlink:href="images/plug-defs.svg#{{icon}}"></use>
                       </svg>
                     </div>
                     <div class="connector-name">{{name}}&nbsp;&nbsp;/&nbsp;&nbsp;{{power}} kW</div>
@@ -75,7 +102,6 @@
                   </li>
                 {{/connectors}}
               </ul>
-
             </section>
 
             <section class="section">
@@ -102,7 +128,6 @@
               title="Made with love at Chargetrip"
               >Made with ❤️ at</a>
           </footer>
-        </div>
       {{/station}}
     </script>
   </body>
