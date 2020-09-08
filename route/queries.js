@@ -57,6 +57,7 @@ query getRoute($id: ID!) {
       polyline
       charges
       duration
+      distance
       consumption
       chargeTime
       saving {
@@ -127,6 +128,7 @@ subscription routeUpdatedById($id: ID!){
       polyline
       charges
       duration
+      distance
       consumption
       chargeTime
       saving {
