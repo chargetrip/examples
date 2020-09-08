@@ -1,4 +1,5 @@
 import mapboxgl from 'mapbox-gl';
+import { displayRouteData } from './index';
 import { getDurationString } from '../utils';
 
 // eslint-disable-next-line no-undef
@@ -46,24 +47,55 @@ map.on('mouseleave', 'legs', function() {
  * @param coordinates {array} Array of coordinates
  * @param legs {array} route legs (stops) - each leg represents either a charging station, or via point or final point
  */
-export const drawRoute = (coordinates, legs) => {
+export const drawRoute = routes => {
   if (map.loaded()) {
-    drawPolyline(coordinates);
-    showLegs(legs);
+    for (let i = routes.length - 1; i >= 0; i--) {
+      drawPolyline(routes, i);
+    }
+    showLegs(routes[0].data.legs);
   } else {
     map.on('load', () => {
-      drawPolyline(coordinates);
-      showLegs(legs);
+      for (let i = routes.length - 1; i >= 0; i--) {
+        drawPolyline(routes, i);
+      }
+      showLegs(routes[0].data.legs);
+    });
+  }
+  for (let i = 0; i < routes.length; i++) {
+    map.on('mouseenter', `${i}`, e => {
+      map.getCanvas().style.cursor = 'pointer';
+    });
+
+    map.on('click', `${i}`, e => {
+      map.setPaintProperty(`${i}`, 'line-color', '#0078FF');
+      for (let j = 0; j < routes.length; j++) {
+        if (j !== i) {
+          map.setPaintProperty(`${j}`, 'line-color', '#EA8538');
+        }
+      }
+      map.moveLayer(`${i}`);
+      showLegs(routes[`${i}`].data.legs);
+      displayRouteData(routes[`${i}`].data);
+    });
+
+    map.on('mouseleave', `${i}`, () => {
+      map.getCanvas().style.cursor = '';
     });
   }
 };
 
 /**
- * Draw route polyline on a map.
+ * Draw a polyline on a map.
  *
- * @param coordinates {array} polyline coordinates
+ * @param routes {object} All routes recieved from the route query
+ * @param index {number} The index of the route that should be drawn
  */
-const drawPolyline = coordinates => {
+const drawPolyline = (routes, index) => {
+  let colour = '#EA8538';
+
+  if (index === 0) {
+    colour = '#0078FF';
+  }
   const geojson = {
     type: 'FeatureCollection',
     features: [
@@ -72,30 +104,30 @@ const drawPolyline = coordinates => {
         geometry: {
           type: 'LineString',
           properties: {},
-          coordinates,
+          coordinates: routes[index].polyline,
         },
       },
     ],
   };
 
-  map.addSource('polyline-source', {
+  map.addSource(`${index}`, {
     type: 'geojson',
     lineMetrics: true,
     data: geojson,
   });
 
   map.addLayer({
-    id: 'polyline',
+    id: `${index}`,
     type: 'line',
     options: 'beforeLayer',
-    source: 'polyline-source',
+    source: `${index}`,
     layout: {
       'line-join': 'round',
       'line-cap': 'round',
     },
     paint: {
-      'line-color': '#0078FF',
-      'line-width': 3,
+      'line-color': colour,
+      'line-width': 5,
     },
   });
 };
@@ -110,6 +142,8 @@ const drawPolyline = coordinates => {
  */
 const showLegs = legs => {
   if (legs.length === 0) return;
+  if (map.getLayer('legs')) map.removeLayer('legs');
+  if (map.getSource('legs')) map.removeSource('legs');
 
   let points = [];
 

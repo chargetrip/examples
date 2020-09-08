@@ -57,13 +57,13 @@ client
     const { unsubscribe } = pipe(
       client.executeSubscription(createRequest(routeUpdate, { id: routeId })),
       subscribe(result => {
-        const { status, route } = result.data.routeUpdatedById;
+        const { status, route, alternatives } = result.data.routeUpdatedById;
 
         // you can keep listening to the route changes to update route information
         // for this example we want to only draw the initial route
         if (status === 'done' && route) {
           unsubscribe();
-          drawRoutePolyline(route); // draw a polyline on a map
+          drawRoutePolyline(route, alternatives); // draw a polyline on a map
           displayRouteData(route); // fill in the route information
         }
       }),
@@ -97,11 +97,21 @@ client
  *
  * @param data {object} route specification
  */
-const drawRoutePolyline = data => {
-  const decodedData = mapboxPolyline.decode(data.polyline);
+const drawRoutePolyline = (route, alternatives) => {
+  const routes = [];
+
+  const decodedData = mapboxPolyline.decode(route.polyline);
   const reversed = decodedData.map(item => item.reverse());
 
-  drawRoute(reversed, data.legs);
+  routes.push({ data: route, polyline: reversed });
+
+  alternatives.map(item => {
+    const decoded = mapboxPolyline.decode(item.polyline);
+    const itemReversed = decoded.map(item => item.reverse());
+    routes.push({ data: item, polyline: itemReversed });
+  });
+
+  drawRoute(routes);
 };
 
 /**
@@ -109,9 +119,11 @@ const drawRoutePolyline = data => {
  *
  * @param data {object} route specification
  */
-const displayRouteData = data => {
-  document.getElementById('loader').remove();
-  document.querySelector('.tags').style.display = 'flex';
+export const displayRouteData = data => {
+  if (document.querySelector('.tags').style.display !== 'flex') {
+    document.getElementById('loader').remove();
+    document.querySelector('.tags').style.display = 'flex';
+  }
 
   // the total duration of the journey (including charge time), in seconds
   document.getElementById('duration').innerHTML = `${getDurationString(data.duration ?? 0)}`;

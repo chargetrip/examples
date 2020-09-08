@@ -40,8 +40,8 @@ mutation newRoute{
           }
           destination: {
             type: Feature
-            geometry: { type: Point, coordinates: [13.3888599, 52.5170365] }
-            properties: { name: "Berlin, Germany" }
+            geometry: { type: Point, coordinates: [13.2779, 53.5678] }
+            properties: { name: "neubrandenburg, Germany" }
           }
         }
       }
@@ -52,6 +52,35 @@ mutation newRoute{
 export const queryRoute = qql`
 query getRoute($id: ID!) {
   route(id: $id) {
+    alternatives {
+      id
+      polyline
+      charges
+      duration
+      consumption
+      chargeTime
+      saving {
+        money
+        co2
+      }
+      legs{
+        distance
+        chargeTime
+        origin{
+          geometry{
+            type
+            coordinates
+          }
+        }
+        destination{
+          geometry
+          {
+            type
+            coordinates
+          }
+        }
+      }
+    }
     route {
       charges
       saving {
@@ -93,6 +122,35 @@ export const routeUpdate = qql`
 subscription routeUpdatedById($id: ID!){
   routeUpdatedById(id: $id) {
     status
+    alternatives {
+      id
+      polyline
+      charges
+      duration
+      consumption
+      chargeTime
+      saving {
+        money
+        co2
+      }
+      legs{
+        distance
+        chargeTime
+        origin{
+          geometry{
+            type
+            coordinates
+          }
+        }
+        destination{
+          geometry
+          {
+            type
+            coordinates
+          }
+        }
+      }
+    }
     route {
       charges
       saving {
