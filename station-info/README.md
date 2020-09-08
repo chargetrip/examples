@@ -14,7 +14,7 @@ We use our Playground environment for this example. Our Playground has a station
 
 ### Steps to take
 
-To get stations around some location and fetch specific station details:
+To get stations around a location and fetch specific station details:
 
 1. We need to use `stationAround` query. We need to pass the information about a geojson point, and the distance we want to search in. In addition to this we can also add the power we would like the stations to have or specify which amenities should be around. As a result we will get a list of stations that meet our requirements. You can read all the details about this query in our [Graph API documentation](https://docs.chargetrip.com/#get-stations-around-a-geojson-point).
 2. Now we can show stations on the map.

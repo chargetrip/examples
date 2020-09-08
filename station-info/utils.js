@@ -91,7 +91,7 @@ export const getConnectorStatus = charger => {
   }
 };
 
-export const gerConnectorStatusLabel = status => {
+export const getConnectorStatusLabel = status => {
   switch (status) {
     case ConnectorStatus.FREE:
       return 'Available';

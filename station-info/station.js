@@ -1,6 +1,6 @@
 import {
   ConnectorStatus,
-  gerConnectorStatusLabel,
+  getConnectorStatusLabel,
   getAmenityName,
   getConnectorIcon,
   getConnectorName,
@@ -36,7 +36,7 @@ export const displayStationData = data => {
       status,
       standard: charger.standard,
       availabilityInfo: `${status === ConnectorStatus.UNKNOWN ? '-' : charger.status[status]}/${charger.total}`,
-      availabilityLabel: gerConnectorStatusLabel(status),
+      availabilityLabel: getConnectorStatusLabel(status),
     };
   });
 
