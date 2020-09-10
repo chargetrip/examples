@@ -41,7 +41,7 @@ mutation newRoute{
           destination: {
             type: Feature
             geometry: { type: Point, coordinates: [13.2779, 53.5678] }
-            properties: { name: "neubrandenburg, Germany" }
+            properties: { name: "Neubrandenburg, Germany" }
           }
           amenities: "restaurant"
         }
