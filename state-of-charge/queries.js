@@ -6,7 +6,7 @@ import qql from 'graphql-tag';
  * Only the EV ID here is mandatory, all other fields are optional and when not specified will use the default values.
  * The conditions are:
  *   - full battery at Amsterdam, Germany
- *   - EV can charge at CHadMO changers
+ *   - EV can charge at CHAdeMO changers
  *   - should use climate (temperature and weather conditions)
  *   - min power of chargers is 43 kWh. This is the default setting
  *   - one passenger in the car (drive alone)
@@ -27,7 +27,6 @@ mutation newRoute{
             { chargingPower: 150, standard: CHADEMO }
           ]
           climate: true
-          minPower: 43
           numberOfPassengers: 1
         }
         routeRequest: {
