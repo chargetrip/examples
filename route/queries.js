@@ -8,7 +8,7 @@ import qql from 'graphql-tag';
  *   - EV can charge at CHadMO changers
  *   - should use climate (temperature and weather conditions)
  *   - the EV driver can drive 40 km  less than the EV specs (specs is 440 km, custom range is 400 km)
- *   - min power of chargers is 43 kWh
+ *   - min power of chargers is 43 kWh. This is the default setting
  *   - one passenger in the car (drive alone)
  */
 export const createRoute = qql`
@@ -20,7 +20,6 @@ mutation newRoute{
           battery: {
             capacity: { value: 72.5, type: kwh }
             stateOfCharge: { value: 72.5, type: kwh }
-            finalStateOfCharge: { value: 0, type: kwh }
           }
           plugs: { chargingPower: 150, standard: TESLA_S }
           adapters: [

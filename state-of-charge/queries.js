@@ -7,7 +7,7 @@ import qql from 'graphql-tag';
  *   - no desired range at Berlin, Germany
  *   - EV can charge at CHadMO changers
  *   - should use climate (temperature and weather conditions)
- *   - min power of chargers is 43 kWh
+ *   - min power of chargers is 43 kWh. This is the default setting
  *   - one passenger in the car (drive alone)
  */
 export const createRoute = soc => `
@@ -19,7 +19,6 @@ mutation newRoute{
           battery: {
             capacity: { value: 72.5, type: kwh }
             stateOfCharge: { value: ${soc}, type: km }
-            finalStateOfCharge: { value: 0, type: kwh }
           }
           plugs: { chargingPower: 150, standard: TESLA_S }
           adapters: [
