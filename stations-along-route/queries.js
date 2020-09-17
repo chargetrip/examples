@@ -6,7 +6,6 @@ import qql from 'graphql-tag';
  * Only the EV ID here is mandatory, all other fields are optional and when not specified will use the default values.
  * The changing conditions are:
  *   - full battery at Amsterdam, Netherlands
- *   - no desired range at Utrecht, Netherlands
  *   - EV can charge at CHadMO changers
  *   - should use climate (temperature and weather conditions)
  *   - the EV driver can drive 40 km  less than the EV specs (specs is 440 km, custom range is 400 km)
