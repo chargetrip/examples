@@ -1,6 +1,6 @@
 # Show alternative routes with Chargetrip API
 
-This tutorial explains how to display alternative routes for your journey.  
+This tutorial explains how to display alternative routes for your journey.
 To see this example live 👉 [demo](https://chargetrip.github.io/examples/alternative-routes).
 
 ### Technical stack
@@ -27,7 +27,7 @@ Once we have a car and station database, we can start planning the route:
 
 1. We have to request a new route. For that we use the `newRoute` mutation. We will need to pass information about the car, origin and destination. As a result we will get an ID of a newly created route. You can read all the details about this mutation in our [Chargetrip API documentation](https://docs.chargetrip.com/#request-a-new-route).
 2. With a route ID we can request route information. We will subscribe to a route update to receive dynamic updates for it (recommended route, alternative routes (if available), time duration, consumption etc). You can read all the details about this subscription in our [Graph API documentation](https://docs.chargetrip.com/#subscribe-to-route-updates).
-3. Having the route details we can show the recommended route and alternatives on a map. To show stations, where a car must stop for charging, we use route `legs` object, where each leg is a station.
+3. Having the route details we can show the recommended route and alternatives on a map. To show stations, where a car must stop for charging, we use the route `legs` object, where each leg is a station.
 4. We can also query route details for information like total distance, duration of a trip, consumption etc. You can see all available fields to query in the [Chargetrip API documentation](https://docs.chargetrip.com/#get-route-details). The information about your trip will be updated if you click on one of the alternative routes.
 
 ### Useful links
