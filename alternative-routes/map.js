@@ -26,22 +26,23 @@ const popup = new mapboxgl.Popup({
  */
 export const drawRoutes = routes => {
   if (map.loaded()) {
-    routes.forEach((route, index) => drawPolyline(route, index, index === 0 ? '#EA8538' : '#0078FF'));
+    routes.forEach((route, index) => drawPolyline(route, index, index === 0 ? '#0078FF' : '#9CA7B2'));
     map.moveLayer(`0`);
     showLegs(routes[0].data.legs);
   } else {
     map.on('load', () => {
-      routes.forEach((route, index) => drawPolyline(route, index, index === 0 ? '#EA8538' : '#0078FF'));
+      routes.forEach((route, index) => drawPolyline(route, index, index === 0 ? '#0078FF' : '#9CA7B2'));
       map.moveLayer(`0`);
       showLegs(routes[0].data.legs);
     });
   }
+
   for (let i = 0; i < routes.length; i++) {
     map.on('mouseenter', `${i}`, e => {
       map.getCanvas().style.cursor = 'pointer';
       const coordinates = e.lngLat;
       const description =
-        `${getDurationString(routes[i].data.duration ?? 0)}` + '</br>' + `${routes[i].data.charges ?? 0} stops`;
+        `<b>${getDurationString(routes[i].data.duration ?? 0)}</b>` + '</br>' + `${routes[i].data.charges ?? 0} stops`;
 
       while (Math.abs(e.lngLat.lng - coordinates[0]) > 180) {
         coordinates[0] += e.lngLat.lng > coordinates[0] ? 360 : -360;
@@ -54,21 +55,17 @@ export const drawRoutes = routes => {
     });
 
     map.on('click', `${i}`, () => {
-      map.setPaintProperty(`${i}`, 'line-color', '#0078FF');
-      for (let j = 0; j < routes.length; j++) {
-        if (j !== i) {
-          map.setPaintProperty(`${j}`, 'line-color', '#EA8538');
-        }
-      }
-      map.moveLayer(`${i}`);
-      showLegs(routes[`${i}`].data.legs);
-      displayRouteData(routes[`${i}`].data);
+      switchRoute(routes, i);
     });
 
     map.on('mouseleave', `${i}`, () => {
       map.getCanvas().style.cursor = '';
+      popup.remove();
     });
   }
+
+  const routeOptions = document.querySelectorAll('input[type=radio][name="routes"]');
+  routeOptions.forEach((route, index) => route.addEventListener('change', () => SwithcRoute(routes, index)));
 };
 
 /**
@@ -182,4 +179,23 @@ const showLegs = legs => {
       },
     },
   });
+};
+
+/**
+ * Switch the main route to the one that was clicked.
+ *
+ * @param routes {object} All routes recieved from the route query
+ * @param id {number} id of the polyline that was clicked on
+ */
+const SwithcRoute = (routes, id) => {
+  document.getElementById(`route-${id}`).checked = true;
+  map.setPaintProperty(`${id}`, 'line-color', '#0078FF');
+  for (let j = 0; j < routes.length; j++) {
+    if (j !== id) {
+      map.setPaintProperty(`${j}`, 'line-color', '#9CA7B2');
+    }
+  }
+  map.moveLayer(`${id}`);
+  showLegs(routes[id].data.legs);
+  displayRouteData(routes[id].data);
 };

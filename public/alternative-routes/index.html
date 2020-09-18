@@ -34,12 +34,23 @@
       </header>
 
       <section>
+        <div class="route-selector" id="selector">
+          <input class="checkbox-routes" type="radio" name="routes" id="route-0" checked />
+          <label class="for-checkbox-routes" for="route-0">
+            Fastest
+          </label>
+          <input class="checkbox-routes" type="radio" name="routes" id="route-1" />
+          <label class="for-checkbox-routes" for="route-1">
+            Alt 1
+          </label>
+          <input class="checkbox-routes" type="radio" name="routes" id="route-2" />
+          <label class="for-checkbox-routes" for="route-2">
+            Alt 2
+          </label>
+        </div>
+
         <h2>Trip information</h2>
         <ul class="info trip">
-          <li>
-            type
-            <span id="type">--•--</span>
-          </li>
           <li class="trip-duration">
             Charge Duration
             <span id="charge-duration">--•--</span>

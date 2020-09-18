@@ -126,9 +126,6 @@ export const displayRouteData = data => {
   }
 
   // the total duration of the journey (including charge time), in seconds
-  document.getElementById('type').innerHTML = data.type ? data.type : 'Unkown';
-
-  // the total duration of the journey (including charge time), in seconds
   document.getElementById('duration').innerHTML = `${getDurationString(data.duration ?? 0)}`;
 
   // the total distance of the route, in meters

@@ -1,14 +1,11 @@
 import qql from 'graphql-tag';
 
 /*
- * In this example we request a route from Amsterdam, Netherlands to Berlin, Germany
+ * In this example we request a route from Amsterdam, Netherlands to Neubrandenburg, Germany
  * The changing conditions are:
- *   - full battery at Amsterdam, Netherlands
- *   - no desired range at Berlin, Germany
- *   - EV can charge at CHadMO changers
+ *   - The state of charge is 72.5 kwh
+ *   - EV can charge at Tesla, CHADEMO and Type 2 changers
  *   - should use climate (temperature and weather conditions)
- *   - the EV driver can drive 40 km  less than the EV specs (specs is 440 km, custom range is 400 km)
- *   - min power of chargers is 43 kWh
  *   - one passenger in the car (drive alone)
  */
 export const createRoute = qql`
@@ -18,9 +15,7 @@ mutation newRoute{
         ev: {
           id: "5d161be5c9eef46132d9d20a"
           battery: {
-            capacity: { value: 72.5, type: kwh }
             stateOfCharge: { value: 72.5, type: kwh }
-            finalStateOfCharge: { value: 0, type: kwh }
           }
           plugs: { chargingPower: 150, standard: TESLA_S }
           adapters: [
@@ -28,7 +23,6 @@ mutation newRoute{
             { chargingPower: 150, standard: CHADEMO }
           ]
           climate: true
-          minPower: 43
           numberOfPassengers: 1
         }
         routeRequest: {
@@ -43,7 +37,6 @@ mutation newRoute{
             geometry: { type: Point, coordinates: [13.2779, 53.5678] }
             properties: { name: "Neubrandenburg, Germany" }
           }
-          amenities: "restaurant"
         }
       }
     )
