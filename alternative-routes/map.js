@@ -55,7 +55,7 @@ export const drawRoutes = routes => {
     });
 
     map.on('click', `${i}`, () => {
-      changeRoute(routes, i);
+      highlightRoute(i, routes);
     });
 
     map.on('mouseleave', `${i}`, () => {
@@ -65,7 +65,7 @@ export const drawRoutes = routes => {
   }
 
   const routeOptions = document.querySelectorAll('input[type=radio][name="routes"]');
-  routeOptions.forEach((route, index) => route.addEventListener('change', () => changeRoute(routes, index)));
+  routeOptions.forEach((route, index) => route.addEventListener('change', () => highlightRoute(index, routes)));
 };
 
 /**
@@ -187,7 +187,7 @@ const showLegs = legs => {
  * @param routes {object} All routes recieved from the route query
  * @param id {number} id of the polyline that was clicked on
  */
-const changeRoute = (routes, id) => {
+const highlightRoute = (id, routes) => {
   document.getElementById(`route-${id}`).checked = true;
   map.setPaintProperty(`${id}`, 'line-color', '#0078FF');
   for (let j = 0; j < routes.length; j++) {
