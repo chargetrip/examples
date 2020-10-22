@@ -14,7 +14,7 @@ const headers = {
 };
 
 const client = createClient({
-  url: 'https://api.chargetrip.io/graphql',
+  url: 'https://staging-api.chargetrip.io/graphql',
   fetchOptions: {
     method: 'POST',
     headers,
