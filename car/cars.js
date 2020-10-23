@@ -8,7 +8,6 @@ export const displayCarsData = (cars = []) => {
   const profiles = [];
 
   cars.map(car => {
-    console.log(car.imagesData);
     profiles.push({
       make: car.make ?? 'Unknown',
       model: car.carModel ?? 'Unknown',
