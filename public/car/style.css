@@ -179,7 +179,7 @@ a {
 .banner {
   position: fixed;
   height: 32px;
-  width: 483px;
+  width: 600px;
   left: 240px;
   top: 20px;
   border-radius: 6px;
@@ -196,7 +196,7 @@ a {
   margin: 0 8px 0 8px;
   color: #ed7922;
   font-size: 14px;
-  line-height: 28px;
+  line-height: 30px;
   align-items: center;
 }
 
