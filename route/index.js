@@ -146,6 +146,13 @@ const displayRouteData = data => {
   document.getElementById('co2').innerHTML = data.saving?.co2 ? `${data.saving.co2 / 1000} Kg` : 'Unknown';
 };
 
+/**
+ * Create a Google Map Directions URL.
+ * See documentation here https://developers.google.com/maps/documentation/urls/get-started#directions-action.
+ *
+ * @param legs Route legs (origin, destination, waypoints and stations)
+ * @returns {string} Google Map Directions URL
+ */
 const getGoogleMapDirectionsURL = legs => {
   if (legs.length === 0) return;
 
@@ -153,7 +160,7 @@ const getGoogleMapDirectionsURL = legs => {
   const origin = legs[0].origin?.geometry?.coordinates;
   const destination = legs[legs.length - 1].destination?.geometry?.coordinates;
 
-  // coordinates is an array with longitude as first value and latitude as second one
+  // coordinates are an array with longitude as first value and latitude as the second one
   // we have to reverse it as Google Maps accept latitude first
   googleDirURL += `&origin=${origin?.reverse()?.join(',')}&destination=${destination?.reverse()?.join(',')}`;
 
