@@ -10,7 +10,7 @@ import { displayCarsData } from './cars';
  * Read more about an authorisation in our documentation (https://docs.chargetrip.com/#authorisation).
  */
 const headers = {
-  'x-client-id': '5e8c22366f9c5f23ab0eff39',
+  'x-client-id': '5ec52d3dd61c7b770cd5d529',
 };
 
 const client = createClient({
