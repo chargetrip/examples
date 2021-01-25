@@ -11,10 +11,11 @@ import { displayCarsData } from './cars';
  */
 const headers = {
   'x-client-id': '5ec52d3dd61c7b770cd5d529',
+  'x-app-id': '60016abbd422412828d84468',
 };
 
 const client = createClient({
-  url: 'https://api.chargetrip.io/graphql',
+  url: 'https://api-2.chargetrip.io/graphql',
   fetchOptions: {
     method: 'POST',
     headers,
