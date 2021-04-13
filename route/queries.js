@@ -64,6 +64,7 @@ query getRoute($id: ID!) {
             type
             coordinates
           }
+          properties
         }
         destination{
           geometry
@@ -71,6 +72,7 @@ query getRoute($id: ID!) {
             type
             coordinates
           }
+          properties
         }
       }
     }
@@ -100,6 +102,7 @@ subscription routeUpdatedById($id: ID!){
             type
             coordinates
           }
+          properties
         }
         destination{
           geometry
@@ -107,6 +110,7 @@ subscription routeUpdatedById($id: ID!){
             type
             coordinates
           }
+          properties
         }
       }
     }
