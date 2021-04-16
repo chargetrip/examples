@@ -130,8 +130,6 @@ const displayRouteData = data => {
 
   const hasBorderCrossing = checkBorderCrossing(data);
 
-  console.log(hasBorderCrossing);
-
   // A combined field containing several of the route meta data
   document.getElementById('route-metadata').innerHTML = `${routeDistance} / ${routeStops} / ${routeEnergy}`;
 
@@ -174,7 +172,7 @@ const displayRouteData = data => {
  * @returns { int } - average temperature rounded across all stops to 1 decimal
  */
 const calculateAverageTemperature = data => {
-  var averageTemperature = 0;
+  let averageTemperature = 0;
 
   // Go over every leg in our route and get the temperature on every stop origin.
   // To prevent an overlap on the last leg we select the destination.
