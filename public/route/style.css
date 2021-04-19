@@ -1,3 +1,17 @@
+:root {
+  --base: 16px;
+
+  --h1-font-size: 2rem;
+  --h2-font-size: 1.5rem;
+  --h3-font-size: 1.25rem;
+  --base-font-size: 1rem;
+  --small-font-size: 0.75rem;
+  --micro-font-size: 0.5rem;
+
+  --base-font-color: #1b2023;
+  --alt-3-font-color: #566a75;
+}
+
 html,
 body {
   padding: 0;
@@ -27,21 +41,20 @@ p {
 
 h1 {
   font-weight: bold;
-  font-size: 2rem;
+  font-size: var(--h1-font-size);
   line-height: 2.5rem;
 }
 
 h3 {
   font-weight: 600;
-  font-size: 1.25rem;
+  font-size: var(--h3-font-size);
   line-height: 1.75rem;
 }
 
 p {
-  font-family: Inter;
   font-style: normal;
   font-weight: normal;
-  font-size: 1rem;
+  font-size: var(--base-font-size);
   line-height: 1.75rem;
 }
 
