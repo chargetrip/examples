@@ -74,7 +74,7 @@ p {
 
 a {
   text-decoration: none;
-  color: #ffffff;
+  color: var(--background-base);
 }
 
 ul {
@@ -87,11 +87,15 @@ ul {
 li {
   display: flex;
   justify-content: space-between;
-  padding: 0.375rem 0;
+  padding: 0.25rem 0;
 }
 
 li p {
-  color: #566a75;
+  color: var(--font-alt3);
+}
+
+li p:last-child {
+  color: var(--font-base);
 }
 
 li span {
@@ -106,7 +110,7 @@ button {
   justify-content: center;
   font-size: var(--font-size-base);
   font-weight: 600;
-  color: #ffffff;
+  color: var(--background-base);
   border-radius: 4px;
   background-color: var(--accent-base);
   border: none;
@@ -211,6 +215,7 @@ button:disabled {
 .car-details p {
   color: var(--background-base);
   line-height: 1.25rem;
+  font-size: var(--base);
 }
 
 .car-image {
