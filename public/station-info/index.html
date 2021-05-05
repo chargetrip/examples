@@ -6,10 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="description" content="Query particular station with the Chargetrip API." />
     <meta name="keywords" content="Chargetrip, Chargetrip API, EV, ev-cars, ev-routing, station" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;600&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
     <link rel="icon" href="../favicon-57.png" type="image/x-icon" />
     <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
@@ -17,32 +14,87 @@
 
   <body>
     <div id="map"></div>
-    <div class="github-link">
-      <a href="https://github.com/chargetrip/examples/tree/master/station-info" title="github project">
-        View on Github
-      </a>
-      <button aria-label="remove github link" title="remove github link" onclick="this.parentElement.remove()"></button>
-    </div>
-
-    <div id="stationInfo" class="station-info">
+    <div class="card" id="scroll-area">
       <header>
-        <h1>Station info example</h1>
+        <h1 id="duration">Ladebrike 20183 ajsgasga as</h1>
+        <p>Operated by Fortum</p>
+        <div class="realtime-data">
+          <img src="./images/realtime.svg" alt="Icon representing realtime data" />
+          <p>Live station data from EcoMovement</p>
+        </div>
       </header>
-      <div class="content empty">
-        Click the station on the map to see its details
-      </div>
+      <main>
+        <section>
+          <ul class="chargers">
+            <li>
+              <div class="charger">
+                <div class="charger-plug">
+                  <img src="./images/realtime.svg" alt="" />
+                </div>
+
+                <div class="charger-details">
+                  <div class="row">
+                    <p>CSS • 240 kW</p>
+                    <p>3 / 5</p>
+                  </div>
+                  <div class="row">
+                    <p>€ 2.50 hour + € 0.5 / kWh</p>
+                    <p>Available</p>
+                  </div>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>Amenities</h3>
+          <ul class="amenities">
+            <li>
+              <div class="amenity">
+                <img src="./images/realtime.svg" alt="" />
+              </div>
+            </li>
+            <li>
+              <div class="amenity">
+                <img src="./images/realtime.svg" alt="" />
+              </div>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <h3>Information</h3>
+          <ul class="station-details">
+            <li>
+              <div class="row">
+                <p>Address</p>
+              </div>
+              <div class="row">
+                <p>Hoogte Kadijk 109, 1054TX, Amsterdam</p>
+              </div>
+            </li>
+          </ul>
+        </section>
+        <section>
+          <p class="station-data">
+            This station data is provided as is. Actual availability and pricing information might be different.
+          </p>
+        </section>
+      </main>
       <footer>
-        <a
-          class="chargetrip-logo"
-          href="https://chargetrip.com/"
-          aria-label="Made with love at Chargetrip"
-          title="Made with love at Chargetrip"
-          >Made with ❤️ at</a
-        >
+        <div class="disclaimer">
+          <a
+            class="chargetrip-logo"
+            href="https://chargetrip.com/"
+            aria-label="Powered by Chargetrip"
+            title="Powered by Chargetrip"
+          >
+            Powered by
+          </a>
+        </div>
       </footer>
     </div>
 
-    <script id="station-info-template" type="x-tmpl-mustache">
+    <!-- <script id="station-info-template" type="x-tmpl-mustache">
       {{#station}}
           <header>
             <h1>Station "{{name}}"</h1>
@@ -129,7 +181,7 @@
               >Made with ❤️ at</a>
           </footer>
       {{/station}}
-    </script>
+    </script> -->
   </body>
   <script src="bundle.js"></script>
 </html>
