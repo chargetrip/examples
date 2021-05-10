@@ -216,6 +216,10 @@ section {
   justify-content: center;
 }
 
+.station-details .row:first-child p {
+  color: var(--font-alt3);
+}
+
 .station-details .row:last-child p {
   font-weight: bold;
 }

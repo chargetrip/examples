@@ -44,30 +44,67 @@ export const displayStationData = data => {
     return `${getAmenityName(amenity)} • ${station.amenities[amenity]}`;
   });
 
-  const template = document.getElementById('station-info-template').innerHTML;
-  document.getElementById('stationInfo').innerHTML = Mustache.render(template, {
-    station: {
-      ...data.station,
-      id: station.id,
-      name: station.name,
-      operator: station.operator?.name,
-      connectors,
-      readableAddress,
-      googleAddress,
-      directionURL,
-      what3Words: station.physical_address?.what3Words,
-      what3wordsURL,
-      twenty4seven: station.opening_times?.twentyfourseven ? '24/7' : 'Unknown',
-      parking: getParkingType(station.parking_type),
-      amenities,
-    },
+  // const template = document.getElementById('station-info-template').innerHTML;
+  // document.getElementById('stationInfo').innerHTML = Mustache.render(template, {
+  //   station: {
+  //     ...data.station,
+  //     id: station.id,
+  //     name: station.name,
+  //     operator: station.operator?.name,
+  //     connectors,
+  //     readableAddress,
+  //     googleAddress,
+  //     directionURL,
+  //     what3Words: station.physical_address?.what3Words,
+  //     what3wordsURL,
+  //     twenty4seven: station.opening_times?.twentyfourseven ? '24/7' : 'Unknown',
+  //     parking: getParkingType(station.parking_type),
+  //     amenities,
+  //   },
+  // });
+
+  console.log(connectors);
+
+  renderConnectors(connectors);
+};
+
+const renderConnectors = connectors => {
+  let connectorList = document.getElementById('connector-list');
+  connectorList.replaceChildren();
+
+  connectors.forEach(connector => {
+    connectorList.insertAdjacentHTML(
+      'afterbegin',
+      `
+      <li>
+        <div class="charger">
+          <div class="charger-plug">
+            <svg viewBox="0 0 24 24" height="24" width="24">
+              <use xlink:href="images/plug-defs.svg#${connector.icon}"></use>
+            </svg>
+          </div>
+
+          <div class="charger-details">
+            <div class="row">
+              <p>${connector.name} • ${connector.power} kW</p>
+              <p>${connector.availabilityInfo}</p>
+            </div>
+            <div class="row">
+              <p>€ 2.50 hour + € 0.5 / kWh</p>
+              <p>${connector.availabilityLabel}</p>
+            </div>
+          </div>
+        </div>
+      </li>
+      `,
+    );
   });
 };
 
 export const showLoader = () => {
-  document.querySelector('#stationInfo .content').innerHTML = "<div class='content empty'>Loading...</div>";
+  //document.querySelector('#stationInfo .content').innerHTML = "<div class='content empty'>Loading...</div>";
 };
 
 export const showError = error => {
-  document.querySelector('#stationInfo .content').innerHTML = `<div class='content empty'>${error}</div>`;
+  //document.querySelector('#stationInfo .content').innerHTML = `<div class='content empty'>${error}</div>`;
 };
