@@ -1,6 +1,5 @@
 import { createClient, defaultExchanges } from '@urql/core';
 import { getStationData, getStationsAround } from './queries';
-import { showError } from './station';
 
 /**
  * For the purpose of this example we use urgl - lightweights GraphQL client.

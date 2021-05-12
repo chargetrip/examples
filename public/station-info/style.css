@@ -89,6 +89,23 @@ li {
   padding: 0.5rem 0;
 }
 
+.button {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--background-base);
+  border-radius: 4px;
+  background-color: var(--accent-base);
+  border: none;
+  cursor: pointer;
+  transition: all 300ms ease-in-out;
+  font-weight: bold;
+}
+
 #map {
   width: 100%;
   height: 100%;
@@ -278,7 +295,12 @@ svg {
   font-weight: bold;
 }
 
-footer div {
+.prefooter {
+  padding: 1rem;
+  border-bottom: 1px solid var(--background-alt);
+}
+
+.disclaimer {
   padding: 0 1rem;
 }
 
