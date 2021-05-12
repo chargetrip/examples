@@ -1,6 +1,6 @@
 import mapboxgl from 'mapbox-gl';
 import { fetchStationData } from './client';
-import { displayStationData, showLoader } from './station';
+import { displayStationData } from './station';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjazhpaG8ydTIwNWNpM21ud29xeXc2amhlIn0.rGKgR3JfG9Z5dCWjUI_oGA';
 
@@ -14,7 +14,6 @@ const map = new mapboxgl.Map({
 map.on('click', 'stations', function(e) {
   const stationId = e.features[0]?.properties?.stationId;
   if (stationId) {
-    showLoader();
     fetchStationData(stationId).then(data => data && displayStationData(data));
   }
 

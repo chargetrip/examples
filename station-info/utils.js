@@ -35,19 +35,6 @@ export const ConnectorStatus = {
   ERROR: 'error',
 };
 
-export const Amenities = {
-  coffee: 'Coffee',
-  hotel: 'Hotel',
-  museum: 'Museum',
-  park: 'Park',
-  playground: 'Playground',
-  bathroom: 'Bathroom',
-  restaurant: 'Restaurant',
-  shopping: 'Shopping mall',
-  supermarket: 'Supermarket',
-  pharmacy: 'Pharmacy',
-};
-
 export const ParkingType = {
   ALONG_MOTORWAY: 'Along motorway',
   PARKING_GARAGE: 'Parking garage',
@@ -58,7 +45,6 @@ export const ParkingType = {
 };
 
 export const getParkingType = type => ParkingType[type] || 'Unknown';
-export const getAmenityName = type => Amenities[type] || 'Unknown';
 export const getConnectorName = name => ConnectorName[name] || 'Unknown';
 
 /* We don't provide icon for these plug types. The default plug icon is shown instead.*/

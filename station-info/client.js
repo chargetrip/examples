@@ -55,4 +55,4 @@ export const fetchStationData = id =>
 
       return response.data;
     })
-    .catch(error => showError(error));
+    .catch(error => console.log(error));

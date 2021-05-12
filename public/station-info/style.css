@@ -76,7 +76,7 @@ p {
 
 a {
   text-decoration: none;
-  color: var(--background-base);
+  color: var(--font-base);
 }
 
 ul {
@@ -167,6 +167,14 @@ section:first-child {
   border-top: none;
 }
 
+.unknown .charger {
+  background-color: var(--background-alt3);
+}
+
+.unknown .charger-plug {
+  background-color: var(--background-alt4);
+}
+
 .charger {
   background-color: var(--accent-base);
   color: var(--background-base);
@@ -240,7 +248,7 @@ svg {
 }
 
 .station-details .row:last-child p {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .station-data {

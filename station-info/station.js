@@ -1,7 +1,6 @@
 import {
   ConnectorStatus,
   getConnectorStatusLabel,
-  getAmenityName,
   getConnectorIcon,
   getConnectorName,
   getConnectorStatus,
@@ -27,8 +26,6 @@ export const displayStationData = data => {
   const directionURL = `https://www.google.com/maps/dir/?api=1&travelmode=driving&dir_action=navigate&destination=${station.coordinates?.latitude},${station.coordinates?.longitude}`;
 
   const connectors = station.chargers?.map(charger => {
-    console.log(getConnectorIcon(charger.standard), charger.standard);
-
     const status = getConnectorStatus(charger);
     return {
       name: getConnectorName(charger.standard),
@@ -41,20 +38,34 @@ export const displayStationData = data => {
     };
   });
 
-  const details = {
-    Address: readableAddress,
-    'What 3 words': station.physical_address?.what3Words,
-    'Twenty 4 seven': station.opening_times?.twentyfourseven ? '24/7' : 'Unknown',
-    Parking: getParkingType(station.parking_type),
-  };
-
-  // const newDetails = [
-  //   {
-  //     title: "Address",
-  //     subtitle: readableAddress,
-  //     url:
-  //   }
-  // ]
+  const details = [
+    {
+      title: 'Address',
+      subtitle: readableAddress,
+      url: googleAddress,
+    },
+    {
+      title: 'Operator',
+      subtitle: station.operator?.name,
+    },
+    {
+      title: 'Twenty 4 seven',
+      subtitle: station.opening_times?.twentyfourseven ? '24/7' : 'Unknown',
+    },
+    {
+      title: 'Parking',
+      subtitle: getParkingType(station.parking_type),
+    },
+    {
+      title: 'Station Id',
+      subtitle: station.id,
+    },
+    {
+      title: 'What 3 words',
+      subtitle: station.physical_address?.what3Words,
+      url: what3wordsURL,
+    },
+  ];
 
   renderHeader(station);
   renderConnectors(connectors);
@@ -67,30 +78,6 @@ const renderHeader = station => {
   document.getElementById('station-operator').innerHTML = station.operator?.name;
 };
 
-const renderAmenities = amenities => {
-  let amenityList = document.getElementById('amenity-list');
-  amenityList.replaceChildren();
-
-  Object.keys(amenities || {})?.forEach(amenity => {
-    console.log(amenity);
-    amenityList.insertAdjacentHTML(
-      'beforeend',
-      `
-      <li>
-      <div class="amenity">
-        <img src="./images/realtime.svg" alt="" />
-      </div>
-      </li>
-      <li>
-        <div class="amenity">
-          <img src="./images/realtime.svg" alt="" />
-        </div>
-      </li>
-      `,
-    );
-  });
-};
-
 const renderConnectors = connectors => {
   let connectorList = document.getElementById('connector-list');
   connectorList.replaceChildren();
@@ -99,7 +86,7 @@ const renderConnectors = connectors => {
     connectorList.insertAdjacentHTML(
       'afterbegin',
       `
-      <li>
+      <li class=${connector.status === ConnectorStatus.UNKNOWN ? 'unknown' : ''}>
         <div class="charger">
           <div class="charger-plug">
             <svg viewBox="0 0 24 24" height="24" width="24">
@@ -124,31 +111,46 @@ const renderConnectors = connectors => {
   });
 };
 
+const renderAmenities = amenities => {
+  let amenityList = document.getElementById('amenity-list');
+  amenityList.replaceChildren();
+
+  Object.keys(amenities || {})?.forEach(amenity => {
+    console.log(amenity);
+    amenityList.insertAdjacentHTML(
+      'beforeend',
+      `
+      <li>
+      <div class="amenity">
+        <svg viewBox="0 0 24 24" height="24" width="24">
+          <use xlink:href="images/amenities/${amenity}.svg#${amenity}"></use>
+        </svg>
+      </div>
+      </li>
+      `,
+    );
+  });
+};
+
 const renderDetails = details => {
   let stationDetails = document.getElementById('station-details');
   stationDetails.replaceChildren();
 
-  for (var key in details) {
+  details.forEach(detail => {
     stationDetails.insertAdjacentHTML(
       'beforeend',
       `
       <li>
-        <div class="row">
-          <p>${key}</p>
-        </div>
-        <div class="row">
-          <p>${details[key]}</p>
-        </div>
+        ${detail.url !== undefined ? `<a target="_blank" href=${detail.url}>` : ``}
+          <div class="row">
+            <p>${detail.title}</p>
+          </div>
+          <div class="row">
+            <p>${detail.subtitle}</p>
+          </div>
+        ${detail.url !== undefined ? `</a>` : ``}
       </li>
       `,
     );
-  }
-};
-
-export const showLoader = () => {
-  //document.querySelector('#stationInfo .content').innerHTML = "<div class='content empty'>Loading...</div>";
-};
-
-export const showError = error => {
-  //document.querySelector('#stationInfo .content').innerHTML = `<div class='content empty'>${error}</div>`;
+  });
 };
