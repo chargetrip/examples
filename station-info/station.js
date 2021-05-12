@@ -7,7 +7,6 @@ import {
   getConnectorStatus,
   getParkingType,
 } from './utils';
-import Mustache from 'mustache';
 
 /**
  * Display raw station data.
@@ -28,6 +27,8 @@ export const displayStationData = data => {
   const directionURL = `https://www.google.com/maps/dir/?api=1&travelmode=driving&dir_action=navigate&destination=${station.coordinates?.latitude},${station.coordinates?.longitude}`;
 
   const connectors = station.chargers?.map(charger => {
+    console.log(getConnectorIcon(charger.standard), charger.standard);
+
     const status = getConnectorStatus(charger);
     return {
       name: getConnectorName(charger.standard),
@@ -40,32 +41,54 @@ export const displayStationData = data => {
     };
   });
 
-  const amenities = Object.keys(station.amenities || {})?.map(amenity => {
-    return `${getAmenityName(amenity)} • ${station.amenities[amenity]}`;
-  });
+  const details = {
+    Address: readableAddress,
+    'What 3 words': station.physical_address?.what3Words,
+    'Twenty 4 seven': station.opening_times?.twentyfourseven ? '24/7' : 'Unknown',
+    Parking: getParkingType(station.parking_type),
+  };
 
-  // const template = document.getElementById('station-info-template').innerHTML;
-  // document.getElementById('stationInfo').innerHTML = Mustache.render(template, {
-  //   station: {
-  //     ...data.station,
-  //     id: station.id,
-  //     name: station.name,
-  //     operator: station.operator?.name,
-  //     connectors,
-  //     readableAddress,
-  //     googleAddress,
-  //     directionURL,
-  //     what3Words: station.physical_address?.what3Words,
-  //     what3wordsURL,
-  //     twenty4seven: station.opening_times?.twentyfourseven ? '24/7' : 'Unknown',
-  //     parking: getParkingType(station.parking_type),
-  //     amenities,
-  //   },
-  // });
+  // const newDetails = [
+  //   {
+  //     title: "Address",
+  //     subtitle: readableAddress,
+  //     url:
+  //   }
+  // ]
 
-  console.log(connectors);
-
+  renderHeader(station);
   renderConnectors(connectors);
+  renderAmenities(station.amenities);
+  renderDetails(details);
+};
+
+const renderHeader = station => {
+  document.getElementById('station-name').innerHTML = station.name;
+  document.getElementById('station-operator').innerHTML = station.operator?.name;
+};
+
+const renderAmenities = amenities => {
+  let amenityList = document.getElementById('amenity-list');
+  amenityList.replaceChildren();
+
+  Object.keys(amenities || {})?.forEach(amenity => {
+    console.log(amenity);
+    amenityList.insertAdjacentHTML(
+      'beforeend',
+      `
+      <li>
+      <div class="amenity">
+        <img src="./images/realtime.svg" alt="" />
+      </div>
+      </li>
+      <li>
+        <div class="amenity">
+          <img src="./images/realtime.svg" alt="" />
+        </div>
+      </li>
+      `,
+    );
+  });
 };
 
 const renderConnectors = connectors => {
@@ -80,7 +103,7 @@ const renderConnectors = connectors => {
         <div class="charger">
           <div class="charger-plug">
             <svg viewBox="0 0 24 24" height="24" width="24">
-              <use xlink:href="images/plug-defs.svg#${connector.icon}"></use>
+              <use xlink:href="images/plugs/${connector.icon}.svg#${connector.icon}"></use>
             </svg>
           </div>
 
@@ -99,6 +122,27 @@ const renderConnectors = connectors => {
       `,
     );
   });
+};
+
+const renderDetails = details => {
+  let stationDetails = document.getElementById('station-details');
+  stationDetails.replaceChildren();
+
+  for (var key in details) {
+    stationDetails.insertAdjacentHTML(
+      'beforeend',
+      `
+      <li>
+        <div class="row">
+          <p>${key}</p>
+        </div>
+        <div class="row">
+          <p>${details[key]}</p>
+        </div>
+      </li>
+      `,
+    );
+  }
 };
 
 export const showLoader = () => {

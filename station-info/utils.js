@@ -71,7 +71,7 @@ const noPlugIcon = [
   ConnectorName.PANTOGRAPH_TOP_DOWN,
 ];
 export const getConnectorIcon = standard =>
-  `plug-${ConnectorName[standard] && noPlugIcon.indexOf(standard) === -1 ? standard.toUpperCase() : 'DEFAULT'}`;
+  `${ConnectorName[standard] && noPlugIcon.indexOf(standard) === -1 ? standard.toUpperCase() : 'DEFAULT'}`;
 
 /**
  * We are interested only in the availability of the station, so we first check if there are available connectors.

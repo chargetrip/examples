@@ -16,8 +16,8 @@
     <div id="map"></div>
     <div class="card" id="scroll-area">
       <header>
-        <h1 id="duration">Ladebrike 20183 ajsgasga as</h1>
-        <p>Operated by Fortum</p>
+        <h1 id="station-name"></h1>
+        <p>Operated by <span id="station-operator"></span></p>
         <div class="realtime-data">
           <img src="./images/realtime.svg" alt="Icon representing realtime data" />
           <p>Live station data from EcoMovement</p>
@@ -29,31 +29,11 @@
         </section>
         <section>
           <h3>Amenities</h3>
-          <ul class="amenities">
-            <li>
-              <div class="amenity">
-                <img src="./images/realtime.svg" alt="" />
-              </div>
-            </li>
-            <li>
-              <div class="amenity">
-                <img src="./images/realtime.svg" alt="" />
-              </div>
-            </li>
-          </ul>
+          <ul id="amenity-list" class="amenities"></ul>
         </section>
         <section>
           <h3>Information</h3>
-          <ul class="station-details">
-            <li>
-              <div class="row">
-                <p>Address</p>
-              </div>
-              <div class="row">
-                <p>Hoogte Kadijk 109, 1054TX, Amsterdam</p>
-              </div>
-            </li>
-          </ul>
+          <ul id="station-details" class="station-details"></ul>
         </section>
         <section>
           <p class="station-data">
