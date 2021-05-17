@@ -62,8 +62,8 @@ export const getConnectorIcon = standard =>
 /**
  * We are interested only in the availability of the station, so we first check if there are available connectors.
  *
- * @param charger
- * @returns {string} Status of a connector
+ * @param { Object } charger - a small subset of charger details
+ * @returns { string } - Status of a connector
  */
 export const getConnectorStatus = charger => {
   if (charger.status.free) {
@@ -77,6 +77,11 @@ export const getConnectorStatus = charger => {
   }
 };
 
+/**
+ * Format the enum status to a human readable string
+ * @param { Enum } status - The current status of the connector
+ * @returns { String } - Status of the connector
+ */
 export const getConnectorStatusLabel = status => {
   switch (status) {
     case ConnectorStatus.FREE:

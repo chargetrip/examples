@@ -89,7 +89,7 @@ li {
   padding: 0.5rem 0;
 }
 
-.button {
+button {
   width: 100%;
   height: 40px;
   display: flex;
@@ -104,6 +104,13 @@ li {
   cursor: pointer;
   transition: all 300ms ease-in-out;
   font-weight: bold;
+}
+
+button:disabled {
+  background-color: var(--background-alt2);
+  color: var(--font-alt3);
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 
 #map {

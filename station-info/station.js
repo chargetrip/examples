@@ -16,6 +16,8 @@ import {
  *  - provide direction URL via Google (see https://developers.google.com/maps/documentation/urls/get-started#forming-the-directions-url)
  *  - show amenities
  *  - show connectors availability
+ *
+ * @param { Object } data - all details of the selected station
  **/
 export const displayStationData = data => {
   const { station } = data;
@@ -25,6 +27,7 @@ export const displayStationData = data => {
   const googleAddress = `https://www.google.com/maps/search/?api=1&query=${station.coordinates?.latitude},${station.coordinates?.longitude}`;
   const directionURL = `https://www.google.com/maps/dir/?api=1&travelmode=driving&dir_action=navigate&destination=${station.coordinates?.latitude},${station.coordinates?.longitude}`;
 
+  // Format the connectors so they can be rendered
   const connectors = station.chargers?.map(charger => {
     const status = getConnectorStatus(charger);
     return {
@@ -38,6 +41,7 @@ export const displayStationData = data => {
     };
   });
 
+  // Format the station details so it's easy to render
   const details = [
     {
       title: 'Address',
@@ -67,17 +71,33 @@ export const displayStationData = data => {
     },
   ];
 
+  // Now that we have a navigationURL, enable the navigate button
+  const navigateButton = document.getElementById('navigate');
+  navigateButton.disabled = false;
+  navigateButton.addEventListener('click', () => {
+    window.open(directionURL);
+  });
+
+  // Render the different parts of the station details
   renderHeader(station);
   renderConnectors(connectors);
   renderAmenities(station.amenities);
   renderDetails(details);
 };
 
+/**
+ * Render the station name and operator inside the sticky header
+ * @param { Object } station - Every bit of station data
+ */
 const renderHeader = station => {
   document.getElementById('station-name').innerHTML = station.name;
   document.getElementById('station-operator').innerHTML = station.operator?.name;
 };
 
+/**
+ * Render the connectors and their details on cards based on their status
+ * @param { Array } connectors - An array of connectors alongside their details
+ */
 const renderConnectors = connectors => {
   let connectorList = document.getElementById('connector-list');
   connectorList.replaceChildren();
@@ -111,6 +131,10 @@ const renderConnectors = connectors => {
   });
 };
 
+/**
+ * Render a horizontal list of amenity icons
+ * @param { Object } amenities - an object that contains all amenities and their details
+ */
 const renderAmenities = amenities => {
   let amenityList = document.getElementById('amenity-list');
   amenityList.replaceChildren();
@@ -132,6 +156,10 @@ const renderAmenities = amenities => {
   });
 };
 
+/**
+ * Render a vertical list of station details
+ * @param { Object } details - a preformatted object that contains all list data
+ */
 const renderDetails = details => {
   let stationDetails = document.getElementById('station-details');
   stationDetails.replaceChildren();
