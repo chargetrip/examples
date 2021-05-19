@@ -408,3 +408,6 @@ fabric.properties
 .npmrc
 
 .env
+
+boiler-plate
+public/boiler-plate

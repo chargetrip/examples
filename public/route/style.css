@@ -8,7 +8,7 @@
   --font-size-small: 0.75rem;
   --font-size-micro: 0.5rem;
 
-  --background-base: #ffffff;
+  --background-body: #ffffff;
   --background-subdued: #e5f0f5;
   --background-base: #f4f8fb;
   --background-alt: #e5f0f5;
@@ -20,6 +20,8 @@
   --accent-alt: #005ee5;
   --accent-alt2: #0041c8;
 
+  --status-approved: #2bc7b4;
+
   --font-base: #1b2023;
   --font-alt: #2c353a;
   --font-alt2: #45535b;
@@ -30,7 +32,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  color: #1b2023;
+  color: var(--font-base);
   font-family: 'Inter', 'Roboto', sans-serif;
   font-size: var(--base);
   font-weight: normal;
@@ -74,32 +76,23 @@ p {
 
 a {
   text-decoration: none;
-  color: var(--background-base);
+  color: var(--font-base);
 }
 
 ul {
   list-style: none;
   margin: 0;
   padding: 0;
-  margin-top: 0.5rem;
 }
 
 li {
+  padding: 0.5rem 0;
   display: flex;
   justify-content: space-between;
-  padding: 0.25rem 0;
-}
-
-li p {
-  color: var(--font-alt3);
 }
 
 li p:last-child {
-  color: var(--font-base);
-}
-
-li span {
-  font-weight: bold;
+  font-weight: 600;
 }
 
 button {
@@ -110,7 +103,7 @@ button {
   justify-content: center;
   font-size: var(--font-size-base);
   font-weight: 600;
-  color: var(--background-base);
+  color: var(--background-body);
   border-radius: 4px;
   background-color: var(--accent-base);
   border: none;
@@ -119,54 +112,70 @@ button {
   font-weight: bold;
 }
 
-button:hover {
-  background: var(--accent-alt);
-}
-
 button:disabled {
-  background: var(--background-alt);
+  background-color: var(--background-alt2);
   color: var(--font-alt3);
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
-#map {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
+section {
+  padding: 1rem;
+  border-top: 1px solid var(--background-alt);
 }
 
-.journey-specs {
+main section:first-child {
+  border-top: none;
+}
+
+#map {
+  width: 100%;
+  height: 100%;
   position: absolute;
-  overflow: scroll;
+  top: 0;
+  left: 0;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  display: grid;
   top: 1rem;
   left: 1rem;
   width: 360px;
-  height: calc(100% - 2rem);
+  height: calc(100vh - 2rem);
   border-radius: 8px;
-  background-color: var(--background-base);
+  background-color: var(--background-body);
   box-shadow: 0px 8px 62px rgba(0, 0, 0, 0.07), 0px 9.63424px 10.0459px rgba(0, 0, 0, 0.08),
     0px 5.80506px 6.13245px rgba(0, 0, 0, 0.0310277), 0px -4px 3.46624px rgba(0, 0, 0, 0.024633),
     0px 24px 64px rgba(0, 0, 0, 0.08);
   z-index: 10;
+
+  grid-template-areas:
+    'header'
+    'main'
+    'footer';
+
+  grid-template-rows: min-content 1fr min-content;
 }
 
-.journey-specs header {
-  top: 0;
-  position: -webkit-sticky;
-  position: sticky;
+.card header {
   z-index: 10;
+  grid-area: header;
+  width: inherit;
   padding: 1rem;
-  background: var(--background-base);
+  background: var(--background-body);
   box-shadow: 0px 4px 4px 4px rgba(0, 0, 0, 0.02), 0px 2px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-.journey-specs main {
-  margin-bottom: 7.25rem;
+header h1 {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.route-metadata {
+header p {
   color: var(--font-alt3);
 }
 
@@ -189,15 +198,9 @@ button:disabled {
   background: url('images/border.svg') no-repeat center center #1b2023;
 }
 
-.journey-specs section {
-  padding: 1rem;
-  border-bottom: 1px solid var(--background-alt);
-  margin-bottom: 24px;
-}
-
-.journey-specs section:last-child {
-  border-bottom: none;
-  margin-bottom: 0;
+.card main {
+  grid-area: main;
+  overflow-y: auto;
 }
 
 .car-details {
@@ -239,14 +242,17 @@ button:disabled {
   color: #f46f09;
 }
 
-.journey-specs footer {
-  padding: 1rem 0 0;
-  position: fixed;
-  bottom: 1rem;
+.card footer {
+  grid-area: footer;
   border-radius: 0 0 0.5rem 0.5rem;
   width: 360px;
-  background: var(--background-base);
+  background: var(--background-body);
   border-top: 1px solid var(--background-alt);
+}
+
+.action {
+  padding: 1rem 1rem;
+  border-bottom: 1px solid var(--background-alt);
 }
 
 .chargetrip-logo {
@@ -263,54 +269,17 @@ button:disabled {
   font-weight: bold;
 }
 
-footer div {
-  padding: 0 1rem;
+.prefooter {
+  padding: 1rem;
+  border-bottom: 1px solid var(--background-alt);
 }
 
 .disclaimer {
-  margin-top: 1rem;
-  border-top: 1px solid var(--background-alt);
+  padding: 0 1rem;
 }
 
 .mapboxgl-ctrl-attrib-button {
   display: none;
-}
-
-.github-link {
-  position: fixed;
-  top: 16px;
-  right: 16px;
-  display: flex;
-  align-items: center;
-
-  padding: 0 12px;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
-
-  background-color: #252a32;
-  border-radius: 20px;
-
-  color: var(--background-base);
-  font-size: var(--font-size-base);
-  font-weight: 500;
-  line-height: 40px;
-}
-
-.github-link a {
-  padding: 0 16px 0 24px;
-  margin: 0 8px 0 0;
-  font-weight: bold;
-  background: url('images/github.svg') no-repeat left center;
-  border-right: 1px solid #54545c;
-}
-
-.github-link button {
-  width: 16px;
-  height: 16px;
-  padding: 0;
-  background: url('images/close.svg') no-repeat;
-  border: none;
-  cursor: pointer;
-  -webkit-appearance: none;
 }
 
 .mapboxgl-popup-tip,

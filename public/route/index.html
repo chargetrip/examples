@@ -1,27 +1,20 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html>
   <head>
-    <title>Chargetrip API: route example</title>
+    <meta charset="utf-8" />
+    <title>Chargetrip API: station example</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="description" content="Build a route with the Chargetrip API" />
-    <meta name="keywords" content="Chargetrip, Chargetrip API, EV, ev-cars, ev-routing" />
-    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="description" content="Query particular station with the Chargetrip API." />
+    <meta name="keywords" content="Chargetrip, Chargetrip API, EV, ev-cars, ev-routing, station" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
-    <link href="https://api.mapbox.com/mapbox-gl-js/v1.10.0/mapbox-gl.css" rel="stylesheet" />
     <link rel="icon" href="../favicon-57.png" type="image/x-icon" />
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css" rel="stylesheet" />
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
     <div id="map"></div>
-    <div class="github-link">
-      <a href="https://github.com/chargetrip/examples/tree/master/route" title="github project">
-        View on Github
-      </a>
-      <button aria-label="remove github link" title="remove github link" onclick="this.parentElement.remove()"></button>
-    </div>
-
-    <div class="journey-specs">
+    <div class="card">
       <header>
         <h1 id="duration">-</h1>
         <div class="route-metadata" id="route-metadata">-</div>
@@ -30,7 +23,6 @@
           <p>Border crossing</p>
         </div>
       </header>
-
       <main>
         <section>
           <div class="car-details">
@@ -42,15 +34,15 @@
           <ul class="info">
             <li>
               <p>Adapters</p>
-              <p><span>CHADEMO, Type 2</span></p>
+              <p>CHADEMO, Type 2</p>
             </li>
             <li>
               <p>Passengers</p>
-              <p><span>1</span></p>
+              <p>1</p>
             </li>
             <li>
               <p>State of Charge</p>
-              <p><span>72.5 kWh</span></p>
+              <p>72.5 kWh</p>
             </li>
           </ul>
         </section>
@@ -81,7 +73,6 @@
           </ul>
         </section>
       </main>
-
       <footer>
         <div class="action">
           <button id="drive" disabled>Drive with Google Maps</button>
