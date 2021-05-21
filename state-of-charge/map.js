@@ -6,7 +6,7 @@ const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/chargetrip/ckgcbf3kz0h8819qki8uwhe0k',
   zoom: 6,
-  center: [8.1320104, 52.3758916],
+  center: [9.1320104, 54.9758916],
 });
 
 // Display the charge time on a hover
