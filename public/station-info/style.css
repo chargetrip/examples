@@ -199,6 +199,22 @@ section:first-child {
   background-color: var(--background-alt4);
 }
 
+.busy .charger {
+  background-color: rgba(0, 120, 255, 0.75);
+}
+
+.busy .charger-plug {
+  background-color: rgba(0, 94, 229, 0.5);
+}
+
+.error .charger {
+  background-color: rgba(248, 152, 78, 1);
+}
+
+.error .charger-plug {
+  background-color: rgba(244, 111, 9, 1);
+}
+
 .charger {
   background-color: var(--accent-base);
   color: var(--background-base);

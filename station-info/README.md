@@ -23,6 +23,6 @@ To get stations around a location and fetch specific station details:
 
 ### Useful links
 
-1. Chargetrip GraphAPI [docs](https://docs.chargetrip.com/);
+1. Chargetrip GraphAPI [docs](https://developers.chargetrip.com/);
 2. Chargetrip GraphAPI [playground](https://playground.chargetrip.com/);
 3. Chargetrip GraphAPI schema [information](https://voyager.chargetrip.com/).

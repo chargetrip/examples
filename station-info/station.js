@@ -29,6 +29,7 @@ export const displayStationData = data => {
 
   // Format the connectors so they can be rendered
   const connectors = station.chargers?.map(charger => {
+    console.log(charger);
     const status = getConnectorStatus(charger);
     return {
       name: getConnectorName(charger.standard),
@@ -36,7 +37,7 @@ export const displayStationData = data => {
       power: charger.power,
       status,
       standard: charger.standard,
-      availabilityInfo: `${status === ConnectorStatus.UNKNOWN ? '-' : charger.status[status]}/${charger.total}`,
+      availabilityInfo: `${status === ConnectorStatus.UNKNOWN ? '-' : charger.status.free}/${charger.total}`,
       availabilityLabel: getConnectorStatusLabel(status),
     };
   });
@@ -103,10 +104,11 @@ const renderConnectors = connectors => {
   connectorList.replaceChildren();
 
   connectors.forEach(connector => {
+    console.log(connector);
     connectorList.insertAdjacentHTML(
       'afterbegin',
       `
-      <li class=${connector.status === ConnectorStatus.UNKNOWN ? 'unknown' : ''}>
+      <li class=${connector.status}>
         <div class="charger">
           <div class="charger-plug">
             <svg viewBox="0 0 24 24" height="24" width="24">
@@ -116,11 +118,11 @@ const renderConnectors = connectors => {
 
           <div class="charger-details">
             <div class="row">
-              <p>${connector.name} • ${connector.power} kW</p>
+              <p>${connector.name}</p>
               <p>${connector.availabilityInfo}</p>
             </div>
             <div class="row">
-              <p>€ 2.50 hour + € 0.5 / kWh</p>
+              <p>${connector.power} kW</p>
               <p>${connector.availabilityLabel}</p>
             </div>
           </div>
