@@ -39,7 +39,6 @@ const fetchStations = ({ distance, power, amenities }) =>
     })
     .toPromise()
     .then(response => {
-      console.log(response);
       return response.data?.stationAround;
     })
     .catch(error => console.log(error));

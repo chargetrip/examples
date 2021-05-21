@@ -37,8 +37,6 @@ map.on('load', function() {
       },
     });
   }
-
-  // document.getElementById('centerMe').style.visibility = 'visible';
 });
 
 /**
@@ -58,7 +56,8 @@ const selectPinlet = station => `${station.status}-${station.speed}`;
 export const showStations = stations => {
   if (!stations) return;
 
-  // document.getElementById('stationAmount').innerHTML = stations.length;
+  document.getElementById('stationAmount').innerHTML =
+    stations.length > 1 ? `${stations.length} stations` : `${stations.length} station`;
   if (map.getLayer('path')) map.removeLayer('path');
   if (map.getSource('path')) map.removeSource('path');
 
