@@ -409,5 +409,6 @@ fabric.properties
 
 .env
 
-boiler-plate
+### Manually added ###
 public/boiler-plate
+boiler-plate
