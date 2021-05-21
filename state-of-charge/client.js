@@ -11,7 +11,7 @@ import { pipe, subscribe } from 'wonka';
  * Read more about authorisation in our documentation (https://docs.chargetrip.com/#authorisation).
  */
 const headers = {
-  'x-client-id': '5e8c22366f9c5f23ab0eff39',
+  'x-client-id': '5ed1175bad06853b3aa1e492',
 };
 
 const subscriptionClient = new SubscriptionClient('wss://api.chargetrip.io/graphql', {
