@@ -89,10 +89,10 @@ const tabHandler = (routeOptions, index, tabHighlighter) => {
 };
 
 /**
- * Draw a polyline on a map.
- *
- * @param routes {object} All routes recieved from the route query
- * @param index {number} The index of the route that should be drawn
+ * Draw the polyline on the map
+ * @param { object } route - All the route data to draw the route
+ * @param { number } index - The current index of the route we are going to draw
+ * @param { string } linecolor - The line color in a hex string
  */
 const drawPolyline = (route, index, linecolor) => {
   const geojson = {
@@ -134,12 +134,11 @@ const drawPolyline = (route, index, linecolor) => {
 };
 
 /**
- * Show the charging station, origin and destination on the map.
+ * Helper function that draws the legs of a route. Allows us to show charging stations, origin and destination
+ * Last leg of the route is always a destination point
+ * All other legs are either charging stations or via points (if route has additional stops)
  *
- * Last leg of the route is a destination point.
- * All other legs are either charging stations or via points (if route has stops).
- *
- * @param legs {array} route legs
+ * @param { array } legs - The legs of the route
  */
 const showLegs = legs => {
   if (legs.length === 0) return;
@@ -205,8 +204,8 @@ const showLegs = legs => {
 /**
  * Highlight the route that was clicked.
  *
- * @param routes {object} All routes recieved from the route query
- * @param id {number} id of the polyline that was clicked on
+ * @param { object } routes - All routes recieved from the route query
+ * @param { number } id - index / id of the polyline that was clicked on
  */
 const highlightRoute = (id, routes) => {
   map.setPaintProperty(`${id}`, 'line-color', '#0078FF');

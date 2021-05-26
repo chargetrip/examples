@@ -64,7 +64,7 @@ client
         if (status === 'done' && route) {
           unsubscribe();
           decodePolylines(route, alternatives); // draw a polyline on a map
-          renderTabData(route, alternatives); // Set the tab values
+          renderTabData(route, alternatives); // Set the tab times
           renderRouteHeader(route); // Render header HTML data
           renderRouteDetails(route); // fill in the route information
         }
@@ -98,7 +98,8 @@ client
  * To draw a route on a map we use Mapbox GL JS. This tool uses the format [longitude,latitude],
  * so we have to reverse every pair.
  *
- * @param data {object} route specification
+ * @param { object } route - The fastest route
+ * @param { array } alternatives - The alternative route objects
  */
 const decodePolylines = (route, alternatives) => {
   const routes = [];
@@ -117,6 +118,11 @@ const decodePolylines = (route, alternatives) => {
   drawRoutes(routes);
 };
 
+/**
+ * Small function that sets the time on how much longer the different routes are
+ * @param { object } route - The fastest route
+ * @param { array } alternatives - The alternative route objects
+ */
 const renderTabData = (route, alternatives) => {
   const routeDurations = [
     'Fastest',
