@@ -21,7 +21,7 @@ We use our Playground environment for this example. It means that only part of o
 
 To build a route, you will need a car (the associated consumption model of a vehicle will be applied to the routing algorithm), station database, origin, and a destination.
 
-For this example, we use **Tesla model S**, **Amsterdam** as an origin, and **Osnabrück** as a destination point.
+For this example, we use **Tesla model S**, **Hanover** as an origin, and **Aalborg** as a destination point.
 Chargetrip operates an extensive database of EVs, each with their specific consumption models. You can find more information about our database and available queries by checking [Chargetrip API documentation](https://developers.chargetrip.com/API-Reference/Cars/query-cars).
 
 Our Playground has a station database that is populated with a limited dataset of EcoMovement. Importing your own database or using one of the databases Chargetrip has an integration with, is possible. For more details, contact us.

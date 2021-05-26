@@ -55,6 +55,7 @@ subscription routeUpdatedById($id: ID!){
       duration
       consumption
       polyline
+      charges
       legs{
         distance
         origin{
