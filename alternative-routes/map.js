@@ -1,5 +1,5 @@
 import mapboxgl from 'mapbox-gl';
-import { renderRouteDetails } from './index';
+import { renderRouteDetails, renderRouteHeader } from './index';
 import { getDurationString } from '../utils';
 
 mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjazhpaG8ydTIwNWNpM21ud29xeXc2amhlIn0.rGKgR3JfG9Z5dCWjUI_oGA';
@@ -217,4 +217,5 @@ const highlightRoute = (id, routes) => {
   map.moveLayer(`${id}`);
   showLegs(routes[id].data.legs);
   renderRouteDetails(routes[id].data);
+  renderRouteHeader(routes[id].data);
 };
