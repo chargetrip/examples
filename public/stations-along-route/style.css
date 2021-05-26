@@ -173,6 +173,13 @@ header p {
   color: var(--font-alt3);
 }
 
+.border-crossing .icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 12px;
+  background: url('images/border.svg') no-repeat center center #1b2023;
+}
+
 .card main {
   grid-area: main;
   overflow-y: auto;

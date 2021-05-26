@@ -31,14 +31,13 @@ mutation newRoute{
         routeRequest: {
           origin: {
             type: Feature
-            geometry: { type: Point, coordinates: [4.8951679, 52.3702157] }
-            properties: { name: "Amsterdam, Netherlands" }
-
+            geometry: { type: Point, coordinates: [9.732625731357011, 52.3806314590276] }
+            properties: { name: "Hanover, Germany" }
           }
           destination: {
             type: Feature
-            geometry: { type: Point, coordinates: [8.0472, 52.2799] }
-            properties: { name: "Osnabrück, Germany" }
+            geometry: { type: Point, coordinates: [9.922192327081783, 57.046057998779176] }
+            properties: { name: "Aalborg, Denmark" }
           }
           stationsAlongRouteRadius: 2000
         }
