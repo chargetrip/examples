@@ -2,6 +2,7 @@ import { fetchRoute } from './client';
 import { drawRoutePolyline } from './index';
 
 const rangeSlider = document.getElementById('range');
+const loadingToast = document.getElementById('loading-toast');
 
 /**
  * Attach an event listener to our slider to update the current vehicle range
@@ -16,10 +17,12 @@ rangeSlider.addEventListener('input', () => {
  */
 rangeSlider.addEventListener('change', () => {
   rangeSlider.disabled = true;
+  loadingToast.style.transform = `translateY(0)`;
 
   fetchRoute(rangeSlider.value, routeData => {
     drawRoutePolyline(routeData);
     rangeSlider.disabled = false;
+    loadingToast.style.transform = `translateY(100%)`;
   });
 });
 
