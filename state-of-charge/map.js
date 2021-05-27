@@ -11,9 +11,8 @@ const map = new mapboxgl.Map({
 
 /**
  * Draw route polyline and show charging stations on the map.
- *
- * @param coordinates {array} Array of coordinates
- * @param legs {array} route legs (stops) - each leg represents either a charging station, or via point or final point
+ * @param { array } coordinates - Array of coordinates
+ * @param { array } legs - stops -- each leg represents either a charging station, or via point or final point
  */
 export const drawRoute = (coordinates, legs) => {
   if (map.loaded()) {
@@ -29,8 +28,7 @@ export const drawRoute = (coordinates, legs) => {
 
 /**
  * Draw route polyline on a map.
- *
- * @param coordinates {array} polyline coordinates
+ * @param { array } coordinates - polyline coordinates
  */
 const drawPolyline = coordinates => {
   if (map.getLayer('polyline')) map.removeLayer('polyline');
@@ -72,13 +70,12 @@ const drawPolyline = coordinates => {
 };
 
 /**
- * Show the charging station, origin and destination on the map.
- *
+ * Show the charging station, origin and destination on the map
  * The origin of the first leg is the start of your route.
  * The destination of the last is the destination of your route.
  * The desitinatation of all other legs are charging stations or via points.
  *
- * @param legs {array} route legs
+ * @param { array } legs - route legs
  */
 const showLegs = legs => {
   if (map.getLayer('legs')) map.removeLayer('legs');

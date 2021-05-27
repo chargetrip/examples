@@ -41,7 +41,6 @@ const client = createClient({
  * 1. create a new route and receive back its ID;
  * 2. subscribe to route updates in order to receive its details.
  */
-
 export const fetchRoute = (soc, callback) => {
   client
     .mutation(createRoute(soc))
