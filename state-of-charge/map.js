@@ -5,8 +5,8 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiY2hhcmdldHJpcCIsImEiOiJjazhpaG8ydTIwNWNpM21ud
 const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/chargetrip/ckgcbf3kz0h8819qki8uwhe0k',
-  zoom: 6,
-  center: [9.1320104, 54.9758916],
+  zoom: 5.5,
+  center: [9.1320104, 55.1758916],
 });
 
 /**
