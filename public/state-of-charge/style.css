@@ -299,6 +299,26 @@ header p {
   overflow-y: auto;
 }
 
+.range-slider {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 0 0 1rem;
+
+  position: relative;
+}
+
+.range-slider::before {
+  content: '';
+  position: absolute;
+  background-image: url(./images/slider-edge.png);
+  background-repeat: no-repeat;
+  bottom: 18px;
+  height: 17px;
+  width: 8px;
+  transform: rotate(180deg);
+}
+
 .labels {
   display: flex;
   justify-content: space-between;
