@@ -144,18 +144,6 @@ const renderTabData = (route, alternatives) => {
       </div>`,
     );
   });
-
-  console.log(tabsWrapper, routeDurations);
-
-  // const routeDurations = [
-  //   'Fastest',
-  //   `+${getDurationString(alternatives[0].duration - route.duration)}`,
-  //   `+${getDurationString(alternatives[1].duration - route.duration)}`,
-  // ];
-
-  // document.querySelectorAll('.tab').forEach((tab, idx) => {
-  //   tab.lastElementChild.innerHTML = routeDurations[idx];
-  // });
 };
 
 /**

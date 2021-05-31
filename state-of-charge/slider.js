@@ -28,7 +28,7 @@ rangeSlider.addEventListener('change', () => {
 
       setTimeout(() => {
         errorToast.style.transform = `translateY(100%)`;
-      }, 2500);
+      }, 3500);
     }
 
     rangeSlider.disabled = false;
