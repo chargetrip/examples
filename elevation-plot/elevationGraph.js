@@ -108,7 +108,7 @@ export const renderRouteDetails = data => {
   const formattedData = {
     Elevation: `${data.elevation} m`,
     'Consumption estimation': `${data.consumptionPerKm} kWh / km`,
-    'Average speed': `${data.averageSpeed} km / u`,
+    'Average speed': `${data.averageSpeed} km / h`,
   };
 
   // Loop over the formatted data and render tables or lists inside the HTML
