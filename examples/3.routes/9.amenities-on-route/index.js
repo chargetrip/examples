@@ -1,9 +1,9 @@
-import { getRoute } from './client';
-import { renderRouteData } from './interface';
+import { getRoute, getStationData } from './client';
+import { renderRouteData, renderAmenities } from './interface';
 import { drawRoutePolyline } from './map';
 
 /**
- * This project shows you how to add toll roads and ferries to a journey overview
+ * This project shows you how to fetch a car list and render the car details
  * The project structure contains;
  *
  *    - client.js - All networking requests
@@ -12,11 +12,10 @@ import { drawRoutePolyline } from './map';
  *    - queries.js - The GraphQL queries used in the networking requests
  */
 
-// Until the route loads, don't load the sidecard
-const sideCard = document.getElementById('side-card');
-sideCard.style.display = 'block';
-
 getRoute(route => {
   drawRoutePolyline(route);
   renderRouteData(route);
+  getStationData(route.legs[0].stationId).then(data => {
+    renderAmenities(data.station.amenities);
+  });
 });

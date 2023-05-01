@@ -16,4 +16,4 @@ This example will explain how to add ferries and toll roads to the journey overv
 
 ## Next steps
 
-The last couple of examples explained most of the variables when it comes to routing. In the next step, the vector tile service is introduced.
+In this example we saw how to add tolls and ferries onto our journey overview. In the next example we will try requesting certain amenities on charging stops.

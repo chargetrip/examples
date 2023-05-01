@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Chargetrip API: Amenity routing example</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="description" content="Add toll roads & ferries to journey overview using Chargetrip API." />
+    <meta name="keywords" content="Chargetrip, Chargetrip API, EV, ev-cars, ev-routing, station" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="../favicon-57.png" type="image/x-icon" />
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header></header>
+    <div class="content">
+      <div id="map"></div>
+      <div class="card" id="side-card" style="display: none;">
+        <header>
+          <h1 id="duration"></h1>
+          <div class="route-metadata" id="route-metadata"></div>
+          <div id="toll" class="toll"></div>
+        </header>
+        <main>
+          <section>
+            <div class="journey-timeline" id="journey-timeline">
+              <div class="timeline-item timelineStartPoint start">
+                <div class="icon timeline-icon timelineStartPoint start"></div>
+                <div class="timeline-content">
+                  <p class="body-bold title">Hanover, Germany</p>
+                </div>
+              </div>
+
+              <div class="timeline-item vehicle">
+                <div class="icon timeline-icon vehicle"></div>
+                <div class="timeline-content">
+                  <div class="drive-title-container">
+                    <p class="title" id="first-leg-distance"></p>
+                  </div>
+                  <p class="body-small metal" id="first-leg-duration"></p>
+                </div>
+              </div>
+
+              <div class="timeline-item station">
+                <div class="icon timeline-icon chargeTurbo station"></div>
+                <div class="timeline-content">
+                  <div class="station-title-container">
+                    <p class="title">Charging stop</p>
+                  </div>
+                  <div class="station-info">
+                    <p class="body-small metal">Range at arrival:</p>
+                    <p id="range-at-arrival"></p>
+                  </div>
+                  <div class="station-info">
+                    <p class="body-small metal">Available plugs:</p>
+                    <p id="available-plugs"></p>
+                  </div>
+                  <div class="station-info">
+                    <p class="body-small metal">Charging time:</p>
+                    <p id="charging-time"></p>
+                  </div>
+                  <div class="station-info">
+                    <p class="body-small metal">Range at departure:</p>
+                    <p id="range-at-departure"></p>
+                  </div>
+                  <div class="station-info">
+                    <p class="body-small metal">Amenities available:</p>
+                  </div>
+                  <ul id="amenities-available" class="amenities"></ul>
+                </div>
+              </div>
+
+              <div class="timeline-item vehicle">
+                <div class="icon timeline-icon vehicle"></div>
+                <div class="timeline-content">
+                  <div class="drive-title-container">
+                    <p class="title" id="last-leg-distance"></p>
+                  </div>
+                  <p class="body-small metal" id="last-leg-duration"></p>
+                </div>
+              </div>
+
+              <div class="timeline-item timelineDestination end">
+                <div class="icon timeline-icon timelineDestination end"></div>
+                <div class="timeline-content">
+                  <p class="title">Aarhus, Denmark</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+        <footer>
+          <div class="disclaimer">
+            <a
+              class="chargetrip-logo"
+              href="https://chargetrip.com/"
+              aria-label="Powered by Chargetrip"
+              title="Powered by Chargetrip"
+            >
+              Powered by
+            </a>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </body>
+  <script src="bundle.js"></script>
+</html>
