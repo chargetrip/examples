@@ -2,8 +2,7 @@ import qql from 'graphql-tag';
 
 /*
  * In this example we request a route from Hamburg, Germany to Aarhus, Denmark
- * We request all amenity stops to have a bathroom
- * We also request for a coffee stop after an hour, plus a restaurant after 3 hours
+ * We request a restaurant stop after just under an hour and a half of driving (5000 seconds)
  */
 export const createRouteQuery = () => {
   return qql`
