@@ -400,8 +400,8 @@ header p {
   background-image: url('images/vehicle.svg');
 }
 .timeline-icon.station {
-  background-image: url('images/station-pinlet.svg');
-  background-color: #0078ff;
+  background-image: url('images/amenities/restaurant.svg');
+  /* background-color: #0078ff; */
 }
 .timeline-icon.ferry {
   background-image: url('images/ferry.svg');
@@ -488,4 +488,7 @@ header p {
   background-image: url('images/endPoint.svg');
   background-repeat: no-repeat;
   background-position: center;
+}
+
+.restaurant {
 }

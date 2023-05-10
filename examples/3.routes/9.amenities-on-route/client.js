@@ -1,7 +1,7 @@
 import { createClient, createRequest, defaultExchanges, subscriptionExchange } from '@urql/core';
 import { pipe, subscribe } from 'wonka';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
-import { createRouteQuery, routeUpdateSubscription, getStationDataQuery } from './queries.js';
+import { createRouteQuery, routeUpdateSubscription, getAmenityListQuery } from './queries.js';
 
 /**
  * Example application of how to build a route with the Chargetrip API.
@@ -75,9 +75,9 @@ export const getRoute = callback => {
  * Fetch the detail data of a specific station
  * @param { string } id - the id of the station
  */
-export const getStationData = id => {
+export const getAmenityData = id => {
   return client
-    .query(getStationDataQuery, {
+    .query(getAmenityListQuery, {
       stationId: id,
     })
     .toPromise()

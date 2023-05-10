@@ -14,6 +14,7 @@ I need coffee! The kids need a bathroom break! Feed me or I'll end it all! Commo
 2. This `id` can be used to request route updates through the `routeUpdatedById` subscription. This subscription receives dynamic updates.
 3. After the subscription returns done as status, data can be rendered onto the screen. The `polyline` and the `legs` object will be used to display charge stations on the map. Total distance, duration of a trip, consumption are displayed on the side.
 4. The amenities are also displayed underneath the relevant station for the end user to see.
+5. Using the `route.leg.type` property, it's possible to check if a leg ends at an amenity.
 
 ## Next steps
 

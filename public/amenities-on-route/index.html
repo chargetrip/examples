@@ -18,8 +18,9 @@
       <div id="map"></div>
       <div class="card" id="side-card" style="display: none;">
         <header>
-          <h1 id="duration"></h1>
-          <div class="route-metadata" id="route-metadata"></div>
+          <h1 id="card-title">Amenity stop</h1>
+          <h3 id="duration"></h3>
+          <div class="route-metadata" id="route-metadata">Routing with amenities</div>
           <div id="toll" class="toll"></div>
         </header>
         <main>
@@ -46,28 +47,17 @@
                 <div class="icon timeline-icon chargeTurbo station"></div>
                 <div class="timeline-content">
                   <div class="station-title-container">
-                    <p class="title">Charging stop</p>
+                    <p class="title">Restaurant stop</p>
                   </div>
                   <div class="station-info">
-                    <p class="body-small metal">Range at arrival:</p>
-                    <p id="range-at-arrival"></p>
-                  </div>
-                  <div class="station-info">
-                    <p class="body-small metal">Available plugs:</p>
-                    <p id="available-plugs"></p>
-                  </div>
-                  <div class="station-info">
-                    <p class="body-small metal">Charging time:</p>
                     <p id="charging-time"></p>
                   </div>
-                  <div class="station-info">
-                    <p class="body-small metal">Range at departure:</p>
-                    <p id="range-at-departure"></p>
+                  <div>
+                    <p class="body-small metal">Restaurant:</p>
                   </div>
-                  <div class="station-info">
-                    <p class="body-small metal">Amenities available:</p>
-                  </div>
-                  <ul id="amenities-available" class="amenities"></ul>
+                  <p id="restaurant-name" class="restaurant"></p>
+                  <p id="restaurant-address" class="restaurant"></p>
+                  <p id="restaurant-distance" class="restaurant"></p>
                 </div>
               </div>
 

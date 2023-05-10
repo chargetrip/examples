@@ -28,8 +28,8 @@ mutation newRoute{
             scheduled_charge_stops: [
               {
                 types: [restaurant],
-                duration: 2000,
-                stop_after: 5000,
+                duration: 2400,
+                stop_after: 3600,
                 max_distance_from_station: 1000
               }
             ],
@@ -68,6 +68,7 @@ subscription routeUpdatedById($id: ID!){
       consumption
       polyline
       legs{
+        type
         rangeStartPercentage
         rangeEndPercentage
         plugsAvailable
@@ -117,3 +118,16 @@ query station($stationId: ID!){
   }
 }
 `;
+
+export const getAmenityListQuery = qql`
+  query amenityList($stationId: ID!) {
+    amenityList(stationId: $stationId) {
+      name
+      distance
+      address {
+        formattedAddress
+        country
+      }
+    }
+  }
+  `;

@@ -1,5 +1,5 @@
-import { getRoute, getStationData } from './client';
-import { renderRouteData, renderAmenities } from './interface';
+import { getRoute, getAmenityData } from './client';
+import { renderRouteData, renderAmenityData } from './interface';
 import { drawRoutePolyline } from './map';
 
 /**
@@ -15,7 +15,10 @@ import { drawRoutePolyline } from './map';
 getRoute(route => {
   drawRoutePolyline(route);
   renderRouteData(route);
-  getStationData(route.legs[0].stationId).then(data => {
-    renderAmenities(data.station.amenities);
-  });
+  // Check if the leg ends at an amenity
+  if (route && route.legs[0].type === 'stationAmenity') {
+    getAmenityData(route.legs[0].stationId).then(data => {
+      renderAmenityData(data.amenityList[0]);
+    });
+  }
 });

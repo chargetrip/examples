@@ -149,7 +149,7 @@ const showLegs = legs => {
         type: 'Feature',
         properties: {
           description: `${getDurationString(leg.chargeTime)}`,
-          icon: 'unknown-turbo',
+          icon: 'restaurant',
         },
         geometry: leg.destination?.geometry,
       });

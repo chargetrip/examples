@@ -33,11 +33,7 @@ export const renderRouteData = data => {
       1,
     )} km`;
     document.getElementById('first-leg-duration').innerHTML = `Approx ${getDurationString(data.legs[0].duration)}`;
-    document.getElementById('range-at-arrival').innerHTML = `${data.legs[0].rangeEndPercentage}%`;
-    document.getElementById('available-plugs').innerHTML = `${data.legs[0].plugsAvailable}`;
-    document.getElementById('charging-time').innerHTML = `${getDurationString(data.legs[0].chargeTime)}utes`;
-    document.getElementById('range-at-departure').innerHTML = `${data.legs[numberOfLegs - 1].rangeStartPercentage}%`;
-    document.getElementById('amenities-available').innerHTML = `Here the icons should go`;
+    document.getElementById('charging-time').innerHTML = `Charge for ${getDurationString(data.legs[0].chargeTime)}utes`;
     document.getElementById('last-leg-distance').innerHTML = `Drive for ${(
       data.legs[numberOfLegs - 1].distance / 1000
     ).toFixed(1)} km`;
@@ -51,21 +47,11 @@ export const renderRouteData = data => {
  * Render a horizontal list of amenity icons
  * @param { Object } amenities - an object that contains all amenities and their details
  */
-export const renderAmenities = amenities => {
-  let amenityList = document.getElementById('amenities-available');
-  amenityList.textContent = '';
-
-  Object.keys(amenities || {})?.forEach(amenity => {
-    amenityList.insertAdjacentHTML(
-      'beforeend',
-      `
-        <li>
-        <div class="amenity">
-          <object type="image/svg+xml" data="images/amenities/${amenity}.svg">
-          </object>
-        </div>
-        </li>
-        `,
-    );
-  });
+export const renderAmenityData = amenityData => {
+  let amenityName = document.getElementById('restaurant-name');
+  let amenityAddress = document.getElementById('restaurant-address');
+  let amenityDistance = document.getElementById('restaurant-distance');
+  amenityName.innerHTML = amenityData.name;
+  amenityAddress.innerHTML = `${amenityData.address.formattedAddress[0]} | ${amenityData.address.country}`;
+  amenityDistance.innerHTML = `${amenityData.distance} meters from charging station`;
 };
