@@ -29,6 +29,7 @@ mutation newRoute{
               {
                 types: [restaurant],
                 duration: 2400,
+                offset: 2100,
                 stop_after: 3600,
                 max_distance_from_station: 1000
               }
