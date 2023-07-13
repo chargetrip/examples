@@ -12,6 +12,10 @@ import { drawRoutePolyline } from './map';
  *    - queries.js - The GraphQL queries used in the networking requests
  */
 
+// Until the route loads, don't load the sidecard
+const sideCard = document.getElementById('side-card');
+sideCard.style.display = 'block';
+
 getRoute(route => {
   drawRoutePolyline(route);
   renderRouteData(route);
