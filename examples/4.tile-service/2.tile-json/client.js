@@ -9,9 +9,9 @@ const headers = {
   'x-client-id': '5ed1175bad06853b3aa1e492',
   'x-app-id': '623998b2c35130073829b2d2',
 };
-export const getTiles = async (coord, zoom) => {
+export const getTiles = async (position, zoom) => {
   return fetch(
-    `https://api.chargetrip.io/station/${zoom}/${coord.x}/${coord.y}/tile.json?connectors[]=IEC_62196_T2&connectors[]=IEC_62196_T2_COMBO&connectors[]=TESLA_S&connectors[]=CHADEMO&powerGroups[]=fast&powerGroups[]=turbo`,
+    `https://api.chargetrip.io/station/${zoom}/${position.x}/${position.y}/tile.json?connectors[]=IEC_62196_T2&connectors[]=IEC_62196_T2_COMBO&connectors[]=TESLA_S&connectors[]=CHADEMO&powerGroups[]=fast&powerGroups[]=turbo`,
     {
       headers,
     },
