@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Chargetrip API: Example of how a route (NEW) can be build</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no" />
+    <meta name="description" content="Example of how to request a route and show it on a map." />
+    <meta name="keywords" content="Chargetrip, Chargetrip API, EV, ev-cars, ev-routing, station" />
+    <link rel="canonical" href="https://examples.chargetrip.com/" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="../favicon-57.png" type="image/x-icon" />
+    <link href="https://api.tiles.mapbox.com/mapbox-gl-js/v1.4.1/mapbox-gl.css" rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <div id="map"></div>
+    <div class="card">
+      <header>
+        <h1 id="duration">-</h1>
+        <div class="route-metadata" id="route-metadata">-</div>
+        <div id="border-crossing" class="border-crossing">
+          <span class="icon"></span>
+          <p>Border crossing</p>
+        </div>
+      </header>
+      <main>
+        <section>
+          <div class="car-details">
+            <p>Tesla</p>
+            <p><strong>Model S</strong></p>
+            <img class="car-image" src="images/tesla.png" alt="Tesla model S" />
+          </div>
+
+          <ul class="info">
+            <li>
+              <p>Adapters</p>
+              <p>CHADEMO, Type 2</p>
+            </li>
+            <li>
+              <p>Passengers</p>
+              <p>1</p>
+            </li>
+            <li>
+              <p>State of Charge</p>
+              <p>72.5 kWh</p>
+            </li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Trip information</h3>
+          <ul class="info trip">
+            <li class="trip-duration">
+              <p>Charge Duration</p>
+              <p><span id="charge-duration">-</span></p>
+            </li>
+            <li class="trip-fuel">
+              <p>Saved on Fuel</p>
+              <p><span id="cost">-</span></p>
+            </li>
+            <li class="trip-consumption">
+              <p>Total consumption</p>
+              <p><span id="consumption">-</span></p>
+            </li>
+            <li class="trip-co2">
+              <p>CO2 spared</p>
+              <p><span id="co2">-</span></p>
+            </li>
+            <li class="trip-duration">
+              <p>Average temperature</p>
+              <p><span id="average-temperature" class="tag">-</span></p>
+            </li>
+          </ul>
+        </section>
+      </main>
+      <footer>
+        <div class="action">
+          <button id="drive" disabled>Drive with Google Maps</button>
+        </div>
+        <div class="disclaimer">
+          <a
+            class="chargetrip-logo"
+            href="https://chargetrip.com/"
+            target="_top"
+            aria-label="Powered by Chargetrip"
+            title="Powered by Chargetrip"
+          >
+            Powered by
+          </a>
+        </div>
+      </footer>
+    </div>
+  </body>
+  <script src="bundle.js"></script>
+</html>

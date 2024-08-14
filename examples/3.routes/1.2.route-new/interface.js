@@ -30,19 +30,16 @@ export const renderRouteData = data => {
   document.getElementById('route-metadata').innerHTML = `${routeDistance} / ${routeStops} / ${routeEnergy}`;
 
   // the total duration of the journey (including charge time), in seconds
-  document.getElementById('duration').innerHTML = `${getDurationString(data.duration ?? 0)}`;
+  document.getElementById('duration').innerHTML = `${getDurationString(data.durations?.total ?? 0)}`;
 
   // the total time required to charge of the entire route, in seconds
-  document.getElementById('charge-duration').innerHTML = getDurationString(data.chargeTime ?? 0);
+  document.getElementById('charge-duration').innerHTML = getDurationString(data.durations?.charging ?? 0);
 
   // the total energy used of the route, in kWh
   document.getElementById('consumption').innerHTML = routeEnergy;
 
   // the money saved by the user driving this route with the electric vehicle
-  document.getElementById('cost').innerHTML = `${data.saving?.currency || '€'} ${data.saving?.money ?? 0} `;
-
-  // the total amount of CO2 which were used with a petrol vehicle
-  document.getElementById('co2').innerHTML = data.saving?.co2 ? `${data.saving.co2 / 1000} Kg` : 'Unknown';
+  document.getElementById('cost').innerHTML = `'€'${data.savings?.money ?? 0} `;
 
   // Enable or disable our border-crossing UI
   document.getElementById('border-crossing').style.display = data.tags.includes('crossborder') ? 'flex' : 'none';
@@ -75,7 +72,9 @@ const calculateAverageTemperature = data => {
   // We then add up all the temperatures into one variable.
   data.legs.map((legs, idx) => {
     averageTemperature +=
-      idx === data.legs.length - 1 ? Number(legs.destination.properties.temp) : Number(legs.origin.properties.temp);
+      idx === data.legs.length - 1
+        ? Number(legs.destination.properties.location?.temperature)
+        : Number(legs.origin.properties.location?.temperature);
   });
 
   // Average out the temperature by dividing it through all stops and round the value to 1 decimal
@@ -98,8 +97,14 @@ const getGoogleMapDirectionsURL = legs => {
 
   // Coordinates are an array with longitude as first value and latitude as the second one
   // we have to reverse it as Google Maps accept latitude first
-  const googleOrigin = origin?.slice().reverse()?.join(',');
-  const googleDestination = destination?.slice().reverse()?.join(',');
+  const googleOrigin = origin
+    ?.slice()
+    .reverse()
+    ?.join(',');
+  const googleDestination = destination
+    ?.slice()
+    .reverse()
+    ?.join(',');
   googleDirURL += `&origin=${googleOrigin}&destination=${googleDestination}`;
 
   if (legs.length > 2) {
@@ -108,7 +113,10 @@ const getGoogleMapDirectionsURL = legs => {
     legs.forEach((leg, index) => {
       // Add charging stations and waypoints
       if (index !== legs.length - 1) {
-        googleDirURL += `${leg.destination?.geometry?.coordinates?.slice().reverse()?.join(',')}|`;
+        googleDirURL += `${leg.destination?.geometry?.coordinates
+          ?.slice()
+          .reverse()
+          ?.join(',')}|`;
       }
     });
   }
