@@ -145,6 +145,15 @@ export default [
     plugins,
   },
   {
+    input: 'examples/3.routes/9.amenities-on-route/index.js',
+    output: {
+      file: 'public/amenities-on-route/bundle.js',
+      format: 'iife',
+      sourcemap: true,
+    },
+    plugins,
+  },
+  {
     input: 'examples/4.tile-service/1.tile-server/index.js',
     output: {
       file: 'public/tile-server/bundle.js',
