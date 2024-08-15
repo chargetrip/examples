@@ -73,7 +73,16 @@ export default [
     plugins,
   },
   {
-    input: 'examples/3.routes/2.alternative-routes/index.js',
+    input: 'examples/3.routes/2.route-new/index.js',
+    output: {
+      file: 'public/route-new/bundle.js',
+      format: 'iife',
+      sourcemap: true,
+    },
+    plugins,
+  },
+  {
+    input: 'examples/3.routes/3.alternative-routes/index.js',
     output: {
       file: 'public/alternative-routes/bundle.js',
       format: 'iife',
@@ -82,7 +91,7 @@ export default [
     plugins,
   },
   {
-    input: 'examples/3.routes/3.stations-along-route/index.js',
+    input: 'examples/3.routes/4.stations-along-route/index.js',
     output: {
       file: 'public/stations-along-route/bundle.js',
       format: 'iife',
@@ -91,7 +100,7 @@ export default [
     plugins,
   },
   {
-    input: 'examples/3.routes/4.preferred-operator/index.js',
+    input: 'examples/3.routes/5.preferred-operator/index.js',
     output: {
       file: 'public/preferred-operator/bundle.js',
       format: 'iife',
@@ -100,7 +109,7 @@ export default [
     plugins,
   },
   {
-    input: 'examples/3.routes/5.elevation-plot/index.js',
+    input: 'examples/3.routes/6.elevation-plot/index.js',
     output: {
       file: 'public/elevation-plot/bundle.js',
       format: 'iife',
@@ -109,7 +118,7 @@ export default [
     plugins,
   },
   {
-    input: 'examples/3.routes/6.battery-capacity/index.js',
+    input: 'examples/3.routes/7.battery-capacity/index.js',
     output: {
       file: 'public/battery-capacity/bundle.js',
       format: 'iife',
@@ -118,7 +127,7 @@ export default [
     plugins,
   },
   {
-    input: 'examples/3.routes/7.state-of-charge/index.js',
+    input: 'examples/3.routes/8.state-of-charge/index.js',
     output: {
       file: 'public/state-of-charge/bundle.js',
       format: 'iife',
@@ -127,18 +136,9 @@ export default [
     plugins,
   },
   {
-    input: 'examples/3.routes/8.tolls-and-ferries/index.js',
+    input: 'examples/3.routes/9.tolls-and-ferries/index.js',
     output: {
       file: 'public/tolls-and-ferries/bundle.js',
-      format: 'iife',
-      sourcemap: true,
-    },
-    plugins,
-  },
-  {
-    input: 'examples/3.routes/9.route-new/index.js',
-    output: {
-      file: 'public/route-new/bundle.js',
       format: 'iife',
       sourcemap: true,
     },

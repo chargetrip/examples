@@ -3,5 +3,5 @@
   "sublabel": "Plot a route where that takes into account operator preferences or exclusions",
   "background": "accent",
   "url": "https://examples.chargetrip.com/preferred-operator/",
-  "github": "https://github.com/chargetrip/examples/tree/main/examples/3.routes/4.preferred-operator"
+  "github": "https://github.com/chargetrip/examples/tree/main/examples/3.routes/5.preferred-operator"
 }
