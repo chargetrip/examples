@@ -64,18 +64,9 @@ export default [
     plugins,
   },
   {
-    input: 'examples/3.routes/1.1.route/index.js',
+    input: 'examples/3.routes/1.route/index.js',
     output: {
       file: 'public/route/bundle.js',
-      format: 'iife',
-      sourcemap: true,
-    },
-    plugins,
-  },
-  {
-    input: 'examples/3.routes/1.2.route-new/index.js',
-    output: {
-      file: 'public/route-new/bundle.js',
       format: 'iife',
       sourcemap: true,
     },
@@ -139,6 +130,15 @@ export default [
     input: 'examples/3.routes/8.tolls-and-ferries/index.js',
     output: {
       file: 'public/tolls-and-ferries/bundle.js',
+      format: 'iife',
+      sourcemap: true,
+    },
+    plugins,
+  },
+  {
+    input: 'examples/3.routes/9.route-new/index.js',
+    output: {
+      file: 'public/route-new/bundle.js',
       format: 'iife',
       sourcemap: true,
     },
