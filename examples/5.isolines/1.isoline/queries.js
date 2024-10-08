@@ -41,13 +41,6 @@ subscription createIsoline($id: ID!){
           index
         }
       }
-      polygon_count
-      season
-      origin{
-        geometry{
-          coordinates
-        }
-      }
     }
   }
 `;
