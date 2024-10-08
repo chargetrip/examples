@@ -34,7 +34,7 @@ export const drawIso = data => {
   const loadingToast = document.getElementById('loading-toast');
 
   if (map.loaded()) {
-    while (index < data.polygon_count) {
+    while (index < data.polygons.length) {
       addLayer(data.polygons[index].geometry.coordinates, index);
       index = index + 1;
     }
@@ -42,7 +42,7 @@ export const drawIso = data => {
     loadingToast.style.transform = `translateY(100%)`;
   } else {
     map.on('load', () => {
-      while (index < data.polygon_count) {
+      while (index < data.polygons.length) {
         addLayer(data.polygons[index].geometry.coordinates, index);
         index = index + 1;
       }
@@ -83,7 +83,7 @@ const addLayer = (dataLayer, index) => {
     paint: {
       'line-color': '#0078ff',
       'line-width': 1,
-      'line-opacity': index === 4 ? 1 : 0.2, // 1 - (index + 1) * 0.1
+      'line-opacity': index === 4 ? 1 : 0.2,
     },
   });
 };
