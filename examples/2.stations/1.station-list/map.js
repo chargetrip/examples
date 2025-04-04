@@ -8,8 +8,7 @@ const map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/chargetrip/ckgcbf3kz0h8819qki8uwhe0k',
   zoom: 11.4,
-  center: [10.197422, 56.171395],
-  cooperativeGestures: true,
+  center: [9.941440543222434, 54.974349949816336], // 10.197422, 56.171395
 });
 
 map.on('load', function() {
@@ -56,6 +55,8 @@ const selectPinlet = station => `${station.status}-${station.speed}`;
  */
 
 export const showStations = stations => {
+  console.log(stations);
+
   if (!stations) return;
 
   document.getElementById('stationAmount').innerHTML =

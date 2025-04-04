@@ -26,11 +26,11 @@ const client = createClient({
 /**
  * In this example we fetch the closest stations within a radius of 3000 meters
  */
-export const getStations = ({ distance = 3000, power = [], amenities = [] }) => {
+export const getStations = ({ distance = 7000, power = [], amenities = [] }) => {
   return client
     .query(getStationsAroundQuery, {
       query: {
-        location: { type: 'Point', coordinates: [10.197422, 56.171395] },
+        location: { type: 'Point', coordinates: [9.941440543222434, 54.974349949816336] },
         distance,
         power,
         amenities,
